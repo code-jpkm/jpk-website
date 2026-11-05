@@ -1,0 +1,34 @@
+# Render Blueprint: Render → New → Blueprint → choose this repository.
+# Creates the admin at https://jpk-webupdation.onrender.com (the service name decides the address).
+# Render asks for MONGODB_URI and the three Cloudinary values (cloud name, API key, API secret) while creating it.
+# Optional settings (email alerts, website rebuild hook) can be added later under the service's Environment tab;
+# see README.md.
+services:
+  - type: web
+    name: jpk-webupdation
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SEED_ADMIN_EMAIL
+        value: sales@jpkm.in
+      - key: SEED_ADMIN_PASSWORD
+        value: admin@123
+      - key: WEBSITE_URL
+        value: https://jpkm.in

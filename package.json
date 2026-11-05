@@ -1,0 +1,33 @@
+{
+  "name": "jpk-admin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "JPK Metallics admin software: JPK Updates, products, careers and enquiries for jpkm.in (Next.js, JavaScript)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed": "node scripts/seed.mjs",
+    "seed:reset-password": "node scripts/seed.mjs --reset-password"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@tiptap/extension-image": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/react": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.11.0",
+    "jose": "^6.2.15",
+    "mongoose": "^9.11.4",
+    "next": "^16.4.5",
+    "nodemailer": "^10.3.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanitize-html": "^2.18.1",
+    "sharp": "^0.35.5"
+  }
+}
