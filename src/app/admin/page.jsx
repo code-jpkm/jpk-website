@@ -54,6 +54,7 @@ export default async function Dashboard() {
           {can(user, 'blogs', 'create') ? <Link href="/admin/blogs/new" className="btn btn--accent"><Icon name="plus" size={16} />New post</Link> : null}
           {can(user, 'products', 'create') ? <Link href="/admin/products/new" className="btn btn--ghost"><Icon name="plus" size={16} />New product</Link> : null}
           {can(user, 'jobs', 'create') ? <Link href="/admin/jobs/new" className="btn btn--ghost"><Icon name="plus" size={16} />New job</Link> : null}
+          {can(user, 'website', 'view') ? <Link href="/admin/website" className="btn btn--ghost"><Icon name="website" size={16} />Edit the website</Link> : null}
         </div>
       </section>
 

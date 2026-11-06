@@ -204,17 +204,43 @@ export function imageUrlsInHtml(html) {
   return urls;
 }
 
-// Delete a stored picture when nothing (post, product, category, job) refers to it any more.
+// Where a stored picture is used (a post, product, category, job or the website editor), or null.
+export async function imageInUse(url, publicIdHint) {
+  await connectDB();
+  const { Blog } = await import('../models/Blog.js');
+  const { Product } = await import('../models/Product.js');
+  const { ProductCategory } = await import('../models/ProductCategory.js');
+  const { Job } = await import('../models/Job.js');
+  const { SitePart } = await import('../models/SitePart.js');
+  const dbId = (String(url).match(/\/api\/files\/([a-f0-9]{24})$/i) || [])[1];
+  const publicId = publicIdHint || cloudinaryPublicIdFromUrl(url);
+  const needle = dbId ? `/api/files/${dbId}` : publicId || url;
+  const re = { $regex: escapeRegex(needle) };
+  const [blog, product, category, job] = await Promise.all([
+    Blog.exists({ $or: [{ 'coverImage.url': re }, { content: re }] }),
+    Product.exists({ $or: [{ 'images.url': re }, { description: re }] }),
+    ProductCategory.exists({ 'image.url': re }),
+    Job.exists({ description: re }),
+  ]);
+  if (blog) return 'in a JPK Updates post';
+  if (product) return 'in a product';
+  if (category) return 'in a product category';
+  if (job) return 'in a job opening';
+  // the website editor keeps its changes as free-form data: look through them (there are only a few dozen)
+  const parts = await SitePart.find({}).select('key json').lean();
+  const hit = parts.find(p => String(p.json || '').includes(needle));
+  if (hit) return hit.key === 'global' ? 'in the header or footer' : hit.key === 'settings' ? 'in the design settings' : 'on a page of the website';
+  return null;
+}
+
+// Delete a stored picture when nothing (post, product, category, job, website editor) refers to it any more.
 // Never throws: a picture that could not be removed is only logged.
 export async function releaseImages(items) {
   const list = (Array.isArray(items) ? items : [items]).filter(Boolean).map(i => (typeof i === 'string' ? { url: i } : i));
   if (!list.length) return;
   try {
     await connectDB();
-    const { Blog } = await import('../models/Blog.js');
-    const { Product } = await import('../models/Product.js');
-    const { ProductCategory } = await import('../models/ProductCategory.js');
-    const { Job } = await import('../models/Job.js');
+    const { Media } = await import('../models/Media.js');
     const seen = new Set();
     for (const img of list) {
       const url = img.url;
@@ -223,16 +249,13 @@ export async function releaseImages(items) {
       const dbId = (url.match(/^\/api\/files\/([a-f0-9]{24})$/i) || [])[1];
       const publicId = img.provider === 'cloudinary' && img.publicId ? img.publicId : cloudinaryPublicIdFromUrl(url);
       if (!dbId && !publicId) continue; // not one of ours
-      const re = { $regex: escapeRegex(dbId ? `/api/files/${dbId}` : publicId) };
-      const used = await Promise.all([
-        Blog.exists({ $or: [{ 'coverImage.url': re }, { content: re }] }),
-        Product.exists({ $or: [{ 'images.url': re }, { description: re }] }),
-        ProductCategory.exists({ 'image.url': re }),
-        Job.exists({ description: re }),
-      ]);
-      if (used.some(Boolean)) continue;
+      if (await imageInUse(url, publicId)) continue;
+      // pictures uploaded for the website stay in its picture library until they are deleted there
+      const media = await Media.findOne({ url }).select('folder').lean();
+      if (media && media.folder === 'website') continue;
       if (dbId) await gridDelete(MEDIA_BUCKET, dbId);
       else if (cloudinaryEnabled()) await (await cld()).uploader.destroy(publicId, { resource_type: 'image', invalidate: true });
+      if (media) await Media.deleteOne({ _id: media._id });
     }
   } catch (err) {
     console.error('[jpk-admin] could not remove an unused picture:', err && err.message);

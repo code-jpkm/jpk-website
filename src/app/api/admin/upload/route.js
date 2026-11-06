@@ -3,10 +3,12 @@ import { HttpError } from '@/lib/errors';
 import { requireUser } from '@/lib/auth';
 import { canUpload } from '@/lib/permissions';
 import { storeImage, MAX_IMAGE_UPLOAD } from '@/lib/storage';
+import { connectDB } from '@/lib/db';
+import { Media } from '@/models/Media';
 
 export const dynamic = 'force-dynamic';
 
-const FOLDERS = ['jpk-updates', 'products', 'categories', 'careers', 'misc'];
+const FOLDERS = ['jpk-updates', 'products', 'categories', 'careers', 'website', 'misc'];
 
 // POST /api/admin/upload (multipart: file, folder) -> { image: { url, publicId, provider, width, height } }
 export const POST = adminRoute(async req => {
@@ -25,5 +27,12 @@ export const POST = adminRoute(async req => {
   const folder = FOLDERS.includes(form.get('folder')) ? form.get('folder') : 'misc';
   const buffer = Buffer.from(await file.arrayBuffer());
   const image = await storeImage(buffer, { folder, filename: file.name });
+  // every upload is also in the picture library, to be used again anywhere on the website
+  try {
+    await connectDB();
+    await Media.create({ ...image, name: String(file.name || '').slice(0, 200), folder, uploadedBy: user.id });
+  } catch (err) {
+    console.error('[jpk-admin] picture library entry not saved:', err && err.message);
+  }
   return json({ image: { ...image, alt: '' } }, { status: 201 });
 });

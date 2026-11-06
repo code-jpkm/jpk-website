@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: [true, 'Please enter an email address.'], trim: true, lowercase: true, maxlength: 200, unique: true },
     passwordHash: { type: String, required: true, select: false },
     role: { type: String, enum: ['admin', 'staff'], default: 'staff' },
-    permissions: { blogs: actions, products: actions, jobs: actions, applications: actions, enquiries: actions },
+    permissions: { blogs: actions, products: actions, jobs: actions, applications: actions, enquiries: actions, website: actions },
     active: { type: Boolean, default: true },
     // raised when the password changes or the account is switched off, which signs the user out everywhere
     tokenVersion: { type: Number, default: 0 },

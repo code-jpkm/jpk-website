@@ -1,6 +1,6 @@
 # JPK Admin
 
-The admin software for **jpkm.in**: JPK Updates (blog), products and product photos, job openings, job applications with CVs, website enquiries, and users with per-section rights.
+The admin software for **jpkm.in**: a website editor (every text, picture, link and section of every page, new pages, the menu, colours and fonts), JPK Updates (blog), products and product photos, job openings, job applications with CVs, website enquiries, and users with per-section rights.
 
 - Next.js 16, JavaScript only (no TypeScript), MongoDB (Mongoose), Cloudinary for pictures
 - Address: **https://jpk-webupdation.onrender.com** (Render)
@@ -69,7 +69,7 @@ Open https://jpk-webupdation.onrender.com/api/health. It should show `"db":"conn
 | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | recommended | Cloudinary cloud name, API key and API secret (see step 2) |
 | `CLOUDINARY_URL` | no | The same three in one line, `cloudinary://<API key>:<API secret>@<cloud name>`, instead of the three settings |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | First administrator (default `sales@jpkm.in` / `admin@123`) |
-| `WEBSITE_URL` | no | The public website, default `https://jpkm.in` |
+| `WEBSITE_URL` | no | The public website, default `https://jpkm.in`. The website editor shows this site in its preview and reads its list of pages from it |
 | `SITE_REBUILD_HOOK_URL` | no | Deploy hook of the website host; see *Connect the website* |
 | `ALLOWED_ORIGINS` | no | Websites allowed to send forms, e.g. `https://jpkm.in,https://www.jpkm.in`. Default: any |
 | `RESEND_API_KEY`, `MAIL_FROM`, `NOTIFY_EMAIL`, `CAREERS_NOTIFY_EMAIL` | no | Email alerts (see below) |
@@ -82,6 +82,25 @@ New enquiries and applications always appear in the admin. To also get an email:
 - **Resend** (works on Render's free plan): create a free account at https://resend.com, verify the domain `jpkm.in`, create an API key and set `RESEND_API_KEY`, `MAIL_FROM` (for example `JPK Website <alerts@jpkm.in>`) and `NOTIFY_EMAIL` (who receives enquiries). `CAREERS_NOTIFY_EMAIL` receives job applications (defaults to `NOTIFY_EMAIL`); the CV is attached.
 - **SMTP**: set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` and `NOTIFY_EMAIL`. Render's **free** plan blocks SMTP ports, so this only works on a paid Render instance or another host.
 
+## Website editor
+**Website → Pages & sections** lists every page of jpkm.in. Open one and the page appears on the right, live:
+
+- **Click anything on the page** (a heading, a text, a button, a picture, a number, a slider) and its box opens on the left. Type, and the page changes as you type. **Save** (or Ctrl+S) puts it live on the website; until then nobody else sees it. *Undo* on a box brings back the original, *Undo unsaved changes* throws away everything not yet saved.
+- **Pictures:** *Replace…* opens the picture library: upload a new picture or pick one uploaded before. Section backgrounds and banners are pictures too. The original pictures stay on the website and come back with *Use the original picture*.
+- **Sections:** move them up and down, hide them (the eye) and **add sections** between them: page banner, heading and text, text with a picture, cards, product grid, products from the *Products* list, picture gallery, numbers that count up, questions and answers, call to action, latest JPK Updates, job openings, enquiry form, video, logos, map, space or line, custom HTML. Added sections can be duplicated and deleted.
+- **Page settings:** Google title and description, and switching a page off.
+- **Find a text on this page** finds any wording on the page.
+- **History:** every save keeps the version before it (the last 30), and *Bring back* restores one.
+- **Add a page** makes a new page from sections, at an address you choose (for example `/quality-policy/`). It stays a draft until *Published* is ticked in its Page settings; add it to the menu under *Menu*.
+- **Header & footer** (same on every page), **Menu** (rename, re-link, reorder, sub-menus up to three levels, hide, add pages) and **Design** (the brand colours, the heading and text fonts, extra CSS) work the same way, with the website beside them.
+- *Computer / Tablet / Phone* above the preview shows the page at that screen size.
+
+Who may do what: *Users & access* → **Website editor**: *View* (look only), *Edit* (change and save pages, header/footer, menu, design), *Create* (add pages), *Delete* (delete added pages).
+
+How it reaches the website: the website asks `GET /api/public/site` on every page load and shows the saved changes, so they are live at once. Its pre-built pages (what Google reads first) get them at the next website build: set `SITE_REBUILD_HOOK_URL` (see *Connect the website*) and the admin starts a build about a minute after each save. The editor's preview needs the website version that has the editor (any build from November 2026 on); with an older website the editor can still save, and the preview says it cannot connect.
+
+The list of what can be changed comes from the website (`WEBSITE_URL/site-schema.json`, written by every website build); `seed-data/site-schema.json` is the copy used when the website cannot be reached.
+
 ## Connect the website
 The website already uses this admin (`VITE_API_URL`, default `https://jpk-webupdation.onrender.com`):
 
@@ -93,7 +112,7 @@ For Google to see a new post immediately as a normal page, let the admin rebuild
 1. In the website host create a **deploy hook** (Vercel: Project → Settings → Git → Deploy Hooks; Netlify: Site configuration → Build hooks; Render static site: Settings → Deploy Hook).
 2. Put the hook address into `SITE_REBUILD_HOOK_URL` here. One minute after posts or jobs change, the admin asks the host to rebuild.
 
-Products and categories are available through the API (`/api/public/products`, `/api/public/categories`) for product pages on the website.
+Products and categories are available through the API (`/api/public/products`, `/api/public/categories`). To show the products of a category on a page, add the section *Products from the product list* in the website editor: products added or changed under *Products* then appear there by themselves.
 
 ### Render free plan: sleeping
 A free Render service sleeps after 15 minutes without visitors; the first visit afterwards takes up to about a minute. The website keeps working meanwhile (it shows its built-in posts and waits for job openings). To avoid the wait, either use Render's **Starter** instance, or have a free monitor (for example cron-job.org or UptimeRobot) open `https://jpk-webupdation.onrender.com/api/health` every 10 minutes.
@@ -101,7 +120,7 @@ A free Render service sleeps after 15 minutes without visitors; the first visit 
 ## Users and access
 *Users & access* (administrators only):
 - **Administrator**: everything, including users.
-- **Staff**: only the ticked rights per section: JPK Updates, Products (with categories) and Job openings: view / create / edit / delete; Job applications and Enquiries: view / update (status, notes) / delete.
+- **Staff**: only the ticked rights per section: JPK Updates, Products (with categories), Job openings and the Website editor: view / create / edit / delete; Job applications and Enquiries: view / update (status, notes) / delete.
 
 Rights apply immediately. Switching an account off or setting a new password signs that person out everywhere. There is always at least one active administrator, and nobody can remove their own administrator access.
 
@@ -109,7 +128,8 @@ Rights apply immediately. Switching an account off or setting a new password sig
 - Upload by clicking or dragging. Very large photos (over about 9.5 MB or 5000 px) are resized automatically; up to 25 MB can be uploaded.
 - JPG, PNG, WebP, GIF and AVIF. iPhone HEIC photos: export as JPG first. SVG is not accepted (safety).
 - The website gets sharp, automatically sized versions from Cloudinary (`f_auto,q_auto`, several widths).
-- Pictures that are no longer used by any post, product, category or job are deleted from storage.
+- Every upload is also in the **picture library** of the website editor, to be used again anywhere on the website.
+- Pictures that are no longer used by any post, product, category, job or the website editor are deleted from storage. Pictures uploaded in the website editor stay in its library until they are deleted there (the library refuses while a page still uses them).
 
 ## On your computer
 ```bash
@@ -133,6 +153,7 @@ All answers are JSON; reading is open to any website (CORS `*`).
 | `GET /api/public/products?category=<slug>&featured=1&q=` | Published products; a category includes its sub-categories |
 | `GET /api/public/products/<slug>` | One product with photos, specifications, size table |
 | `GET /api/public/categories` | Product categories in menu order with product counts |
+| `GET /api/public/site` | The website editor's saved changes: `pages`, `global` (header/footer), `custom` (published new pages), `menus`, `settings` (design), `version` |
 | `POST /api/public/enquiries` | JSON `{ name, email, subject, message, phone?, company?, formId, page }` |
 | `POST /api/public/applications` | Form data: `name, email, phone, location, experience, currentCompany, linkedin, coverLetter, consent, jobId, jobTitle, resume` (PDF/DOC/DOCX/RTF up to 5 MB) |
 | `GET /api/health` | Server, database and storage status |

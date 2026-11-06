@@ -7,6 +7,7 @@ export const MODULES = [
   { key: 'jobs', label: 'Job openings', actions: ['view', 'create', 'update', 'delete'] },
   { key: 'applications', label: 'Job applications', actions: ['view', 'update', 'delete'] },
   { key: 'enquiries', label: 'Enquiries', actions: ['view', 'update', 'delete'] },
+  { key: 'website', label: 'Website editor (pages, menu, design)', actions: ['view', 'create', 'update', 'delete'] },
 ];
 
 export const ACTION_LABELS = { view: 'View', create: 'Create', update: 'Edit', delete: 'Delete' };
@@ -47,7 +48,7 @@ export function can(user, module, action = 'view') {
   return list.includes(action);
 }
 
-// Uploading pictures is allowed for anyone who can add or edit posts, products or jobs.
+// Uploading pictures is allowed for anyone who can add or edit posts, products, jobs or the website.
 export function canUpload(user) {
-  return ['blogs', 'products', 'jobs'].some(m => can(user, m, 'create') || can(user, m, 'update'));
+  return ['blogs', 'products', 'jobs', 'website'].some(m => can(user, m, 'create') || can(user, m, 'update'));
 }

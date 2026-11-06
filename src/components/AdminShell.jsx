@@ -19,6 +19,14 @@ const NAV = [
     ],
   },
   {
+    group: 'Website',
+    items: [
+      { href: '/admin/website', label: 'Pages & sections', icon: 'website', module: 'website', excludeAll: ['/admin/website/menu', '/admin/website/design'] },
+      { href: '/admin/website/menu', label: 'Menu', icon: 'menulist', module: 'website' },
+      { href: '/admin/website/design', label: 'Design', icon: 'palette', module: 'website' },
+    ],
+  },
+  {
     group: 'Careers',
     items: [
       { href: '/admin/jobs', label: 'Job openings', icon: 'jobs', module: 'jobs' },
@@ -32,6 +40,7 @@ const NAV = [
 function isActive(pathname, item) {
   if (item.exact) return pathname === item.href;
   if (item.exclude && pathname.startsWith(item.exclude)) return false;
+  if (item.excludeAll && item.excludeAll.some(x => pathname.startsWith(x))) return false;
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
 
