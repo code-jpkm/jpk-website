@@ -10,11 +10,14 @@ import { PageHeader, Card, Badge, EmptyState, Icon } from '@/components/ui';
 import { api } from '@/lib/client/api';
 import { timeAgo, thumb } from '@/lib/format';
 
-export default function ProductList({ perms, categories, initialCategory = '' }) {
+export default function ProductList({ perms, categories, groups = [], initialCategory = '' }) {
   const list = useList('/api/admin/products', { q: '', status: '', category: initialCategory });
   const toast = useToast();
   const [confirm, dialog] = useConfirm();
   const labels = new Map(categories.map(c => [c._id, c.label]));
+  // the tab or block of the website page, where the page has several
+  const perPage = groups.reduce((m, g) => m.set(g.path, (m.get(g.path) || 0) + 1), new Map());
+  const groupNote = p => { const g = groups.find(x => x.id === p.group); return g && perPage.get(g.path) > 1 ? g.label : ''; };
 
   const remove = async p => {
     if (!(await confirm({ title: 'Delete this product?', message: `“${p.name}” and its photo list will be removed. This cannot be undone.`, confirmLabel: 'Delete product' }))) return;
@@ -32,7 +35,7 @@ export default function ProductList({ perms, categories, initialCategory = '' })
     <>
       <PageHeader
         title="Products"
-        description="Products with photos, specifications and size tables, grouped by category."
+        description="The products of the website's product pages, with their photos. A change here shows on the product page of the website."
         actions={
           <>
             <Link href="/admin/products/categories" className="btn btn--ghost">Categories</Link>
@@ -89,7 +92,7 @@ export default function ProductList({ perms, categories, initialCategory = '' })
                       <Link href={`/admin/products/${p._id}`} className="table__title">{p.featured ? <span className="star-on" title="Featured">★ </span> : null}{p.name}</Link>
                       <span className="table__sub">{p.code ? `${p.code} · ` : ''}{p.summary || p.slug}</span>
                     </td>
-                    <td className="small hide-sm">{catId ? labels.get(String(catId)) || (p.category && p.category.name) || '—' : <span className="muted">None</span>}</td>
+                    <td className="small hide-sm">{catId ? labels.get(String(catId)) || (p.category && p.category.name) || '—' : <span className="muted">None</span>}{groupNote(p) ? <span className="table__sub">{groupNote(p)}</span> : null}</td>
                     <td><Badge status={p.status} /></td>
                     <td className="muted hide-sm">{(p.images || []).length}</td>
                     <td className="nowrap muted hide-sm">{timeAgo(p.updatedAt)}</td>

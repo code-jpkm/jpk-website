@@ -191,16 +191,138 @@ export function cleanSections(list, { refs = [], types }) {
   return out;
 }
 
+const oneLine = (v, max) => str(typeof v === 'string' ? v.replace(/\s+/g, ' ') : v, max);
+
+// a page's search engine settings: title, description, main heading, sharing picture and texts, focus keyphrase,
+// canonical address, noindex / nofollow
 export function cleanSeo(v) {
   if (!isObj(v)) return {};
   const out = {};
-  const title = str(v.title, 140), description = str(v.description, 320), h1 = str(v.h1, 200);
+  const title = oneLine(v.title, 140), description = oneLine(v.description, 320), h1 = oneLine(v.h1, 200);
   if (title) out.title = title;
   if (description) out.description = description;
   if (h1) out.h1 = h1;
   const image = cleanImage(v.image);
   if (image) out.image = image;
   if (v.noindex) out.noindex = true;
+  if (v.nofollow) out.nofollow = true;
+  const focus = oneLine(v.focus, 100), ogTitle = oneLine(v.ogTitle, 140), ogDescription = oneLine(v.ogDescription, 320);
+  if (focus) out.focus = focus;
+  if (ogTitle) out.ogTitle = ogTitle;
+  if (ogDescription) out.ogDescription = ogDescription;
+  const canonical = oneLine(v.canonical, 300);
+  if (canonical && (/^https:\/\/[^\s"'<>]+$/i.test(canonical) || /^\/[a-z0-9\-/]*$/i.test(canonical))) out.canonical = canonical;
+  return out;
+}
+
+// ---- the website's search engine and analytics settings (part "seo") ----
+
+const GA4 = /^G-[A-Z0-9]{4,14}$/;
+// a verification code, or the whole <meta> tag Google / Bing show (its content is kept)
+function verification(v) {
+  let s = str(v, 400);
+  const m = s.match(/content\s*=\s*["']([^"']+)["']/i);
+  if (m) s = m[1];
+  s = s.trim();
+  return /^[A-Za-z0-9_\-+=/.:]{6,120}$/.test(s) ? s : '';
+}
+function cleanAddress(v) {
+  if (!isObj(v)) return undefined;
+  const out = {};
+  for (const [k, max] of [['streetAddress', 200], ['addressLocality', 100], ['addressRegion', 100], ['postalCode', 20], ['addressCountry', 60]]) {
+    const x = oneLine(v[k], max);
+    if (x) out[k] = x;
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+function cleanOrg(v) {
+  if (!isObj(v)) return {};
+  const out = {};
+  for (const [k, max] of [['name', 160], ['shortName', 80], ['phone', 40], ['email', 120], ['founded', 10], ['description', 500]]) {
+    const x = oneLine(v[k], max);
+    if (x) out[k] = x;
+  }
+  if (out.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.email)) delete out.email;
+  if (out.founded && !/^\d{4}$/.test(out.founded)) delete out.founded;
+  const office = cleanAddress(v.address), factory = cleanAddress(v.factory);
+  if (office) out.address = office;
+  if (factory) out.factory = factory;
+  const logo = cleanImage(v.logo);
+  if (logo) out.logo = logo;
+  const links = (Array.isArray(v.sameAs) ? v.sameAs : String(v.sameAs || '').split('\n')).map(x => oneLine(x, 300)).filter(x => /^https:\/\/[^\s"'<>]+$/i.test(x));
+  if (links.length) out.sameAs = [...new Set(links)].slice(0, 12);
+  return out;
+}
+// robots.txt lines the owner may add (only the usual rules)
+function cleanRobotsLines(v) {
+  return String(v || '').split('\n').map(l => l.trim()).filter(l => /^(user-agent|allow|disallow|crawl-delay)\s*:\s*[^\s<>"]{0,200}$/i.test(l)).slice(0, 60).join('\n');
+}
+const redirectPath = v => {
+  const s = oneLine(v, 300);
+  if (!s) return '';
+  try {
+    const u = new URL(s, 'https://jpkm.in');
+    if (/^https?:$/.test(u.protocol) && /(^|\.)jpkm\.in$/i.test(u.hostname)) {
+      let p = decodeURIComponent(u.pathname).toLowerCase().replace(/\/{2,}/g, '/');
+      if (!/\.[a-z0-9]{2,5}$/.test(p) && !p.endsWith('/')) p += '/';
+      return /^\/[a-z0-9\-_/.]*$/.test(p) ? p : '';
+    }
+  } catch { /* not an address */ }
+  return '';
+};
+// redirects made in the admin: { from: "/old-page/", to: "/new-page/" or "https://…", code: 301 | 302 }
+export function cleanRedirects(list, { pagePaths = [] } = {}) {
+  if (!Array.isArray(list)) return [];
+  const taken = new Set(pagePaths);
+  const out = [];
+  const seen = new Set();
+  for (const r of list.slice(0, 500)) {
+    if (!isObj(r)) continue;
+    const from = redirectPath(r.from);
+    if (!from || from === '/' || seen.has(from)) continue;
+    if (taken.has(from)) throw new HttpError(400, `${from} is a page of the website. To move that page, change its address instead (or hide it first).`);
+    if (/^\/(api|assets|images|fonts|wp|cms-preview)\//.test(from)) throw new HttpError(400, `${from} is used by the website itself and cannot be redirected.`);
+    let to = oneLine(r.to, 500);
+    if (/^https?:\/\//i.test(to)) {
+      try { const u = new URL(to); to = /(^|\.)jpkm\.in$/i.test(u.hostname) ? redirectPath(to) + (u.search || '') : u.href; } catch { to = ''; }
+    } else to = to ? redirectPath(to) : '';
+    if (!to) throw new HttpError(400, `Please give an address to send ${from} to (a page such as /contact-us/ or a full web address).`);
+    if (to === from) throw new HttpError(400, `${from} cannot be sent to itself.`);
+    seen.add(from);
+    out.push({ from, to, code: Number(r.code) === 302 ? 302 : 301 });
+  }
+  // no chains that end where they started
+  const map = new Map(out.map(r => [r.from, r.to]));
+  for (const r of out) {
+    let at = r.to; let n = 0;
+    while (map.has(at) && n < 20) { at = map.get(at); n++; if (at === r.from) throw new HttpError(400, `The redirects from ${r.from} go round in a circle.`); }
+  }
+  return out;
+}
+
+export function cleanSiteSeo(v, { pagePaths = [] } = {}) {
+  const d = isObj(v) ? v : {};
+  const out = {};
+  const ga = oneLine(isObj(d.analytics) ? d.analytics.ga4 : '', 20).toUpperCase();
+  if (ga && !GA4.test(ga)) throw new HttpError(400, 'The Google Analytics measurement ID looks like G-XXXXXXXXXX (it starts with G-).');
+  if (ga) out.analytics = { ga4: ga };
+  const verify = {};
+  const google = verification(isObj(d.verify) ? d.verify.google : '');
+  const bing = verification(isObj(d.verify) ? d.verify.bing : '');
+  if (google) verify.google = google;
+  if (bing) verify.bing = bing;
+  if (Object.keys(verify).length) out.verify = verify;
+  const org = cleanOrg(d.org);
+  if (Object.keys(org).length) out.org = org;
+  const share = cleanImage(d.shareImage);
+  if (share) out.shareImage = share;
+  const robots = {};
+  if (isObj(d.robots) && d.robots.block) robots.block = true;
+  const extra = cleanRobotsLines(isObj(d.robots) ? d.robots.extra : '');
+  if (extra) robots.extra = extra;
+  if (Object.keys(robots).length) out.robots = robots;
+  const redirects = cleanRedirects(d.redirects, { pagePaths });
+  if (redirects.length) out.redirects = redirects;
   return out;
 }
 

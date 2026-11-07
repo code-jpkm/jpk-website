@@ -135,6 +135,8 @@ export function Icon({ name, size = 18 }) {
     website: 'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 4v10h16V8H4zm1-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6 10h5v6H6v-6zm7 0h5v2h-5v-2zm0 4h5v2h-5v-2z',
     menulist: 'M3 5h18v2H3V5zm0 6h12v2H3v-2zm0 6h18v2H3v-2zm15-6.5 3 1.5-3 1.5v-3z',
     palette: 'M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A4.6 4.6 0 0 0 22 10.8C22 5.9 17.5 2 12 2zM6.5 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z',
+    seo: 'M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm-.8 2h1.6v2.2H13v1.6h-2.2V13H9.2v-2.2H7V9.2h2.2V7z',
+    chart: 'M4 19h17v2H3V3h2v14.6l4.3-4.3 3 3L18.6 10H16V8h6v6h-2v-2.6l-7.7 7.7-3-3L4 18.3V19z',
   };
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" className="icon" fill="currentColor">

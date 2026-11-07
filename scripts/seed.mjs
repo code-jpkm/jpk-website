@@ -1,7 +1,8 @@
 // Creates the first administrator (sales@jpkm.in / admin@123 unless SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD
 // are set) and the starter content. Safe to run again: existing data is never overwritten.
 //
-//   npm run seed                  create the admin if missing, add product categories and the 6 posts
+//   npm run seed                  create the admin if missing, add product categories, the 6 posts and the
+//                                 88 products of the website's product pages
 //   npm run seed:reset-password   also put the seed admin's password back to the seed password
 //
 // The server also does this by itself on first start, so running this is optional.
@@ -19,7 +20,7 @@ for (const file of ['.env.local', '.env']) {
 process.chdir(root);
 
 const resetPassword = process.argv.includes('--reset-password');
-const { ensureSeedAdmin, ensureCategories, importJpkUpdates, seedAdminEmail } = await import('../src/lib/seed.js');
+const { ensureSeedAdmin, ensureCategories, renameSanitaryCategory, importJpkUpdates, importProducts, seedAdminEmail } = await import('../src/lib/seed.js');
 const { disconnectDB, dbConfigured } = await import('../src/lib/db.js');
 const { cloudinarySettings } = await import('../src/lib/cloudinarySettings.js');
 
@@ -28,7 +29,7 @@ if (!dbConfigured()) {
   process.exit(1);
 }
 
-// The 6 posts come with pictures, so check the picture settings before changing anything.
+// The 6 posts and the products come with pictures, so check the picture settings before changing anything.
 const cld = cloudinarySettings();
 if (cld.problem) {
   console.error(cld.problem);
@@ -48,8 +49,11 @@ try {
   console.log(messages[admin.status] || admin.status);
   const cats = await ensureCategories();
   console.log(cats.status === 'created' ? 'Product categories added.' : 'Product categories: already set up.');
+  if ((await renameSanitaryCategory()).status === 'renamed') console.log('Product category "Sanitary Components" renamed "Sanitary Castings".');
   const posts = await importJpkUpdates();
   console.log(posts.status === 'imported' ? `JPK Updates: ${posts.count} existing posts added.` : 'JPK Updates: already set up.');
+  const products = await importProducts();
+  console.log(products.status === 'imported' ? `Products: ${products.count} products of the website's product pages added (with photos).` : 'Products: already set up.');
 } catch (err) {
   console.error('Seeding stopped:', err && err.message);
   console.error('What was added so far is kept. Fix the problem, then run npm run seed again to finish.');

@@ -8,6 +8,7 @@ import { loadCategories, flattenTree, categoryLabel } from '@/lib/categories';
 import { NoAccess } from '@/components/ui';
 import { Product } from '@/models/Product';
 import ProductForm from '../ProductForm';
+import { productFormData } from '../formData';
 
 export const metadata = { title: 'Edit product' };
 
@@ -19,12 +20,15 @@ export default async function EditProductPage({ params }) {
   await connectDB();
   const [product, cats] = await Promise.all([Product.findById(id).lean(), loadCategories()]);
   if (!product) notFound();
-  const categories = flattenTree(cats).map(c => ({ _id: String(c._id), name: c.name, depth: c.depth, label: categoryLabel(cats, c._id) }));
+  const { pages, norm, groups, websiteUrl } = await productFormData();
+  const categories = flattenTree(cats).map(c => ({ _id: String(c._id), name: c.name, depth: c.depth, label: categoryLabel(cats, c._id), path: norm(c.websitePath), pageName: pages.get(norm(c.websitePath)) || '' }));
   return (
     <ProductForm
       key={String(product._id)}
       initial={plain(product)}
       categories={plain(categories)}
+      groups={groups}
+      websiteUrl={websiteUrl}
       perms={{ update: can(user, 'products', 'update'), delete: can(user, 'products', 'delete') }}
     />
   );

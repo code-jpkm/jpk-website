@@ -20,7 +20,7 @@ export function descendantIds(categories, rootId) {
   return out;
 }
 
-// "Sanitary Components › Ductile Iron › Solid Top"
+// "Sanitary Castings › Ductile Iron › Solid Top"
 export function categoryLabel(categories, id) {
   const byId = new Map(categories.map(c => [String(c._id), c]));
   const names = [];

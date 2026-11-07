@@ -129,7 +129,10 @@ export function publicProduct(p, origin) {
     specTable: p.specTable && p.specTable.columns && p.specTable.columns.length
       ? { columns: p.specTable.columns, rows: (p.specTable.rows || []).map(r => (Array.isArray(r) ? r : (r && r.cells) || [])) }
       : null,
+    loadClass: p.loadClass || '',
+    material: p.material || '',
     features: p.features || [],
+    options: p.options || [],
     applications: p.applications || [],
     standards: p.standards || [],
     featured: Boolean(p.featured),

@@ -1,0 +1,3039 @@
+[
+ {
+  "card": "f6cf601",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "f2f6a4f",
+  "groupLabel": "Single Seal · Urban",
+  "order": 1010,
+  "slug": "ductile-iron-solid-top-single-seal-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Square/rectangular single-seal solid top manhole cover for residential roads, car parks and footpaths. Anti-slip surface with high load-bearing capacity.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-09-1-6.webp",
+   "alt": "Prime – Solid Top Ductile Iron Manhole Covers",
+   "width": 300,
+   "height": 300
+  },
+  "keys": {
+   "name": "36a8a46.t0",
+   "image": "ee4fba5.i0",
+   "load": "95a3fe9.t0",
+   "text": "fa5f2df.r0"
+  }
+ },
+ {
+  "card": "b0b0c3b",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "f2f6a4f",
+  "groupLabel": "Single Seal · Urban",
+  "order": 1020,
+  "slug": "ductile-iron-solid-top-single-seal-flex",
+  "name": "Flex",
+  "loadClass": "C250",
+  "material": "Ductile Iron",
+  "summary": "Square/rectangular single-seal cover rated for city traffic and non-heavy load-bearing vehicles.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-09-2-6.webp",
+   "alt": "Flex – Solid Top Ductile Iron Manhole Covers",
+   "width": 272,
+   "height": 272
+  },
+  "keys": {
+   "name": "82cb511.t0",
+   "image": "ee893fb.i0",
+   "load": "a907738.t0",
+   "text": "bfdaf3d.r0"
+  }
+ },
+ {
+  "card": "e4e76a2",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "f2f6a4f",
+  "groupLabel": "Single Seal · Urban",
+  "order": 1030,
+  "slug": "ductile-iron-solid-top-single-seal-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Square/rectangular single-seal cover for highways, construction sites and heavy-vehicle city traffic. Lockable option available. Meets BS EN124 D400.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys",
+   "Locking mechanism available"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-09-3-51.webp",
+   "alt": "Pro – Solid Top Ductile Iron Manhole Covers",
+   "width": 250,
+   "height": 250
+  },
+  "keys": {
+   "name": "bdc09ac.t0",
+   "image": "f3b43f5.i0",
+   "load": "44cccc1.t0",
+   "text": "79baea4.r0"
+  }
+ },
+ {
+  "card": "408c37d",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "4aeb3bd",
+  "groupLabel": "Double Seal · Urban +",
+  "order": 1040,
+  "slug": "ductile-iron-solid-top-double-seal-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Square/rectangular double-seal cover with watertight rubber gasket sealing. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-09-1-6.webp",
+   "alt": "Prime – Solid Top Ductile Iron Manhole Covers",
+   "width": 300,
+   "height": 300
+  },
+  "keys": {
+   "name": "d1a278d.t0",
+   "image": "98de2e1.i0",
+   "load": "64d6c05.t0",
+   "text": "320f83d.r0"
+  }
+ },
+ {
+  "card": "7acad2e",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "4aeb3bd",
+  "groupLabel": "Double Seal · Urban +",
+  "order": 1050,
+  "slug": "ductile-iron-solid-top-double-seal-flex",
+  "name": "Flex",
+  "loadClass": "C250",
+  "material": "Ductile Iron",
+  "summary": "Square/rectangular double-seal cover with rubber gasket for C250 applications. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-509.webp",
+   "alt": "Flex – Solid Top Ductile Iron Manhole Covers",
+   "width": 509,
+   "height": 319
+  },
+  "keys": {
+   "name": "4dc43b1.t0",
+   "image": "2cd4b63.i0",
+   "load": "8b5371d.t0",
+   "text": "4fab620.r0"
+  }
+ },
+ {
+  "card": "5ea4e4b",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "4aeb3bd",
+  "groupLabel": "Double Seal · Urban +",
+  "order": 1060,
+  "slug": "ductile-iron-solid-top-double-seal-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Heavy-duty double-seal cover for highways. GRP panel provision to block debris. Rubber gasket seal. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-509.webp",
+   "alt": "Pro – Solid Top Ductile Iron Manhole Covers",
+   "width": 509,
+   "height": 319
+  },
+  "keys": {
+   "name": "bf8d341.t0",
+   "image": "d7979e6.i0",
+   "load": "1a9cbce.t0",
+   "text": "3d967b3.r0"
+  }
+ },
+ {
+  "card": "9311136",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "6930260",
+  "groupLabel": "Arcline",
+  "order": 1070,
+  "slug": "ductile-iron-solid-top-arcline-lite",
+  "name": "Lite",
+  "loadClass": "A15",
+  "material": "Ductile Iron",
+  "summary": "Lightweight circular cover for pedestrian areas, gardens and cycle paths. Rubber gasket sealing. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Space optimization – Takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-499.webp",
+   "alt": "Lite – Solid Top Ductile Iron Manhole Covers",
+   "width": 499,
+   "height": 331
+  },
+  "keys": {
+   "name": "9a96e2a.t0",
+   "image": "a429115.i0",
+   "load": "aab3312.t0",
+   "text": "96a9782.r0"
+  }
+ },
+ {
+  "card": "3de1d05",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "6930260",
+  "groupLabel": "Arcline",
+  "order": 1080,
+  "slug": "ductile-iron-solid-top-arcline-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Circular cover with circular frame for cycle paths, car parks and residential roads. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Space optimization – Takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-499.webp",
+   "alt": "Prime – Solid Top Ductile Iron Manhole Covers",
+   "width": 499,
+   "height": 331
+  },
+  "keys": {
+   "name": "39eb79e.t0",
+   "image": "2053004.i0",
+   "load": "d144f99.t0",
+   "text": "9f2de22.r0"
+  }
+ },
+ {
+  "card": "53db9c2",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "6930260",
+  "groupLabel": "Arcline",
+  "order": 1090,
+  "slug": "ductile-iron-solid-top-arcline-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Circular cover for D400 highway and heavy-vehicle applications. GRP provision available.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Easy installation",
+   "Space optimization – Takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-457-e1759697426506.webp",
+   "alt": "Pro – Solid Top Ductile Iron Manhole Covers",
+   "width": 457,
+   "height": 279
+  },
+  "keys": {
+   "name": "dc25648.t0",
+   "image": "ae51e24.i0",
+   "load": "be79b99.t0",
+   "text": "96932eb.r0"
+  }
+ },
+ {
+  "card": "7813fb2",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "6930260",
+  "groupLabel": "Arcline",
+  "order": 1100,
+  "slug": "ductile-iron-solid-top-arcline-prime-h",
+  "name": "Prime-H",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Hinged circular cover for convenient single-person access. Rubber gasket, GRP debris protection. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Space optimization – Takes less space than traditional square manhole covers",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-402.webp",
+   "alt": "Prime-H – Solid Top Ductile Iron Manhole Covers",
+   "width": 402,
+   "height": 252
+  },
+  "keys": {
+   "name": "43602c0.t0",
+   "image": "8cea136.i0",
+   "load": "7e88f96.t0",
+   "text": "bf104a7.r0"
+  }
+ },
+ {
+  "card": "ef8a754",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "6930260",
+  "groupLabel": "Arcline",
+  "order": 1110,
+  "slug": "ductile-iron-solid-top-arcline-pro-h",
+  "name": "Pro-H",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Hinged circular D400 cover for highways. GRP provision, rubber gasket. BSI Kitemark certified.",
+  "features": [
+   "Durable material",
+   "High load bearing capacity",
+   "Easy installation",
+   "Space optimization – Takes less space than traditional square manhole covers",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-457-e1759697426506.webp",
+   "alt": "Pro-H – Solid Top Ductile Iron Manhole Covers",
+   "width": 457,
+   "height": 279
+  },
+  "keys": {
+   "name": "79518dc.t0",
+   "image": "6f84a5f.i0",
+   "load": "4084d0a.t0",
+   "text": "0fc9a54.r0"
+  }
+ },
+ {
+  "card": "518666e",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "080b192",
+  "groupLabel": "Arcedge",
+  "order": 1120,
+  "slug": "ductile-iron-solid-top-arcedge-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Circular cover in a square frame — ideal where square frames are required. Rubber gasket, hinged design.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-530.webp",
+   "alt": "Prime – Solid Top Ductile Iron Manhole Covers",
+   "width": 530,
+   "height": 299
+  },
+  "keys": {
+   "name": "fa22bb2.t0",
+   "image": "f1c4a8b.i0",
+   "load": "a676f95.t0",
+   "text": "2be07bd.r0"
+  }
+ },
+ {
+  "card": "89ff07e",
+  "page": "DuctileIronSolidTop",
+  "path": "/products/ductile-iron/solid-top/",
+  "group": "080b192",
+  "groupLabel": "Arcedge",
+  "order": 1130,
+  "slug": "ductile-iron-solid-top-arcedge-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Circular D400 cover in a square frame. Anti-theft locking mechanism.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Easy installation",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-475.webp",
+   "alt": "Pro – Solid Top Ductile Iron Manhole Covers",
+   "width": 475,
+   "height": 287
+  },
+  "keys": {
+   "name": "5bb33c8.t0",
+   "image": "4789012.i0",
+   "load": "1ef1280.t0",
+   "text": "5841151.r0"
+  }
+ },
+ {
+  "card": "37b701a",
+  "page": "DuctileIronRecessedCovers",
+  "path": "/products/ductile-iron/recessed-covers/",
+  "group": "6079c89",
+  "groupLabel": "Blendfit",
+  "order": 2010,
+  "slug": "ductile-iron-recessed-covers-blendfit-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Single-seal recess cover for B125 footpath and light-traffic applications. Flush-mounted for a smooth finish.",
+  "features": [
+   "Anti-slip surface",
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-469.webp",
+   "alt": "Prime – Recessed Ductile Iron Manhole Covers – Blendfit",
+   "width": 469,
+   "height": 296
+  },
+  "keys": {
+   "name": "51bdd0c.t0",
+   "image": "3b869eb.i0",
+   "load": "2608789.t0",
+   "text": "1e45da9.r0"
+  }
+ },
+ {
+  "card": "3108819",
+  "page": "DuctileIronRecessedCovers",
+  "path": "/products/ductile-iron/recessed-covers/",
+  "group": "9ce37c4",
+  "groupLabel": "Blendfit+",
+  "order": 2020,
+  "slug": "ductile-iron-recessed-covers-blendfit-prime-2",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Double-seal recess cover for B125 applications. Rubber gasket for watertight, odour-proof sealing.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-484.webp",
+   "alt": "Prime – Recessed Ductile Iron Manhole Covers – Blendfit",
+   "width": 484,
+   "height": 345
+  },
+  "keys": {
+   "name": "76769d3.t0",
+   "image": "3e0648f.i0",
+   "load": "beeaefe.t0",
+   "text": "30391a8.r0"
+  }
+ },
+ {
+  "card": "a4ec9c3",
+  "page": "DuctileIronRecessedCovers",
+  "path": "/products/ductile-iron/recessed-covers/",
+  "group": "9ce37c4",
+  "groupLabel": "Blendfit+",
+  "order": 2030,
+  "slug": "ductile-iron-recessed-covers-blendfit-flex",
+  "name": "Flex",
+  "loadClass": "C250",
+  "material": "Ductile Iron",
+  "summary": "Double-seal recess cover for C250 city traffic applications. GRP provision available.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-451.webp",
+   "alt": "Flex – Recessed Ductile Iron Manhole Covers – Blendfit",
+   "width": 451,
+   "height": 371
+  },
+  "keys": {
+   "name": "5dbd635.t0",
+   "image": "5a7fdd4.i0",
+   "load": "9133712.t0",
+   "text": "22341aa.r0"
+  }
+ },
+ {
+  "card": "2428ec5",
+  "page": "DuctileIronRecessedCovers",
+  "path": "/products/ductile-iron/recessed-covers/",
+  "group": "9ce37c4",
+  "groupLabel": "Blendfit+",
+  "order": 2040,
+  "slug": "ductile-iron-recessed-covers-blendfit-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Heavy-duty double-seal D400 recess cover for highways. GRP provision, rubber gasket.",
+  "features": [
+   "Durable material",
+   "High load bearing capacity",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Sealing – Rubber gasket for water-tight, odour-proof sealing",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-543.webp",
+   "alt": "Pro – Recessed Ductile Iron Manhole Covers – Blendfit",
+   "width": 543,
+   "height": 313
+  },
+  "keys": {
+   "name": "deac51a.t0",
+   "image": "eff2762.i0",
+   "load": "25d4de2.t0",
+   "text": "546f203.r0"
+  }
+ },
+ {
+  "card": "a01924a",
+  "page": "DuctileIronDoubleTriangular",
+  "path": "/products/ductile-iron/double-triangular/",
+  "group": "65643a9",
+  "groupLabel": "Delta",
+  "order": 3010,
+  "slug": "ductile-iron-double-triangular-delta-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Double triangular cover for B125 applications. Space-saving split cover design (DT). Anti-theft locking available.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Accessible design",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-536.webp",
+   "alt": "Prime – Double Triangular & Multi-Leaf Manhole Covers",
+   "width": 536,
+   "height": 336
+  },
+  "keys": {
+   "name": "cbb8ae3.t0",
+   "image": "ce1f912.i0",
+   "load": "d6a0f1a.t0",
+   "text": "e8c990d.r0"
+  }
+ },
+ {
+  "card": "3d61177",
+  "page": "DuctileIronDoubleTriangular",
+  "path": "/products/ductile-iron/double-triangular/",
+  "group": "65643a9",
+  "groupLabel": "Delta",
+  "order": 3020,
+  "slug": "ductile-iron-double-triangular-delta-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Heavy-duty double triangular D400 cover for highways and heavy industry. BSI Kitemark certified options.",
+  "features": [
+   "Durable material",
+   "High load bearing capacity",
+   "Accessible design",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-536.webp",
+   "alt": "Pro – Double Triangular & Multi-Leaf Manhole Covers",
+   "width": 536,
+   "height": 336
+  },
+  "keys": {
+   "name": "d4fb41f.t0",
+   "image": "db9a946.i0",
+   "load": "2538085.t0",
+   "text": "140910f.r0"
+  }
+ },
+ {
+  "card": "c275892",
+  "page": "DuctileIronDoubleTriangular",
+  "path": "/products/ductile-iron/double-triangular/",
+  "group": "4004cd1",
+  "groupLabel": "Delta-R",
+  "order": 3030,
+  "slug": "ductile-iron-double-triangular-delta-r-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Double triangular rectangle cover for D400 applications. Designed and trademarked for Eccles (UK Foundries FE) Ltd.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Accessible design",
+   "Easy installation",
+   "Anti-theft locking mechanism",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-466.webp",
+   "alt": "Pro – Double Triangular & Multi-Leaf Manhole Covers",
+   "width": 466,
+   "height": 326
+  },
+  "keys": {
+   "name": "1cb616f.t0",
+   "image": "afbc14e.i0",
+   "load": "09390f7.t0",
+   "text": "fa5127d.r0"
+  }
+ },
+ {
+  "card": "a9d17e6",
+  "page": "DuctileIronDoubleTriangular",
+  "path": "/products/ductile-iron/double-triangular/",
+  "group": "c36a403",
+  "groupLabel": "Multimax",
+  "order": 3040,
+  "slug": "ductile-iron-double-triangular-multimax-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Multi-top triangular cover for high load capacity in very large openings. Designed and trademarked for Eccles (UK Foundries FE) Ltd.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "High load bearing capacity",
+   "Accessible design",
+   "Easy installation",
+   "Anti-theft locking mechanism",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Handling – Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-whatsapp-image-2026-01-06-at-4-49-37-pm.webp",
+   "alt": "Pro – Double Triangular & Multi-Leaf Manhole Covers",
+   "width": 1280,
+   "height": 850
+  },
+  "keys": {
+   "name": "722f657.t0",
+   "image": "de6fea0.i0",
+   "load": "da1d92e.t0",
+   "text": "ff784b1.r0"
+  }
+ },
+ {
+  "card": "f5d3824",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "d3a82cc",
+  "groupLabel": "Flowline",
+  "order": 4010,
+  "slug": "ductile-iron-gratings-flowline-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Channel grate for footpaths, residential roads and light-vehicle areas.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-553.webp",
+   "alt": "Prime – Ductile Iron Gratings & Channel Grates",
+   "width": 553,
+   "height": 324
+  },
+  "keys": {
+   "name": "a205d04.t0",
+   "image": "bf2cd7d.i0",
+   "load": "f6dbf5d.t0",
+   "text": "026d2f4.r0"
+  }
+ },
+ {
+  "card": "c8a6e22",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "d3a82cc",
+  "groupLabel": "Flowline",
+  "order": 4020,
+  "slug": "ductile-iron-gratings-flowline-flex",
+  "name": "Flex",
+  "loadClass": "C250",
+  "material": "Ductile Iron",
+  "summary": "Channel grate rated for C250 city-traffic applications. Compatible with drainage systems including catch basins, pipes and manholes.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-553.webp",
+   "alt": "Flex – Ductile Iron Gratings & Channel Grates",
+   "width": 553,
+   "height": 324
+  },
+  "keys": {
+   "name": "a2c22f6.t0",
+   "image": "883bbbc.i0",
+   "load": "cb8c43c.t0",
+   "text": "d963495.r0"
+  }
+ },
+ {
+  "card": "633e624",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "d3a82cc",
+  "groupLabel": "Flowline",
+  "order": 4030,
+  "slug": "ductile-iron-gratings-flowline-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Heavy-duty D400 channel grate for highways, main roads and industrial areas.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "High load bearing capacity"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-542.webp",
+   "alt": "Pro – Ductile Iron Gratings & Channel Grates",
+   "width": 542,
+   "height": 355
+  },
+  "keys": {
+   "name": "fcc960d.t0",
+   "image": "ddbe948.i0",
+   "load": "1091966.t0",
+   "text": "1ca26ec.r0"
+  }
+ },
+ {
+  "card": "cc5eb98",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4040,
+  "slug": "ductile-iron-gratings-flowmaster-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Compact floor drain and syphon for B125 pedestrian and light-duty indoor/outdoor applications.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-509-1-e1759699450674.webp",
+   "alt": "Prime – Ductile Iron Gratings & Channel Grates",
+   "width": 509,
+   "height": 320
+  },
+  "keys": {
+   "name": "2c77eba.t0",
+   "image": "974364e.i0",
+   "load": "2e4d8f2.t0",
+   "text": "c70fc19.r0"
+  }
+ },
+ {
+  "card": "e89d04c",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4050,
+  "slug": "ductile-iron-gratings-flowmaster-pro",
+  "name": "Pro",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Gully grating box unit for D400 roads and industrial floors.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "High load bearing capacity",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-488.webp",
+   "alt": "Pro – Ductile Iron Gratings & Channel Grates",
+   "width": 488,
+   "height": 316
+  },
+  "keys": {
+   "name": "6df5fb9.t0",
+   "image": "35041b6.i0",
+   "load": "bc09d5c.t0",
+   "text": "ea67c68.r0"
+  }
+ },
+ {
+  "card": "a36f252",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4060,
+  "slug": "ductile-iron-gratings-flowmaster-pro-h",
+  "name": "Pro-H",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Gully grating box unit for D400 roads and industrial floors.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "High load bearing capacity",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-460.webp",
+   "alt": "Pro-H – Ductile Iron Gratings & Channel Grates",
+   "width": 460,
+   "height": 312
+  },
+  "keys": {
+   "name": "7eee8d9.t0",
+   "image": "cdda4c2.i0",
+   "load": "17f5534.t0",
+   "text": "4f4821e.r0"
+  }
+ },
+ {
+  "card": "b852d39",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4070,
+  "slug": "ductile-iron-gratings-flowmaster-pro-h-secure",
+  "name": "Pro-H- Secure",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Gully grating box unit for D400 roads and industrial floors.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "High load bearing capacity",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-424.webp",
+   "alt": "Pro-H- Secure – Ductile Iron Gratings & Channel Grates",
+   "width": 424,
+   "height": 349
+  },
+  "keys": {
+   "name": "0ba054c.t0",
+   "image": "f390e6c.i0",
+   "load": "880daf3.t0",
+   "text": "fd61e94.r0"
+  }
+ },
+ {
+  "card": "0ed75d5",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4080,
+  "slug": "ductile-iron-gratings-flowmaster-pro-h-d-secure",
+  "name": "PRO-H-(D)(SECURE)",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Gully grating box unit for D400 roads and industrial floors.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "High load bearing capacity",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-499-1.webp",
+   "alt": "PRO-H-(D)(SECURE) – Ductile Iron Gratings & Channel Grates",
+   "width": 499,
+   "height": 310
+  },
+  "keys": {
+   "name": "847eb14.t0",
+   "image": "8db2820.i0",
+   "load": "7e4abce.t0",
+   "text": "fdb0a27.r0"
+  }
+ },
+ {
+  "card": "debed7b",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4090,
+  "slug": "ductile-iron-gratings-flowmaster-prime-d-secure",
+  "name": "PRIME(D)(SECURE)",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Compact floor drain and syphon for B125 pedestrian and light-duty indoor/outdoor applications.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-457-1.webp",
+   "alt": "PRIME(D)(SECURE) – Ductile Iron Gratings & Channel Grates",
+   "width": 457,
+   "height": 296
+  },
+  "keys": {
+   "name": "c82131f.t0",
+   "image": "6ed99ef.i0",
+   "load": "3824cd3.t0",
+   "text": "6ac2bb7.r0"
+  }
+ },
+ {
+  "card": "a822813",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4100,
+  "slug": "ductile-iron-gratings-flowmaster-flex-d-h",
+  "name": "FLEX(D)(H)",
+  "loadClass": "C250",
+  "material": "",
+  "summary": "",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-457-1.webp",
+   "alt": "FLEX(D)(H) – Ductile Iron Gratings & Channel Grates",
+   "width": 457,
+   "height": 296
+  },
+  "keys": {
+   "name": "ef08bcb.t0",
+   "image": "c8439f1.i0",
+   "load": "8d3f0f5.t0",
+   "text": "1fbc5e5.r0"
+  }
+ },
+ {
+  "card": "009ae04",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "77f666c",
+  "groupLabel": "Flowmaster",
+  "order": 4110,
+  "slug": "ductile-iron-gratings-flowmaster-pro-delta",
+  "name": "Pro (Delta)",
+  "loadClass": "D400",
+  "material": "Ductile Iron",
+  "summary": "Gully grating box unit for D400 roads and industrial floors.",
+  "features": [
+   "Integrates with drainage systems",
+   "Efficient water flow to prevent surface flooding",
+   "Effective ventilation – Promoting air circulation",
+   "High load bearing capacity",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Anti-theft locking mechanism"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-479.webp",
+   "alt": "Pro (Delta) – Ductile Iron Gratings & Channel Grates",
+   "width": 479,
+   "height": 336
+  },
+  "keys": {
+   "name": "463b5e1.t0",
+   "image": "675ff0c.i0",
+   "load": "86db65d.t0",
+   "text": "0f61eb1.r0"
+  }
+ },
+ {
+  "card": "ebb48f6",
+  "page": "DuctileIronGratings",
+  "path": "/products/ductile-iron/gratings/",
+  "group": "81a5764",
+  "groupLabel": "Flowdrain",
+  "order": 4120,
+  "slug": "ductile-iron-gratings-flowdrain-prime",
+  "name": "Prime",
+  "loadClass": "B125",
+  "material": "Ductile Iron",
+  "summary": "Compact floor drain and syphon for B125 pedestrian and light-duty indoor/outdoor applications.",
+  "features": [
+   "Sloped surface for effective drainage",
+   "Extended stems for easy pipe connection",
+   "Compatible with steel, plastic and iron pipes"
+  ],
+  "options": [
+   "Multiple outlet sizes for different pipe diameters",
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-475-2.webp",
+   "alt": "Prime – Ductile Iron Gratings & Channel Grates",
+   "width": 475,
+   "height": 370
+  },
+  "keys": {
+   "name": "7e200e5.t0",
+   "image": "5ae7519.i0",
+   "load": "fa178fb.t0",
+   "text": "0f4079f.r0"
+  }
+ },
+ {
+  "card": "983588f",
+  "page": "DuctileIronTreeGrate",
+  "path": "/products/ductile-iron/tree-grate/",
+  "group": "872b2bd",
+  "groupLabel": "Tree Grate",
+  "order": 5010,
+  "slug": "ductile-iron-tree-grate-tree-grates-square",
+  "name": "Tree Grates Square",
+  "loadClass": "",
+  "material": "Ductile Iron",
+  "summary": "Square tree grates for architectural landscaping and public spaces. Custom designs available.",
+  "features": [
+   "Protects tree base and roots from pedestrian traffic",
+   "Prevents soil displacement",
+   "Allows air, water and nutrients to reach roots",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Aesthetic design",
+   "Locking – Bolts or fasteners available"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-whatsapp-image-2026-09-16-at-11-26-37-am-removebg-preview.webp",
+   "alt": "Tree Grates Square – Ductile Iron Tree Grates – Square & Round",
+   "width": 570,
+   "height": 438
+  },
+  "keys": {
+   "name": "170704f.t0",
+   "image": "c3a3ef7.i0",
+   "text": "ddcc94b.r0"
+  }
+ },
+ {
+  "card": "deed920",
+  "page": "DuctileIronTreeGrate",
+  "path": "/products/ductile-iron/tree-grate/",
+  "group": "872b2bd",
+  "groupLabel": "Tree Grate",
+  "order": 5020,
+  "slug": "ductile-iron-tree-grate-tree-grates-round",
+  "name": "Tree Grates Round",
+  "loadClass": "",
+  "material": "Ductile Iron",
+  "summary": "Round tree grates for urban landscaping and streetscaping. Multiple designs and patterns available.",
+  "features": [
+   "Protects tree base and roots from pedestrian traffic",
+   "Prevents soil displacement",
+   "Allows air, water and nutrients to reach roots",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Aesthetic design",
+   "Locking – Bolts or fasteners available"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-403-1.webp",
+   "alt": "Tree Grates Round – Ductile Iron Tree Grates – Square & Round",
+   "width": 403,
+   "height": 413
+  },
+  "keys": {
+   "name": "e7f09ba.t0",
+   "image": "323093f.i0",
+   "text": "6dd59d5.r0"
+  }
+ },
+ {
+  "card": "2a26679",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6010,
+  "slug": "cast-iron-solid-top-single-seal-solid-top",
+  "name": "Single Seal Solid Top",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Square/rectangular single-seal solid-top manhole cover. Anti-slip surface for residential and urban applications.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-515.webp",
+   "alt": "Single Seal Solid Top – Solid Top Cast Iron Manhole Covers",
+   "width": 515,
+   "height": 338
+  },
+  "keys": {
+   "name": "d8a818e.t0",
+   "image": "6a07b9a.i0",
+   "text": "55136dc.r0"
+  }
+ },
+ {
+  "card": "135f66f",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6020,
+  "slug": "cast-iron-solid-top-double-seal-solid-top",
+  "name": "Double Seal Solid Top",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Square/rectangular double-seal solid-top cover. Anti-slip surface with rubber gasket sealing.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Sealing – Rubber gasket for watertight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-516.webp",
+   "alt": "Double Seal Solid Top – Solid Top Cast Iron Manhole Covers",
+   "width": 516,
+   "height": 293
+  },
+  "keys": {
+   "name": "ebf6af8.t0",
+   "image": "45a3c57.i0",
+   "text": "573fc9f.r0"
+  }
+ },
+ {
+  "card": "96fcd5d",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6030,
+  "slug": "cast-iron-solid-top-reversible-manhole-cover-and-frame",
+  "name": "Reversible Manhole Cover & Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Circular reversible cast iron cover and frame. Customisable designs for brand integration.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Space optimization – takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-490.webp",
+   "alt": "Reversible Manhole Cover & Frame – Solid Top Cast Iron Manhole Covers",
+   "width": 490,
+   "height": 326
+  },
+  "keys": {
+   "name": "aaf78a2.t0",
+   "image": "6f7ee6a.i0",
+   "text": "6014ad4.r0"
+  }
+ },
+ {
+  "card": "699ec1b",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6040,
+  "slug": "cast-iron-solid-top-manhole-cover-and-frame",
+  "name": "Manhole Cover And Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Round cast iron manhole cover and frame. High load-bearing, weather-resistant. Customisation for branding.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation and maintenance",
+   "Space optimization – takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Customisable – Tailored to requirements"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-464.webp",
+   "alt": "Manhole Cover And Frame – Solid Top Cast Iron Manhole Covers",
+   "width": 464,
+   "height": 312
+  },
+  "keys": {
+   "name": "f863fe8.t0",
+   "image": "185ea31.i0",
+   "text": "4e9ba15.r0"
+  }
+ },
+ {
+  "card": "629f9c6",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6050,
+  "slug": "cast-iron-solid-top-cover-d-i-and-frame-c-i",
+  "name": "Cover (D.i) And Frame (C.I)",
+  "loadClass": "",
+  "material": "Ductile Iron Cover + Grey Cast Iron Frame",
+  "summary": "Combination product — ductile iron cover with grey cast iron frame.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation and maintenance",
+   "Space optimization – Takes less space than traditional square manhole covers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-445.webp",
+   "alt": "Cover (D.i) And Frame (C.I) – Solid Top Cast Iron Manhole Covers",
+   "width": 445,
+   "height": 308
+  },
+  "keys": {
+   "name": "bcfcd75.t0",
+   "image": "28558be.i0",
+   "text": "56ef5b8.r0"
+  }
+ },
+ {
+  "card": "9cbec19",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6060,
+  "slug": "cast-iron-solid-top-circular-cover-and-square-frame",
+  "name": "Circular Cover And Square Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Circular cover in a square frame with hinge and locking mechanism.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-536-1.webp",
+   "alt": "Circular Cover And Square Frame – Solid Top Cast Iron Manhole Covers",
+   "width": 536,
+   "height": 336
+  },
+  "keys": {
+   "name": "83ef863.t0",
+   "image": "7992c8c.i0",
+   "text": "042279f.r0"
+  }
+ },
+ {
+  "card": "c9fcbf6",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6070,
+  "slug": "cast-iron-solid-top-circular-cover-and-square-frame-with-hinge",
+  "name": "Circular Cover & Square Frame With Hinge",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Circular cover in a square frame with hinge and locking mechanism.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Enhanced stability with hinges"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-493.webp",
+   "alt": "Circular Cover & Square Frame With Hinge – Solid Top Cast Iron Manhole Covers",
+   "width": 493,
+   "height": 339
+  },
+  "keys": {
+   "name": "2c29213.t0",
+   "image": "94231ae.i0",
+   "text": "3bf9cbe.r0"
+  }
+ },
+ {
+  "card": "14da742",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6080,
+  "slug": "cast-iron-solid-top-double-bottom-cover-and-frame",
+  "name": "Double Bottom Cover And Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Square/rectangular double-bottom cover and frame for drainage and utility access applications requiring additional clearance depth below the frame. Anti-slip surface with durable load-bearing construction for residential and urban environments.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation and maintenance"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-539.webp",
+   "alt": "Double Bottom Cover And Frame – Solid Top Cast Iron Manhole Covers",
+   "width": 539,
+   "height": 296
+  },
+  "keys": {
+   "name": "1843a91.t0",
+   "image": "fb70e9e.i0",
+   "text": "9418e8e.r0"
+  }
+ },
+ {
+  "card": "57d2219",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6090,
+  "slug": "cast-iron-solid-top-single-bottom-cover-frame",
+  "name": "Single Bottom Cover Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Square/rectangular single-bottom cover frame in grey cast iron. Shallow-profile design for flush-to-grade installations where minimal sub-surface depth is available. Anti-slip surface with high load-bearing strength and quick installation.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-539.webp",
+   "alt": "Single Bottom Cover Frame – Solid Top Cast Iron Manhole Covers",
+   "width": 539,
+   "height": 296
+  },
+  "keys": {
+   "name": "28b1d79.t0",
+   "image": "eb31512.i0",
+   "text": "5368f92.r0"
+  }
+ },
+ {
+  "card": "43b28c3",
+  "page": "CastIronSolidTop",
+  "path": "/products/cast-iron/solid-top/",
+  "group": "8e32321",
+  "groupLabel": "Solid Top",
+  "order": 6100,
+  "slug": "cast-iron-solid-top-circular-water-meter-with-lid",
+  "name": "Circular Water Meter With Lid",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Circular grey cast iron cover in a square frame with integrated hinge mechanism and locking capability. Designed for utility and drainage access points where convenient single-person operation is required alongside a secure lockable closure. The hinge improves stability on opening and prevents the cover from falling into the shaft.",
+  "features": [
+   "Superior load-bearing capacity",
+   "Durable and all-weather resistant",
+   "Easy installation and accessibility for ingress/egress",
+   "Space-optimised and cost-effective circular-in-square design",
+   "Enhanced stability with integrated hinges",
+   "Lockable — security locking mechanism included"
+  ],
+  "options": [
+   "Security — locking mechanism",
+   "Design — customizable as per aesthetics for brand integration",
+   "Paint — Bitumen (Gloss/Matte) and Epoxy coating (various colours and microns)",
+   "Handling — Lifting keys"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-499-2.webp",
+   "alt": "Circular Water Meter With Lid – Solid Top Cast Iron Manhole Covers",
+   "width": 499,
+   "height": 325
+  },
+  "keys": {
+   "name": "7fd69b0.t0",
+   "image": "02063a7.i0",
+   "text": "45def67.r0"
+  }
+ },
+ {
+  "card": "c7715c2",
+  "page": "CastIronRecessed",
+  "path": "/products/cast-iron/recessed/",
+  "group": "0f90257",
+  "groupLabel": "Recessed",
+  "order": 7010,
+  "slug": "cast-iron-recessed-single-seal",
+  "name": "Single Seal",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Single-seal grey cast iron recess cover. Flush mounting for seamless surface integration.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-533-1.webp",
+   "alt": "Single Seal – Recessed Cast Iron Manhole Covers",
+   "width": 533,
+   "height": 356
+  },
+  "keys": {
+   "name": "aed9fae.t0",
+   "image": "0763ca3.i0",
+   "text": "d75bca0.r0"
+  }
+ },
+ {
+  "card": "58a0786",
+  "page": "CastIronRecessed",
+  "path": "/products/cast-iron/recessed/",
+  "group": "0f90257",
+  "groupLabel": "Recessed",
+  "order": 7020,
+  "slug": "cast-iron-recessed-double-seal",
+  "name": "Double Seal",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Double-seal grey cast iron recess cover. Blends with surrounding surfaces.",
+  "features": [
+   "Durable material",
+   "Robust quality",
+   "Easy installation",
+   "Flush mounting – Blend seamlessly with the surroundings",
+   "Diverse aesthetic – Fillable with concrete, bricks, tiles or road materials"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Sealing – Rubber gasket for watertight, odour-proof sealing"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-413.webp",
+   "alt": "Double Seal – Recessed Cast Iron Manhole Covers",
+   "width": 413,
+   "height": 386
+  },
+  "keys": {
+   "name": "abfabc5.t0",
+   "image": "ec51463.i0",
+   "text": "d180e9d.r0"
+  }
+ },
+ {
+  "card": "b687139",
+  "page": "CastIronGrating",
+  "path": "/products/cast-iron/grating/",
+  "group": "55f5c52",
+  "groupLabel": "Grating",
+  "order": 8010,
+  "slug": "cast-iron-grating-circular-grate-and-square-frame",
+  "name": "Circular Grate And Square Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Open-design grey cast iron grate and frame for efficient drainage.",
+  "features": [
+   "Open design for efficient drainage",
+   "Easy installation",
+   "Effective ventilation – Promoting air circulation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-525.webp",
+   "alt": "Circular Grate And Square Frame – Cast Iron Gratings & Floor Drains",
+   "width": 525,
+   "height": 330
+  },
+  "keys": {
+   "name": "6428932.t0",
+   "image": "b4f086c.i0",
+   "text": "4ea868b.r0"
+  }
+ },
+ {
+  "card": "3acccb8",
+  "page": "CastIronGrating",
+  "path": "/products/cast-iron/grating/",
+  "group": "55f5c52",
+  "groupLabel": "Grating",
+  "order": 8020,
+  "slug": "cast-iron-grating-grate-and-frame",
+  "name": "Grate & Frame",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Open-design grey cast iron grate and frame for efficient drainage.",
+  "features": [
+   "Open design for efficient drainage",
+   "Easy installation",
+   "Effective ventilation – Promoting air circulation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-416.webp",
+   "alt": "Grate & Frame – Cast Iron Gratings & Floor Drains",
+   "width": 416,
+   "height": 322
+  },
+  "keys": {
+   "name": "b13ae2a.t0",
+   "image": "f9302ee.i0",
+   "text": "a014a28.r0"
+  }
+ },
+ {
+  "card": "3046b5f",
+  "page": "CastIronGrating",
+  "path": "/products/cast-iron/grating/",
+  "group": "55f5c52",
+  "groupLabel": "Grating",
+  "order": 8030,
+  "slug": "cast-iron-grating-floor-drain-syphon",
+  "name": "Floor Drain/Syphon",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron floor drain syphon with sloped surface for efficient drainage.",
+  "features": [
+   "Sloped surface for effective drainage",
+   "Extended stems for easy pipe connection",
+   "Compatible with steel, plastic and iron pipes"
+  ],
+  "options": [
+   "Multiple outlet sizes for different pipe diameters",
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-554.webp",
+   "alt": "Floor Drain/Syphon – Cast Iron Gratings & Floor Drains",
+   "width": 554,
+   "height": 353
+  },
+  "keys": {
+   "name": "78a2d88.t0",
+   "image": "3d4cc4e.i0",
+   "text": "803ea34.r0"
+  }
+ },
+ {
+  "card": "050344a",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9010,
+  "slug": "cast-iron-other-ci-casting-cleanout-body-and-lid",
+  "name": "Cleanout Body & Lid",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron cleanout body and lid for underground access and maintenance.",
+  "features": [
+   "Cleanout access for maintenance",
+   "Anti-slip lid"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-389.webp",
+   "alt": "Cleanout Body & Lid – Other CI Castings – Cleanouts, Valve Boxes & Hydrant Boxes",
+   "width": 389,
+   "height": 370
+  },
+  "keys": {
+   "name": "98f24de.t0",
+   "image": "84f3463.i0",
+   "text": "43e5f3d.r0"
+  }
+ },
+ {
+  "card": "8dd6aad",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9020,
+  "slug": "cast-iron-other-ci-casting-valve-box-riser",
+  "name": "Valve Box Riser",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron valve box riser. Regulates water flow in drainage systems.",
+  "features": [
+   "Control and regulation of water flow within drainage system",
+   "Effective management and operation of drainage infrastructure"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-400-1.webp",
+   "alt": "Valve Box Riser – Other CI Castings – Cleanouts, Valve Boxes & Hydrant Boxes",
+   "width": 400,
+   "height": 370
+  },
+  "keys": {
+   "name": "84f9b79.t0",
+   "image": "e9b1e3c.i0",
+   "text": "e948744.r0"
+  }
+ },
+ {
+  "card": "0eed205",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9030,
+  "slug": "cast-iron-other-ci-casting-extension-ring",
+  "name": "Extension Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron valve boxes provide protected, accessible housing for underground water valves, stopcock controls and utility isolation points. They allow utility workers to locate, operate and maintain valves without excavation. The extension ring system allows the installation depth to be adjusted in increments — accommodating varying pavement depths and road surface build-ups while maintaining flush, level surface access.",
+  "features": [
+   "Control and regulation of water flow within drainage system",
+   "Effective management and operation of drainage infrastructure"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-407.webp",
+   "alt": "Extension Ring – Other CI Castings – Cleanouts, Valve Boxes & Hydrant Boxes",
+   "width": 407,
+   "height": 316
+  },
+  "keys": {
+   "name": "3b0f32f.t0",
+   "image": "c6f23fe.i0",
+   "text": "ee1704d.r0"
+  }
+ },
+ {
+  "card": "9ab3600",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9040,
+  "slug": "cast-iron-other-ci-casting-hydrant-box",
+  "name": "Hydrant Box",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron hydrant boxes provide durable, accessible surface housing for underground fire hydrant connections and water supply access points. Designed to withstand surface traffic loads while ensuring fire hydrant valves remain accessible for emergency services and maintenance teams. The robust cast iron construction ensures long service life in road, pavement and open-area installations.",
+  "features": [
+   "Threaded connections – Standardized threads for easy installation",
+   "Locking mechanism available",
+   "Accessibility features – Extended stems, adjustable height for easier access"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-302.webp",
+   "alt": "Hydrant Box",
+   "width": 302,
+   "height": 417
+  },
+  "keys": {
+   "name": "c6258a3.t0",
+   "image": "0225e2b.i0",
+   "text": "4142f53.r0"
+  }
+ },
+ {
+  "card": "f0f10d8",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9050,
+  "slug": "cast-iron-other-ci-casting-valve-box-with-lid",
+  "name": "Valve Box With Lid",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron valve boxes provide protected, accessible housing for underground water valves, stopcock controls and utility isolation points. They allow utility workers to locate, operate and maintain valves without excavation. The extension ring system allows the installation depth to be adjusted in increments — accommodating varying pavement depths and road surface build-ups while maintaining flush, level surface access.",
+  "features": [
+   "Control and regulation of water flow within drainage system",
+   "Effective management and operation of drainage infrastructure"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-270.webp",
+   "alt": "Valve Box With Lid – Other CI Castings – Cleanouts, Valve Boxes & Hydrant Boxes",
+   "width": 270,
+   "height": 389
+  },
+  "keys": {
+   "name": "da7305d.t0",
+   "image": "bf70aea.i0",
+   "text": "f15eaee.r0"
+  }
+ },
+ {
+  "card": "9d3d5d3",
+  "page": "CastIronOther",
+  "path": "/products/cast-iron/other-ci-casting/",
+  "group": "bf239a3",
+  "groupLabel": "Other CI Casting",
+  "order": 9060,
+  "slug": "cast-iron-other-ci-casting-step-iron",
+  "name": "Step Iron",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Cast iron step irons for manhole and underground access shafts. Anti-slip design.",
+  "features": [
+   "Anti-slip design",
+   "Supports wall-mounted bolting"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-559.webp",
+   "alt": "Step Iron – Other CI Castings – Cleanouts, Valve Boxes & Hydrant Boxes",
+   "width": 559,
+   "height": 339
+  },
+  "keys": {
+   "name": "fca2ef5.t0",
+   "image": "0ce0a2d.i0",
+   "text": "84eccab.r0"
+  }
+ },
+ {
+  "card": "dc80c27",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10010,
+  "slug": "engineering-casting-spherical-bush",
+  "name": "Spherical Bush",
+  "loadClass": "",
+  "material": "Grey Cast Iron (High-Quality)",
+  "summary": "Precision grey cast iron spherical brush casting for industrial cleaning and surface preparation machinery. The spherical geometry provides consistent, multi-directional contact in rotary brush applications. Manufactured to precise specifications to ensure dimensional accuracy, balance and reliable performance in industrial machinery applications.",
+  "features": [
+   "Designed for use in hot gas chambers"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-12.webp",
+   "alt": "Spherical Bush – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 1095
+  },
+  "keys": {
+   "name": "500210a.t0",
+   "image": "25a1ab5.i0",
+   "text": "6614f0e.r0"
+  }
+ },
+ {
+  "card": "9e36907",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10020,
+  "slug": "engineering-casting-bed-plate",
+  "name": "Bed Plate",
+  "loadClass": "",
+  "material": "SG Iron (High-Quality)",
+  "summary": "Precision-engineered bed plate for use in jute machinery. Provides a stable, rigid base for accurate machine operation.",
+  "features": [
+   "To be used in jute and textile machineries"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-2.webp",
+   "alt": "Bed Plate – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 483
+  },
+  "keys": {
+   "name": "41f9546.t0",
+   "image": "8615a2b.i0",
+   "text": "453edf0.r0"
+  }
+ },
+ {
+  "card": "8151824",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10030,
+  "slug": "engineering-casting-industrial-shafts",
+  "name": "Industrial Shafts",
+  "loadClass": "",
+  "material": "Grey Cast Iron (High-Quality)",
+  "summary": "Industrial shaft for building foundations and power transmission applications. Anti-corrosion coating available.",
+  "features": [
+   "Ideal for building construction and foundation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-10.webp",
+   "alt": "Industrial Shafts – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 1432
+  },
+  "keys": {
+   "name": "1bc2272.t0",
+   "image": "54035f9.i0",
+   "text": "7a9b877.r0"
+  }
+ },
+ {
+  "card": "44a83ed",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10040,
+  "slug": "engineering-casting-housing-064",
+  "name": "Housing 064",
+  "loadClass": "",
+  "material": "SG Iron (Heavy-Duty)",
+  "summary": "Heavy-duty SG iron housing for turbine gear applications. Precision-manufactured for reliable performance.",
+  "features": [
+   "Manufactured for the turbine gear housing"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-8.webp",
+   "alt": "Housing 064 – Engineering Castings in SG & Grey Iron",
+   "width": 1293,
+   "height": 1600
+  },
+  "keys": {
+   "name": "8de41e9.t0",
+   "image": "0ccbaf8.i0",
+   "text": "c69d19a.r0"
+  }
+ },
+ {
+  "card": "7370edd",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10050,
+  "slug": "engineering-casting-housing-lh-rh",
+  "name": "Housing LH/RH",
+  "loadClass": "",
+  "material": "Grey Cast Iron (High-Quality)",
+  "summary": "Left-hand and right-hand housing castings for hot gas chamber applications.",
+  "features": [
+   "Application in the hot gas chamber"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-9.webp",
+   "alt": "Housing LH/RH – Engineering Castings in SG & Grey Iron",
+   "width": 1441,
+   "height": 1600
+  },
+  "keys": {
+   "name": "e002731.t0",
+   "image": "3319614.i0",
+   "text": "17075e8.r0"
+  }
+ },
+ {
+  "card": "145a430",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10060,
+  "slug": "engineering-casting-dm-9-top",
+  "name": "Dm-9 Top",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron DM-9 top component for heavy power transmission systems.",
+  "features": [
+   "Applicable in heavy power transmission"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-5.webp",
+   "alt": "Dm-9 Top – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 727
+  },
+  "keys": {
+   "name": "28d4911.t0",
+   "image": "e04387b.i0",
+   "text": "c540320.r0"
+  }
+ },
+ {
+  "card": "66ce2dc",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10070,
+  "slug": "engineering-casting-dm-11-top",
+  "name": "Dm-11 Top",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Durable grey cast iron DM-11 top for heavy-duty power transmission applications.",
+  "features": [
+   "Applicable in heavy power transmission"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-6.webp",
+   "alt": "Dm-11 Top – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 942
+  },
+  "keys": {
+   "name": "e7974fe.t0",
+   "image": "1284132.i0",
+   "text": "4a3863a.r0"
+  }
+ },
+ {
+  "card": "156976e",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10080,
+  "slug": "engineering-casting-bench-pipe",
+  "name": "Bench Pipe",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron bench pipe for use in hot gas chamber applications.",
+  "features": [
+   "Application in the hot gas chamber"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2026-09-3.webp",
+   "alt": "Bench Pipe – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 1358
+  },
+  "keys": {
+   "name": "dfed309.t0",
+   "image": "174111b.i0",
+   "text": "46eec87.r0"
+  }
+ },
+ {
+  "card": "eebfbeb",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10090,
+  "slug": "engineering-casting-axle-box-housing-railways",
+  "name": "Axle Box Housing (Railways)",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron axle box housing for railway rolling stock. Precision-manufactured for consistent fit.",
+  "features": [
+   "Precision-manufactured for railway rolling stock",
+   "Grey cast iron for durability and reliability"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2026-09-1.webp",
+   "alt": "Axle Box Housing (Railways) – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 892
+  },
+  "keys": {
+   "name": "78d703a.t0",
+   "image": "cea19cb.i0",
+   "text": "fa87189.r0"
+  }
+ },
+ {
+  "card": "f04f5ee",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10100,
+  "slug": "engineering-casting-earth-cover-railways",
+  "name": "Earth Cover (Railways)",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Precision grey cast iron earth cover component for railway infrastructure.",
+  "features": [
+   "Precision-engineered for railway use",
+   "Grey cast iron durability"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2026-09-7.webp",
+   "alt": "Earth Cover (Railways) – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 1010
+  },
+  "keys": {
+   "name": "e6c6482.t0",
+   "image": "77b238c.i0",
+   "text": "47b51bd.r0"
+  }
+ },
+ {
+  "card": "ad14cb3",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10110,
+  "slug": "engineering-casting-top-bearer-for-jute-machinery",
+  "name": "Top Bearer For Jute Machinery",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron top bearer component for jute machinery.",
+  "features": [
+   "Precision-engineered for jute machinery",
+   "Grey cast iron durability"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2026-09-13.webp",
+   "alt": "Top Bearer For Jute Machinery – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 723
+  },
+  "keys": {
+   "name": "22e9701.t0",
+   "image": "fc205ae.i0",
+   "text": "5d581fe.r0"
+  }
+ },
+ {
+  "card": "5cabc7a",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10120,
+  "slug": "engineering-casting-coiler-base-plate-for-jute-machinery",
+  "name": "Coiler Base Plate For Jute Machinery",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Precision coiler base plate casting for jute machinery.",
+  "features": [
+   "Precision-engineered for jute machine coiler",
+   "Dimensional accuracy for stable operation"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2026-09-4.webp",
+   "alt": "Coiler Base Plate For Jute Machinery – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 879
+  },
+  "keys": {
+   "name": "24d5e76.t0",
+   "image": "91db07d.i0",
+   "text": "82cde02.r0"
+  }
+ },
+ {
+  "card": "c384ea1",
+  "page": "EngineeringCasting",
+  "path": "/products/engineering-casting/",
+  "group": "0365757",
+  "groupLabel": "Engineering Casting",
+  "order": 10130,
+  "slug": "engineering-casting-roller-stand-for-jute-machinery",
+  "name": "Roller Stand For Jute Machinery",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Grey cast iron roller stand for jute machinery. Provides a stable, precision base for roller assemblies.",
+  "features": [
+   "Stable and precise base for roller assemblies",
+   "Grey cast iron for durability in jute machinery"
+  ],
+  "options": [],
+  "specs": [],
+  "image": {
+   "file": "2026-09-11.webp",
+   "alt": "Roller Stand For Jute Machinery – Engineering Castings in SG & Grey Iron",
+   "width": 1600,
+   "height": 578
+  },
+  "keys": {
+   "name": "7ae9367.t0",
+   "image": "733ef79.i0",
+   "text": "087145a.r0"
+  }
+ },
+ {
+  "card": "c58d88d",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11010,
+  "slug": "pipe-fitting-double-11-25-socket-degree-bend",
+  "name": "DOUBLE 11.25° SOCKET DEGREE BEND",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Double socket 11.25° bend for gentle directional changes in water supply and drainage pipelines.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-426.webp",
+   "alt": "DOUBLE 11.25° SOCKET DEGREE BEND – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 426,
+   "height": 361
+  },
+  "keys": {
+   "name": "8283257.t0",
+   "image": "753c826.i0",
+   "text": "1ac28bd.r0"
+  }
+ },
+ {
+  "card": "a14d6c3",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11020,
+  "slug": "pipe-fitting-double-22-5-socket-degree-bend",
+  "name": "DOUBLE 22.5° SOCKET DEGREE BEND",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Double socket 22.5° bend for water supply and drainage pipelines.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-359.webp",
+   "alt": "DOUBLE 22.5° SOCKET DEGREE BEND – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 359,
+   "height": 249
+  },
+  "keys": {
+   "name": "de6305b.t0",
+   "image": "dcca2f4.i0",
+   "text": "8691bd0.r0"
+  }
+ },
+ {
+  "card": "6820028",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11030,
+  "slug": "pipe-fitting-double-45-socket-degree-bend",
+  "name": "DOUBLE 45° SOCKET DEGREE BEND",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Double socket 45° bend for medium-angle directional changes in pipelines.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-424-1.webp",
+   "alt": "DOUBLE 45° SOCKET DEGREE BEND – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 424,
+   "height": 286
+  },
+  "keys": {
+   "name": "e5e05e4.t0",
+   "image": "87da821.i0",
+   "text": "05aff6c.r0"
+  }
+ },
+ {
+  "card": "378697c",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11040,
+  "slug": "pipe-fitting-double-90-socket-degree-bend",
+  "name": "DOUBLE 90° SOCKET DEGREE BEND",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Double socket 90° bend for right-angle directional changes in water supply and drainage.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-461.webp",
+   "alt": "DOUBLE 90° SOCKET DEGREE BEND – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 461,
+   "height": 252
+  },
+  "keys": {
+   "name": "e2bd4a0.t0",
+   "image": "58cf211.i0",
+   "text": "0831d56.r0"
+  }
+ },
+ {
+  "card": "19beb74",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11050,
+  "slug": "pipe-fitting-double-flanged-45-bend",
+  "name": "DOUBLE FLANGED 45° BEND",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Double flanged 45° bend for flanged pipeline systems.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-449.webp",
+   "alt": "DOUBLE FLANGED 45° BEND – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 449,
+   "height": 324
+  },
+  "keys": {
+   "name": "774e080.t0",
+   "image": "7ebb7c2.i0",
+   "text": "d84b5da.r0"
+  }
+ },
+ {
+  "card": "858a849",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11060,
+  "slug": "pipe-fitting-flanged-spigot",
+  "name": "FLANGED SPIGOT",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Flanged spigot for connecting pipes in flanged pipeline systems. Wide size range.",
+  "features": [
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-364.webp",
+   "alt": "FLANGED SPIGOT – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 364,
+   "height": 486
+  },
+  "keys": {
+   "name": "5c87a19.t0",
+   "image": "71f7895.i0",
+   "text": "5ed20ae.r0"
+  }
+ },
+ {
+  "card": "e0ba56f",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11070,
+  "slug": "pipe-fitting-flanged-pn-10",
+  "name": "FLANGED PN 10",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "PN-10 flanged ring for flanged pipe joints. Available DN 80 to DN 600 with detailed bolt hole dimensions.",
+  "features": [
+   "Manufacturing Standard – IS 9523 / ISO 2531 / EN545",
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating",
+   "Customisable – Tailored to requirements"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-351.webp",
+   "alt": "FLANGED PN 10 – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 351,
+   "height": 332
+  },
+  "keys": {
+   "name": "8c08495.t0",
+   "image": "a2588b9.i0",
+   "text": "d25ab5f.r0"
+  }
+ },
+ {
+  "card": "1c0fd7d",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "3bd59a8",
+  "groupLabel": "Pipe Fitting",
+  "order": 11080,
+  "slug": "pipe-fitting-socket-tee",
+  "name": "SOCKET TEE",
+  "loadClass": "",
+  "material": "S.G. Iron",
+  "summary": "Socket tee for branching pipeline connections.",
+  "features": [
+   "Manufacturing Standard – IS 9523 / ISO 2531 / EN545",
+   "Material – S.G. Iron"
+  ],
+  "options": [
+   "Coating – Powder/Epoxy coating",
+   "Customisable – Tailored to requirements"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-427.webp",
+   "alt": "SOCKET TEE – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 427,
+   "height": 333
+  },
+  "keys": {
+   "name": "8b56562.t0",
+   "image": "622825d.i0",
+   "text": "dd42697.r0"
+  }
+ },
+ {
+  "card": "25e9e85",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "52da707",
+  "groupLabel": "Mechanical Joint Accessories",
+  "order": 11090,
+  "slug": "pipe-fitting-loose-split-flange-dn-100-to-dn-600-pn10-16",
+  "name": "Loose Split Flange (Dn-100 To Dn 600,pn10 /16)",
+  "loadClass": "D400",
+  "material": "S.G. Iron (Ductile Iron)",
+  "summary": "A two-piece ductile iron flange fitted around the spigot end of a pipe or fitting, enabling bolted connection to flanged valves, pumps and fittings without rotating the pipe. The split design is essential for installations in confined spaces and retrofit or repair work on existing pipelines where full pipe rotation is not possible.",
+  "features": [
+   "Two-piece split design — install and remove without rotating the pipe",
+   "Enables flanged connection to valves, pumps and fittings in confined spaces",
+   "Ideal for retrofit, maintenance and repair on existing pipelines",
+   "High-strength SG iron for rated pressure applications",
+   "Complies with IS 9523 / ISO 2531 / EN545",
+   "Powder or epoxy coating for corrosion protection"
+  ],
+  "options": [
+   "Coating — Powder / Epoxy (various colours and microns)",
+   "Pressure rating — PN-10 and PN-16"
+  ],
+  "specs": [
+   {
+    "label": "Manufacturing Standard",
+    "value": "IS 9523 / ISO 2531 / EN545"
+   }
+  ],
+  "image": {
+   "file": "2025-10-width-455.webp",
+   "alt": "Loose Split Flange (Dn-100 To Dn 600,pn10 /16) – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 455,
+   "height": 253
+  },
+  "keys": {
+   "name": "b70a263.t0",
+   "image": "ab50846.i0",
+   "load": "1ab0172.t0",
+   "text": "40cd15c.r0"
+  }
+ },
+ {
+  "card": "f6c69c1",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "52da707",
+  "groupLabel": "Mechanical Joint Accessories",
+  "order": 11100,
+  "slug": "pipe-fitting-gland-for-e-type-mechanical-joint-dn-100-to-dn-400-pn10-16",
+  "name": "Gland For E-type Mechanical Joint (Dn-100 To Dn 400,pn10 /16)",
+  "loadClass": "",
+  "material": "S.G. Iron (Ductile Iron)",
+  "summary": "A ductile iron follower gland used in standard mechanical joint assemblies to compress the rubber gasket against the pipe spigot and bell socket, creating a watertight, flexible seal. The E-type gland profile ensures even gasket compression around the full pipe circumference. Widely used in water distribution, sewage and industrial pipeline networks where ease of field assembly is a priority.",
+  "features": [
+   "Compresses rubber gasket evenly for a watertight, flexible mechanical joint seal",
+   "E-type profile ensures uniform gasket load distribution around the full pipe circumference",
+   "Accommodates angular deflection and minor pipe misalignment",
+   "Simple field assembly — no welding or special tools required",
+   "Suitable for water distribution, sewage and industrial systems",
+   "High-strength SG iron for pressure-rated applications",
+   "Complies with IS 9523 / ISO 2531 / EN545",
+   "Powder or epoxy coating for corrosion protection"
+  ],
+  "options": [
+   "Coating — Powder / Epoxy (various colours and microns)",
+   "Pressure rating — PN-10 and PN-16",
+   "Compatible gasket materials: EPDM (potable water), SBR (general use), NBR (oils/chemicals)"
+  ],
+  "specs": [
+   {
+    "label": "Manufacturing Standard",
+    "value": "IS 9523 / ISO 2531 / EN545"
+   }
+  ],
+  "image": {
+   "file": "2025-10-width-388.webp",
+   "alt": "Gland For E-type Mechanical Joint (Dn-100 To Dn 400,pn10 /16) – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 388,
+   "height": 323
+  },
+  "keys": {
+   "name": "be7f3ba.t0",
+   "image": "398f91d.i0",
+   "text": "ab6bfea.r0"
+  }
+ },
+ {
+  "card": "1e3fdbf",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "52da707",
+  "groupLabel": "Mechanical Joint Accessories",
+  "order": 11110,
+  "slug": "pipe-fitting-retainer-ring-dn-100-to-dn-900-pn10-16",
+  "name": "Retainer Ring (Dn-100 To Dn 900,pn10 /16)",
+  "loadClass": "D400",
+  "material": "S.G. Iron (Ductile Iron)",
+  "summary": "A ductile iron retainer ring is a locking component used in restrained mechanical joint assemblies to grip the pipe spigot and prevent axial pullout under internal pressure, water hammer or ground movement. Installed between the pipe and the gland, the retainer ring’s serrated or toothed inner edge bites into the pipe wall when tension is applied, providing a positive mechanical lock that eliminates the need for concrete thrust blocks at bends, tees, reducers and end caps.",
+  "features": [
+   "Prevents axial pipe pullout under internal pressure, water hammer and ground movement",
+   "Serrated or toothed inner edge grips pipe spigot for positive mechanical restraint",
+   "Eliminates need for concrete thrust blocks at bends, tees, reducers and end caps",
+   "Accommodates angular deflection while maintaining axial restraint",
+   "Widest size range in the mechanical joint accessories range — up to DN 900",
+   "Suitable for water mains, sewage rising mains and industrial pressure pipelines",
+   "High-strength SG iron for long-term performance in buried conditions",
+   "Complies with IS 9523 / ISO 2531 / EN545",
+   "Powder or epoxy coating for corrosion protection"
+  ],
+  "options": [
+   "Coating — Powder / Epoxy (various colours and microns)",
+   "Pressure rating — PN-10 and PN-16"
+  ],
+  "specs": [
+   {
+    "label": "Manufacturing Standard",
+    "value": "IS 9523 / ISO 2531 / EN545"
+   }
+  ],
+  "image": {
+   "file": "2025-10-width-397-1.webp",
+   "alt": "Retainer Ring (Dn-100 To Dn 900,pn10 /16) – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 397,
+   "height": 269
+  },
+  "keys": {
+   "name": "d844a2a.t0",
+   "image": "8c680d4.i0",
+   "load": "56decc5.t0",
+   "text": "8721af0.r0"
+  }
+ },
+ {
+  "card": "e53b6fd",
+  "page": "PipeFitting",
+  "path": "/products/pipe-fitting/",
+  "group": "52da707",
+  "groupLabel": "Mechanical Joint Accessories",
+  "order": 11120,
+  "slug": "pipe-fitting-gland-for-t-type-restrained-joint-dn-100-to-dn-900-pn10-16",
+  "name": "Gland For T-type Restrained Joint (Dn-100 To Dn 900,pn10 /16)",
+  "loadClass": "D400",
+  "material": "S.G. Iron (Ductile Iron)",
+  "summary": "A ductile iron gland used in T-type restrained joint assemblies to provide axial restraint and prevent pipe pullout under operating pressure. The T-type configuration works in conjunction with retainer rings and locking segments to grip the pipe spigot positively, forming a fully restrained joint that accommodates angular deflection while resisting axial forces. Essential for pressure pipelines at bends, tees and reducers where thrust block construction is not feasible.",
+  "features": [
+   "T-type configuration provides positive axial restraint against pipe pullout",
+   "Works with retainer rings and locking segments for fully restrained joint assembly",
+   "Accommodates angular deflection — suitable for uneven ground and directional changes",
+   "Eliminates need for concrete thrust blocks at bends, tees and reducers",
+   "Widest size range — covers trunk mains and large-diameter pipelines up to DN 900",
+   "Suitable for water supply, sewage rising mains and industrial pressure pipelines",
+   "High-strength SG iron for long-term reliability in buried conditions",
+   "Complies with IS 9523 / ISO 2531 / EN545",
+   "Powder or epoxy coating for corrosion protection"
+  ],
+  "options": [
+   "Coating — Powder / Epoxy (various colours and microns)",
+   "Pressure rating — PN-10 and PN-16"
+  ],
+  "specs": [
+   {
+    "label": "Manufacturing Standard",
+    "value": "IS 9523 / ISO 2531 / EN545"
+   }
+  ],
+  "image": {
+   "file": "2025-10-width-372.webp",
+   "alt": "Gland For T-type Restrained Joint (Dn-100 To Dn 900,pn10 /16) – Ductile Iron Pipe Fittings – Socket Bends & Tees",
+   "width": 372,
+   "height": 237
+  },
+  "keys": {
+   "name": "db29887.t0",
+   "image": "cbc7ed4.i0",
+   "load": "95ca77a.t0",
+   "text": "69fa874.r0"
+  }
+ },
+ {
+  "card": "481003e",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12010,
+  "slug": "agricultural-components-510mm-cambridge-wheel-with-530mm-dia-star-ring",
+  "name": "510mm Cambridge Wheel With 530mm Dia Star Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron (Grade FG 20/EN-GJS-500-7)",
+  "summary": "Star-shaped ring for efficient soil filling and levelling. Enhances soil compaction and seedbed preparation.",
+  "features": [
+   "Star-shaped ring for efficient soil tilling",
+   "Enhance soil seed preparation",
+   "Ideal for various soils and conditions",
+   "Built to endure heavy use and harsh climates"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating",
+   "Customisable – Tailored to requirements"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-472.webp",
+   "alt": "510mm Cambridge Wheel With 530mm Dia Star Ring – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 472,
+   "height": 302
+  },
+  "keys": {
+   "name": "2c3cda8.t0",
+   "image": "339082a.i0",
+   "text": "3cc4447.r0"
+  }
+ },
+ {
+  "card": "ec2885a",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12020,
+  "slug": "agricultural-components-680mm-cambridge-ring",
+  "name": "680mm Cambridge Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron (Grade FG 20)",
+  "summary": "Plain Cambridge ring for soil filling and levelling. Ideal for agriculture, landscaping and sports fields.",
+  "features": [
+   "Ensure effective soil filling and leveling",
+   "Improves compaction and seedbed quality",
+   "Ideal for agriculture, landscaping and sports fields",
+   "Withstands heavy-duty use and harsh climatic conditions"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-492.webp",
+   "alt": "680mm Cambridge Ring – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 492,
+   "height": 293
+  },
+  "keys": {
+   "name": "813dae8.t0",
+   "image": "d329317.i0",
+   "text": "9718120.r0"
+  }
+ },
+ {
+  "card": "bfc689b",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12030,
+  "slug": "agricultural-components-530mm-jagged-ring-with-500mm-dia-smooth-ring",
+  "name": "530mm Jagged Ring With 500mm Dia Smooth Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron (Grade FG 30/EN-GJS-500-7)",
+  "summary": "Combination of jagged and smooth rings for heavy-duty soil cultivation.",
+  "features": [
+   "Heavy-duty and weather-resistant",
+   "Quick and easy installation",
+   "Reliable performance in soil cultivation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-463.webp",
+   "alt": "530mm Jagged Ring With 500mm Dia Smooth Ring – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 463,
+   "height": 280
+  },
+  "keys": {
+   "name": "d04c86f.t0",
+   "image": "d5ccd57.i0",
+   "text": "6f137b6.r0"
+  }
+ },
+ {
+  "card": "b771912",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12040,
+  "slug": "agricultural-components-570mm-jagged-ring-with-540mm-dia-jagged-ring",
+  "name": "570mm Jagged Ring With 540mm Dia Jagged Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron (Grade FG 20/EN-GJS-500-7)",
+  "summary": "Dual jagged ring configuration for heavy-duty and harsh agricultural environments.",
+  "features": [
+   "Built for heavy-duty and harsh environments",
+   "Easy to install with minimal downtime",
+   "Delivers consistent performance in soil cultivation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-451-1.webp",
+   "alt": "570mm Jagged Ring With 540mm Dia Jagged Ring – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 451,
+   "height": 276
+  },
+  "keys": {
+   "name": "d7f0c2c.t0",
+   "image": "5e8bee7.i0",
+   "text": "0088c0a.r0"
+  }
+ },
+ {
+  "card": "84cde7e",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12050,
+  "slug": "agricultural-components-548-51mm-guttler-ring-with-500-120mm-guttler-ring",
+  "name": "548-51mm Guttler Ring With 500-120mm Guttler Ring",
+  "loadClass": "",
+  "material": "Grey Cast Iron (Grade FG 20/EN-GJS-500-7)",
+  "summary": "Guttler rings for heavy-duty agricultural use. Easy installation across different agricultural equipment.",
+  "features": [
+   "Withstands heavy-duty use and harsh climatic conditions",
+   "Easy installation in different agricultural equipment",
+   "Delivers consistent performance in soil cultivation"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-480.webp",
+   "alt": "548-51mm Guttler Ring With 500-120mm Guttler Ring – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 480,
+   "height": 264
+  },
+  "keys": {
+   "name": "3f8f6ac.t0",
+   "image": "7157fd9.i0",
+   "text": "261d4ba.r0"
+  }
+ },
+ {
+  "card": "86748fc",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12060,
+  "slug": "agricultural-components-300mm-diacrosskill-rings",
+  "name": "300mm Diacrosskill Rings",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Crosskill ring compatible with cultivators and rollers. Enhances soil cultivation, clod breaking and aeration.",
+  "features": [
+   "Compatible with cultivators and rollers",
+   "Suitable for various soil types and conditions",
+   "Enhances soil cultivation, clod breaking and aeration",
+   "Withstands heavy-duty use and harsh climatic conditions"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-521.webp",
+   "alt": "300mm Diacrosskill Rings – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 521,
+   "height": 400
+  },
+  "keys": {
+   "name": "a2d91ec.t0",
+   "image": "80d8a94.i0",
+   "text": "17e7327.r0"
+  }
+ },
+ {
+  "card": "ff8c5c6",
+  "page": "AgriculturalComponents",
+  "path": "/products/agricultural-components/",
+  "group": "556a44f",
+  "groupLabel": "Agricultural Components",
+  "order": 12070,
+  "slug": "agricultural-components-350mm-diacrosskill-rings",
+  "name": "350mm Diacrosskill Rings",
+  "loadClass": "",
+  "material": "Grey Cast Iron",
+  "summary": "Larger crosskill ring for multiple soil types and operations including tilling and seedbed preparation.",
+  "features": [
+   "Compatible with cultivators and rollers",
+   "Suitable for various soil types and conditions",
+   "Enhances soil cultivation, clod breaking and aeration",
+   "Withstands heavy-duty use and harsh climatic conditions"
+  ],
+  "options": [
+   "Coating – Bitumen (Gloss/Matte), Epoxy coating"
+  ],
+  "specs": [],
+  "image": {
+   "file": "2025-10-width-495.webp",
+   "alt": "350mm Diacrosskill Rings – Agricultural Components – Cambridge Rings & Wheels",
+   "width": 495,
+   "height": 275
+  },
+  "keys": {
+   "name": "d7e54a5.t0",
+   "image": "787b06a.i0",
+   "text": "3f7c37a.r0"
+  }
+ }
+]

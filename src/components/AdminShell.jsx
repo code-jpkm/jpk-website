@@ -21,9 +21,11 @@ const NAV = [
   {
     group: 'Website',
     items: [
-      { href: '/admin/website', label: 'Pages & sections', icon: 'website', module: 'website', excludeAll: ['/admin/website/menu', '/admin/website/design'] },
+      { href: '/admin/website', label: 'Pages & sections', icon: 'website', module: 'website', excludeAll: ['/admin/website/menu', '/admin/website/design', '/admin/website/seo'] },
       { href: '/admin/website/menu', label: 'Menu', icon: 'menulist', module: 'website' },
       { href: '/admin/website/design', label: 'Design', icon: 'palette', module: 'website' },
+      { href: '/admin/website/seo', label: 'SEO', icon: 'seo', module: 'website' },
+      { href: '/admin/analytics', label: 'Analytics', icon: 'chart', module: 'website' },
     ],
   },
   {

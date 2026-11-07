@@ -10,7 +10,7 @@ import { model, ObjectId } from './shared.js';
 const SitePartSchema = new mongoose.Schema(
   {
     key: { type: String, required: true, unique: true, trim: true, maxlength: 120 },
-    kind: { type: String, required: true, enum: ['page', 'global', 'custom', 'menus', 'settings'] },
+    kind: { type: String, required: true, enum: ['page', 'global', 'custom', 'menus', 'settings', 'seo'] },
     // the data as JSON text: its keys ("180eb9b.t0") contain dots, which MongoDB fields should not
     json: { type: String, default: '{}' },
     // pages made in the admin: for lists

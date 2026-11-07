@@ -33,15 +33,27 @@ async function load() {
   return { value: await bundled(), source: 'bundled' };
 }
 
-// { schema, source: "website" | "bundled" }
-export async function getSchema({ fresh = false } = {}) {
-  if (!fresh && state.value && Date.now() - state.at < TTL) return { schema: state.value, source: state.source };
+function refresh() {
   if (!state.pending) {
     state.pending = load()
       .then(r => { state.value = r.value; state.source = r.source; state.at = Date.now(); return r; })
       .finally(() => { state.pending = null; });
   }
-  const r = await state.pending;
+  return state.pending;
+}
+
+// { schema, source: "website" | "bundled" }
+// quick: never wait for the website (the public website feed): an older copy, else the bundled one, while the
+// current list is fetched in the background
+export async function getSchema({ fresh = false, quick = false } = {}) {
+  if (!fresh && state.value && Date.now() - state.at < TTL) return { schema: state.value, source: state.source };
+  if (quick) {
+    const p = refresh();
+    p.catch(() => {});
+    if (state.value) return { schema: state.value, source: state.source };
+    return { schema: await bundled(), source: 'bundled' };
+  }
+  const r = await refresh();
   return { schema: r.value, source: r.source };
 }
 

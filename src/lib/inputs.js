@@ -68,6 +68,13 @@ export function parseProduct(body, { partial = false } = {}) {
   if (has('specs')) out.specs = specs(body.specs);
   if (has('specTable')) out.specTable = specTable(body.specTable);
   if (has('features')) out.features = list(body.features, { maxItems: 40, max: 300, label: 'Features' });
+  if (has('options')) out.options = list(body.options, { maxItems: 40, max: 300, label: 'Options' });
+  if (has('loadClass')) out.loadClass = line(body.loadClass, { max: 40, label: 'Load class' });
+  if (has('material')) out.material = line(body.material, { max: 200, label: 'Material' });
+  if (has('group')) {
+    const g = line(body.group, { max: 20, label: 'Place on the page' });
+    out.group = /^[0-9a-f]{7}$/.test(g) ? g : '';
+  }
   if (has('applications')) out.applications = list(body.applications, { maxItems: 40, max: 300, label: 'Applications' });
   if (has('standards')) out.standards = list(body.standards, { maxItems: 30, max: 120, label: 'Standards' });
   if (has('featured')) out.featured = bool(body.featured);

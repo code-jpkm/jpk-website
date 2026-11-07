@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { model, ImageSchema, ObjectId } from './shared.js';
 
-// Product groups, nested like the website menu (Sanitary Components > Ductile Iron > Solid Top).
+// Product groups, nested like the website menu (Sanitary Castings > Ductile Iron > Solid Top).
 const ProductCategorySchema = new mongoose.Schema(
   {
     name: { type: String, required: [true, 'Please enter a category name.'], trim: true, maxlength: 120 },

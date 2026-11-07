@@ -30,17 +30,23 @@ function toForm(d = {}, defaultCategory = '') {
       ? { columns: d.specTable.columns, rows: (d.specTable.rows || []).map(r => (Array.isArray(r) ? r : (r && r.cells) || [])) }
       : { columns: [], rows: [] },
     features: lines(d.features),
+    options: lines(d.options),
+    loadClass: d.loadClass || '',
+    material: d.material || '',
+    group: d.group || '',
     applications: lines(d.applications),
     standards: lines(d.standards),
     featured: Boolean(d.featured),
-    order: d.order ?? 0,
+    order: d.order ?? '',
     status: d.status || 'draft',
     seoTitle: d.seoTitle || '',
     seoDescription: d.seoDescription || '',
   };
 }
 
-export default function ProductForm({ initial, categories, defaultCategory = '', perms }) {
+const normPath = p => (p ? `/${String(p).replace(/^\/+|\/+$/g, '')}/` : '');
+
+export default function ProductForm({ initial, categories, groups = [], websiteUrl = '', defaultCategory = '', perms }) {
   const router = useRouter();
   const toast = useToast();
   const [confirm, dialog] = useConfirm();
@@ -68,7 +74,7 @@ export default function ProductForm({ initial, categories, defaultCategory = '',
     setErrors({});
     setBusy(status);
     try {
-      const payload = { ...form, status, category: form.category || null };
+      const payload = { ...form, status, category: form.category || null, group: group ? group.id : '' };
       if (isNew) {
         const { item } = await api('/api/admin/products', { method: 'POST', body: payload });
         reset(toForm(item));
@@ -101,7 +107,12 @@ export default function ProductForm({ initial, categories, defaultCategory = '',
     }
   };
 
-  const catLabel = (categories.find(c => c._id === form.category) || {}).label;
+  const cat = categories.find(c => c._id === form.category) || {};
+  const catLabel = cat.label;
+  // the groups of cards on the website page of the chosen category (tabs or titled blocks)
+  const pageGroups = groups.filter(g => normPath(g.path) === normPath(cat.path));
+  const group = pageGroups.find(g => g.id === form.group) || pageGroups[0] || null;
+  const onWebsite = Boolean(group);
 
   return (
     <>
@@ -115,8 +126,16 @@ export default function ProductForm({ initial, categories, defaultCategory = '',
                 <Field label="Product name" required htmlFor="name" error={errors.name}>
                   <input id="name" className="input input--lg" value={form.name} onChange={e => setName(e.target.value)} maxLength={160} placeholder="e.g. D400 Double Seal Solid Top Cover" />
                 </Field>
-                <Field label="Short description" htmlFor="summary" hint="One or two sentences for product cards and Google.">
-                  <textarea id="summary" className="textarea" rows={2} value={form.summary} onChange={e => set('summary', e.target.value)} maxLength={600} />
+                <div className="form-row">
+                  <Field label="Material" htmlFor="material" hint={onWebsite ? 'First line of the website card, e.g. Ductile Iron.' : 'e.g. Ductile Iron'}>
+                    <input id="material" className="input" value={form.material} onChange={e => set('material', e.target.value)} maxLength={200} />
+                  </Field>
+                  <Field label="Load class" htmlFor="loadClass" hint={onWebsite ? 'Shown under the photo on the website card, e.g. D400. Leave empty if none.' : 'e.g. D400'}>
+                    <input id="loadClass" className="input" value={form.loadClass} onChange={e => set('loadClass', e.target.value)} maxLength={40} />
+                  </Field>
+                </div>
+                <Field label="Short description" htmlFor="summary" hint={onWebsite ? 'Shown on the website card (a blank line starts a new paragraph) and used for Google.' : 'One or two sentences for product cards and Google.'}>
+                  <textarea id="summary" className="textarea" rows={3} value={form.summary} onChange={e => set('summary', e.target.value)} maxLength={600} />
                 </Field>
                 <Field label="Full description">
                   <RichEditor value={form.description} onChange={v => set('description', v)} folder="products" disabled={!canEdit} minHeight={220} placeholder="Describe the product, its uses, finish and options." />
@@ -126,16 +145,22 @@ export default function ProductForm({ initial, categories, defaultCategory = '',
                 <GalleryField value={form.images} onChange={v => set('images', v)} folder="products" disabled={!canEdit} />
               </Card>
               <Card title="Specifications">
+                {onWebsite ? <p className="muted small" style={{ marginTop: -4, marginBottom: 12 }}>Each line is shown at the end of the website card as “Name: value”.</p> : null}
                 <SpecsField value={form.specs} onChange={v => set('specs', v)} disabled={!canEdit} />
               </Card>
               <Card title="Sizes and load classes">
                 <SpecTableField value={form.specTable} onChange={v => set('specTable', v)} disabled={!canEdit} />
               </Card>
-              <Card title="Features, uses and standards">
-                <div className="form-row--3 form-row">
-                  <Field label="Features" htmlFor="features" hint="One per line">
+              <Card title="Features, options, uses and standards">
+                <div className="form-row">
+                  <Field label="Features" htmlFor="features" hint={onWebsite ? 'One per line. Shown on the website card.' : 'One per line'}>
                     <textarea id="features" className="textarea" rows={6} value={form.features} onChange={e => set('features', e.target.value)} placeholder={'Anti-slip surface\nHigh load capacity'} />
                   </Field>
+                  <Field label="Options" htmlFor="options" hint={onWebsite ? 'One per line. Shown on the website card.' : 'One per line'}>
+                    <textarea id="options" className="textarea" rows={6} value={form.options} onChange={e => set('options', e.target.value)} placeholder={'Coating – Bitumen (Gloss/Matte), Epoxy coating\nHandling – Lifting keys'} />
+                  </Field>
+                </div>
+                <div className="form-row">
                   <Field label="Applications" htmlFor="applications" hint="One per line">
                     <textarea id="applications" className="textarea" rows={6} value={form.applications} onChange={e => set('applications', e.target.value)} placeholder={'Highways\nCar parks'} />
                   </Field>
@@ -166,11 +191,29 @@ export default function ProductForm({ initial, categories, defaultCategory = '',
                     {categories.map(c => <option key={c._id} value={c._id}>{`${'   '.repeat(c.depth)}${c.name}`}</option>)}
                   </select>
                 </Field>
+                {pageGroups.length > 1 ? (
+                  <Field label="Place on the page" htmlFor="group" hint="The tab or block of the category's website page the product is shown in.">
+                    <select id="group" className="select" value={group ? group.id : ''} onChange={e => set('group', e.target.value)}>
+                      {pageGroups.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
+                    </select>
+                  </Field>
+                ) : null}
+                <div className="website-place" data-testid="website-place">
+                  {onWebsite ? (
+                    <p className="small" style={{ margin: '0 0 16px' }}>
+                      <strong>On the website:</strong> {cat.pageName || catLabel}{pageGroups.length > 1 && group ? `, ${group.label}` : ''}
+                      {live ? '' : ' (once published)'}.{' '}
+                      {websiteUrl ? <a href={`${websiteUrl}${normPath(cat.path)}`} target="_blank" rel="noopener noreferrer">Open the page ↗</a> : null}
+                    </p>
+                  ) : (
+                    <p className="muted small" style={{ margin: '0 0 16px' }}>{form.category ? 'This category has no product page on the website; show it with a “Products from the product list” section in Website › Pages & sections.' : 'Choose a category to show the product on its website page.'}</p>
+                  )}
+                </div>
                 <Field label="Product code" htmlFor="code" hint="Optional, e.g. JPK-DI-D400-600">
                   <input id="code" className="input" value={form.code} onChange={e => set('code', e.target.value)} maxLength={60} />
                 </Field>
-                <Field label="Display order" htmlFor="order" hint="Lower numbers are shown first.">
-                  <input id="order" className="input" type="number" value={form.order} onChange={e => set('order', e.target.value)} step="1" />
+                <Field label="Display order" htmlFor="order" hint={isNew ? 'Lower numbers are shown first (also on the website page). Empty: after the last product of its category.' : 'Lower numbers are shown first (also on the website page).'}>
+                  <input id="order" className="input" type="number" value={form.order} onChange={e => set('order', e.target.value)} step="1" placeholder={isNew ? 'Last' : ''} />
                 </Field>
                 <label className="check" style={{ marginBottom: 18 }}>
                   <input type="checkbox" checked={form.featured} onChange={e => set('featured', e.target.checked)} />

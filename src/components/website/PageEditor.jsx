@@ -9,7 +9,7 @@ import { Badge, Field, Icon } from '@/components/ui';
 import SeoFields from '@/components/fields/SeoFields';
 import Preview from './Preview';
 import { TextControl, RichControl, LinkControl, ImageControl, GalleryControl, NumberControl, BuilderForm } from './controls';
-import { deepEqual, fieldLabel, plainText, htmlToText, uid } from './util';
+import { deepEqual, fieldLabel, plainText, htmlToText, uid, thumbOf } from './util';
 import History from './History';
 
 // The website editor for one page (mode "page"), the header and footer ("global") or a page made in the admin
@@ -167,11 +167,16 @@ export default function PageEditor({ mode, partKey, schemaPage, schemaGlobal, ty
       return;
     }
     if (key && !fields[key]) {
+      if (section && productGroupsOf(schemaPage, section).length) {
+        setView({ name: 'section', id: section });
+        setNotice('This product is changed in Products: open it from the list of products of this section.');
+        return;
+      }
       setNotice(mode === 'global' ? 'This is part of the page, not of the header or footer: edit it on its page.' : 'This is part of the header or footer, which are the same on every page.');
       return;
     }
     if (section) { setView({ name: 'section', id: section }); setNotice(''); }
-  }, [fields, mode]);
+  }, [fields, mode, schemaPage]);
 
   // scroll the panel to the highlighted box
   useEffect(() => {
@@ -305,6 +310,7 @@ export default function PageEditor({ mode, partKey, schemaPage, schemaGlobal, ty
               <h2 className="ws-section__title">{sectionLabel(current)}</h2>
               {current.hidden ? <p className="ws-hint">This section is hidden: visitors don’t see it.</p> : null}
               <fieldset className="ws-fieldset" disabled={!canEdit}>
+                {current.ref && productGroupsOf(schemaPage, current.ref).length ? <ProductsNote groups={productGroupsOf(schemaPage, current.ref)} canOpen={perms.products !== false} /> : null}
                 {current.ref ? (
                   <BuiltInFields sec={current.ref} fields={fields} content={content} setContent={setContent} websiteUrl={websiteUrl} pages={pages} onFocus={k => setFocus({ key: k, section: current.ref, n: Date.now() })} />
                 ) : types[current.type] ? (
@@ -375,6 +381,52 @@ export default function PageEditor({ mode, partKey, schemaPage, schemaGlobal, ty
   );
 }
 
+// the groups of product cards in a section of a product page (site-schema.json pages[].products)
+function productGroupsOf(schemaPage, section) {
+  return ((schemaPage && schemaPage.products) || []).filter(g => g.section === section).map(g => g.group);
+}
+
+// a product page's cards come from Products: the products of this section, each with a link to change it
+function ProductsNote({ groups, canOpen }) {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    if (!canOpen) return undefined;
+    let live = true;
+    api(`/api/admin/products/on-page?groups=${groups.join(',')}`).then(r => { if (live) setData(r.groups || {}); }).catch(err => { if (live) setError(err.message); });
+    return () => { live = false; };
+  }, [groups.join(','), canOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <div className="ws-box ws-products" data-testid="products-note">
+      <div className="ws-box__head"><span className="ws-box__label">Products</span></div>
+      <p className="small" style={{ margin: '0 0 10px' }}>The product cards of this section (name, photo, load class, text) come from <strong>Products</strong>. Change, add or remove a product there and the page follows.</p>
+      {!canOpen ? <p className="muted small">Your account cannot open Products.</p> : error ? <p className="muted small">{error}</p> : !data ? <p className="muted small">Loading the products…</p> : (
+        groups.map(id => {
+          const g = data[id];
+          if (!g) return null;
+          return (
+            <div key={id} className="ws-products__group">
+              {groups.length > 1 ? <p className="ws-products__label small"><strong>{g.label}</strong></p> : null}
+              {g.items.length ? (
+                <ul className="ws-products__list">
+                  {g.items.map(p => (
+                    <li key={p._id}>
+                      {p.image ? <img src={thumbOf(p.image, 120)} alt="" loading="lazy" /> : <span className="ws-products__noimg" />}
+                      <span className="ws-products__name">{p.name}</span>
+                      <Link href={`/admin/products/${p._id}`} className="btn btn--ghost btn--sm">Edit</Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p className="muted small">No products are shown here at the moment.</p>}
+            </div>
+          );
+        })
+      )}
+      {canOpen ? <Link href="/admin/products/new" className="btn btn--ghost btn--sm" style={{ marginTop: 8 }}>+ New product</Link> : null}
+    </div>
+  );
+}
+
 // the texts, links, pictures… of one of the page's own sections, in the order they appear on the page
 function BuiltInFields({ sec, fields, content, setContent, websiteUrl, pages, onFocus }) {
   const keys = Object.keys(fields).filter(k => fields[k].section === sec && !(fields[k].kind === 'link' && fields[k].of && fields[fields[k].of]));
@@ -395,7 +447,7 @@ function BuiltInFields({ sec, fields, content, setContent, websiteUrl, pages, on
         ) : null}
         {f.kind === 'rich' ? <RichControl value={content[k]} builtIn={f.default} onChange={v => setContent(k, v)} /> : null}
         {f.kind === 'link' ? <LinkControl value={content[k]} builtIn={{ href: f.href, newTab: f.newTab }} onChange={v => setContent(k, v && v.href ? v : undefined)} pages={pages} /> : null}
-        {f.kind === 'image' || f.kind === 'bg' ? <ImageControl value={content[k]} builtIn={{ preview: f.preview, alt: f.alt }} onChange={v => setContent(k, v)} websiteUrl={websiteUrl} /> : null}
+        {f.kind === 'image' || f.kind === 'bg' ? <ImageControl value={content[k]} builtIn={{ preview: f.preview, thumb: f.thumb, alt: f.alt }} onChange={v => setContent(k, v)} websiteUrl={websiteUrl} /> : null}
         {f.kind === 'number' ? <NumberControl value={content[k]} builtIn={f.default} onChange={v => setContent(k, v)} /> : null}
         {f.kind === 'gallery' ? <GalleryControl value={content[k]} builtIn={f.items} onChange={v => setContent(k, v)} websiteUrl={websiteUrl} /> : null}
         {f.kind === 'text' && content[k] !== undefined && f.default ? <p className="ws-box__was muted small">Was: {plainText(f.default, 140)}</p> : null}

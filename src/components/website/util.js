@@ -34,6 +34,7 @@ export function plainText(html, max = 120) {
 
 const TAG_LABELS = { h1: 'Main heading', h2: 'Heading', h3: 'Sub-heading', h4: 'Small heading', h5: 'Small heading', h6: 'Small heading', a: 'Link text', button: 'Button text', li: 'List item', label: 'Label', strong: 'Bold text', figcaption: 'Picture caption', summary: 'Question' };
 export function fieldLabel(key, f) {
+  if (f.label) return f.label;
   if (f.kind === 'text') return TAG_LABELS[f.tag] || (f.link ? 'Link text' : 'Text');
   if (f.kind === 'rich') return 'Text block';
   if (f.kind === 'link') return f.of ? 'Link address' : f.text ? 'Link' : 'Link (picture or icon)';
@@ -59,12 +60,29 @@ export function thumbOf(url, width = 480) {
   return `${m[1]}f_auto,q_auto,c_limit,w_${width}/${m[2]}`;
 }
 
+// A built-in picture of the website: the small copy that comes with the admin (public/website-pictures, made from
+// the website's pictures with each update), so the picture shows even when the website is not online (yet);
+// websitePicture() is the same picture on the website, used if the copy is missing.
 export function builtInPicture(websiteUrl, item, w = 400) {
+  if (!item) return '';
+  if (item.url) return thumbOf(item.url, w);
+  if (item.thumb) return `/website-pictures/${String(item.thumb).replace(/^\/?images\//, '')}`;
+  return websitePicture(websiteUrl, item, w);
+}
+export function websitePicture(websiteUrl, item, w = 400) {
   if (!item) return '';
   if (item.url) return thumbOf(item.url, w);
   if (item.preview) return absolute(websiteUrl, item.preview);
   if (item.src) return absolute(websiteUrl, `/images/${item.src.replace(/\.[a-z0-9]+$/i, '')}-${w}.webp`);
   return '';
+}
+// <img onError>: try the website's copy once
+export function pictureFallback(websiteUrl, item, w = 400) {
+  return e => {
+    const alt = websitePicture(websiteUrl, item, w);
+    const img = e.currentTarget;
+    if (alt && img.dataset.fallback !== '1') { img.dataset.fallback = '1'; img.src = alt; }
+  };
 }
 
 export function deepEqual(a, b) {

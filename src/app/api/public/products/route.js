@@ -18,7 +18,9 @@ export const GET = publicRoute(async req => {
   const catSlug = sp.get('category');
   if (catSlug) {
     const cats = await loadCategories();
-    const cat = cats.find(c => c.slug === catSlug);
+    // "sanitary-components": the category's web address name from 4 to 6 Nov 2026 (now "sanitary-castings"),
+    // so a website section saved with the old name keeps showing its products
+    const cat = cats.find(c => c.slug === catSlug) || (catSlug === 'sanitary-components' ? cats.find(c => c.slug === 'sanitary-castings') : null);
     if (!cat) return json(paged([], 0, page, limit));
     filters.push({ category: { $in: descendantIds(cats, cat._id) } });
   }

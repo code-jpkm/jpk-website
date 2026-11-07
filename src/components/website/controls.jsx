@@ -5,7 +5,7 @@ import { useEditor, useEditorState, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import RichEditor from '@/components/fields/RichEditor';
 import MediaPicker from './MediaPicker';
-import { htmlToText, textToHtml, hasFormatting, inlineFromRich, thumbOf, builtInPicture, absolute } from './util';
+import { htmlToText, textToHtml, hasFormatting, inlineFromRich, thumbOf, builtInPicture, absolute, pictureFallback } from './util';
 
 // The boxes of the website editor. Each gets the saved value (undefined = as built) and the built-in value.
 
@@ -114,7 +114,7 @@ export function ImageControl({ value, builtIn, onChange, websiteUrl, allowRemove
   return (
     <div className="image-control">
       <button type="button" className="image-control__pic" onClick={() => setOpen(true)} style={aspect ? { aspectRatio: aspect } : undefined} title="Replace this picture">
-        {shown ? <img src={shown} alt="" /> : <span className="image-control__empty">No picture yet: click to add one</span>}
+        {shown ? <img src={shown} alt="" onError={value && value.url ? undefined : pictureFallback(websiteUrl, builtIn, 800)} /> : <span className="image-control__empty">No picture yet: click to add one</span>}
       </button>
       <div className="image-control__actions">
         <button type="button" className="btn btn--ghost btn--sm" onClick={() => setOpen(true)}>{shown ? 'Replace…' : 'Add a picture…'}</button>
@@ -140,7 +140,7 @@ export function GalleryControl({ value, builtIn = [], onChange, websiteUrl, buil
       <div className="gallery-control__grid">
         {items.map((it, i) => (
           <div key={`${it.url || it.src}-${i}`} className="gallery-control__item">
-            <img src={builtInPicture(websiteUrl, it, 400)} alt="" />
+            <img src={builtInPicture(websiteUrl, it, 400)} alt="" onError={it.url ? undefined : pictureFallback(websiteUrl, it, 400)} />
             <div className="gallery-control__tools">
               <button type="button" className="icon-btn" disabled={i === 0} onClick={() => move(i, -1)} aria-label="Move earlier">←</button>
               <button type="button" className="icon-btn" disabled={i === items.length - 1} onClick={() => move(i, 1)} aria-label="Move later">→</button>

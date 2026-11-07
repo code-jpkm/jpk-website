@@ -7,10 +7,16 @@ import { storeImage } from './storage.js';
 import { User } from '../models/User.js';
 import { Blog } from '../models/Blog.js';
 import { ProductCategory } from '../models/ProductCategory.js';
+import { Product } from '../models/Product.js';
+import { SitePart, partData } from '../models/SitePart.js';
 import { getSetting, setSetting } from '../models/Setting.js';
+import { parseProduct } from './inputs.js';
+import { uniqueSlug } from './validate.js';
+import { cardFingerprint, cardFieldsFromHtml, textOf } from './products/website.js';
 
-// First-run setup: the first administrator, the product categories of jpkm.in and the six existing
-// JPK Updates posts. Every step runs once and never overwrites changes made in the admin.
+// First-run setup: the first administrator, the product categories of jpkm.in, the six existing JPK Updates posts
+// and the 88 products of the website's product pages. Every step runs once and never overwrites changes made in
+// the admin.
 
 export function seedAdminEmail() {
   return String(process.env.SEED_ADMIN_EMAIL || 'sales@jpkm.in').trim().toLowerCase();
@@ -56,7 +62,7 @@ export async function ensureSeedAdmin({ resetPassword = false, onlyWhenEmpty = t
 
 const CATEGORY_TREE = [
   {
-    name: 'Sanitary Components', slug: 'sanitary-components', websitePath: '/products/sanitary-components/',
+    name: 'Sanitary Castings', slug: 'sanitary-castings', websitePath: '/products/sanitary-castings/',
     description: 'Ductile iron and grey cast iron manhole covers, recessed covers, double triangular covers, gratings, tree grates and drainage castings.',
     children: [
       {
@@ -106,6 +112,24 @@ export async function ensureCategories() {
   return { status: 'created' };
 }
 
+// Once: the category added as "Sanitary Components" (4 Nov 2026) follows the website's name and address again,
+// "Sanitary Castings" at /products/sanitary-castings/ (owner, 6 Nov 2026). Left alone if it was renamed here.
+export async function renameSanitaryCategory() {
+  await connectDB();
+  if (await getSetting('migrate.sanitaryCastings')) return { status: 'done-before' };
+  const doc = await ProductCategory.findOne({ slug: 'sanitary-components' });
+  let status = 'nothing-to-do';
+  if (doc && doc.name === 'Sanitary Components') {
+    const set = { name: 'Sanitary Castings' };
+    if (!doc.websitePath || doc.websitePath === '/products/sanitary-components/') set.websitePath = '/products/sanitary-castings/';
+    if (!(await ProductCategory.exists({ slug: 'sanitary-castings' }))) set.slug = 'sanitary-castings';
+    await ProductCategory.updateOne({ _id: doc._id }, { $set: set });
+    status = 'renamed';
+  }
+  await setSetting('migrate.sanitaryCastings', { at: new Date().toISOString(), status });
+  return { status };
+}
+
 // The six posts that were on the WordPress site, so they can be edited or removed here.
 export async function importJpkUpdates() {
   await connectDB();
@@ -148,5 +172,54 @@ export async function importJpkUpdates() {
     }
   }
   await setSetting('seed.jpkUpdates', { at: new Date().toISOString(), count: added });
+  return { status: 'imported', count: added };
+}
+
+// Once: the products shown on the website's product pages (seed-data/products, made from the pages by
+// tools/products in the website project), with their photos, so they can be changed in Products. Each keeps the
+// card it came from; while a product is unchanged its card on the website stays exactly as built. Changes made to
+// these cards in the website editor before this (name, photo, text) are taken over. Products added in the admin
+// before are kept. Safe to run again: cards already imported are skipped, so an interrupted import continues.
+export async function importProducts() {
+  await connectDB();
+  if (await getSetting('seed.products')) return { status: 'done-before' };
+  let list;
+  try {
+    list = JSON.parse(await fs.readFile(path.join(process.cwd(), 'seed-data', 'products', 'products.json'), 'utf8'));
+  } catch {
+    return { status: 'no-data' };
+  }
+  const norm = p => (p ? `/${String(p).replace(/^\/+|\/+$/g, '')}/` : '');
+  const cats = await ProductCategory.find({}).select('websitePath').lean();
+  const catByPath = new Map(cats.filter(c => c.websitePath).map(c => [norm(c.websitePath), c]));
+  const content = {};
+  for (const part of await SitePart.find({ kind: 'page' }).lean()) content[part.key.slice(5)] = (partData(part) || {}).content || {};
+  let added = 0;
+  for (const item of list) {
+    if (await Product.exists({ 'builtIn.card': item.card })) continue;
+    const over = content[item.page] || {};
+    const keys = item.keys || {};
+    const fields = { name: item.name, loadClass: item.loadClass, material: item.material, summary: item.summary, features: item.features, options: item.options, specs: item.specs };
+    if (keys.name && typeof over[keys.name] === 'string' && textOf(over[keys.name])) fields.name = textOf(over[keys.name]);
+    if (keys.load && typeof over[keys.load] === 'string') fields.loadClass = textOf(over[keys.load]);
+    if (keys.text && typeof over[keys.text] === 'string') Object.assign(fields, cardFieldsFromHtml(over[keys.text]));
+    let image;
+    const saved = keys.image && over[keys.image];
+    if (saved && typeof saved === 'object' && saved.url) {
+      image = { url: saved.url, publicId: saved.publicId, provider: saved.provider || 'external', alt: saved.alt || item.image.alt, width: saved.width, height: saved.height };
+    } else {
+      const buffer = await fs.readFile(path.join(process.cwd(), 'seed-data', 'products', path.basename(item.image.file)));
+      const stored = await storeImage(buffer, { folder: 'products', filename: item.image.file });
+      image = { ...stored, alt: item.image.alt, width: stored.width || item.image.width, height: stored.height || item.image.height };
+    }
+    const cat = catByPath.get(norm(item.path));
+    const data = parseProduct({ ...fields, category: cat ? String(cat._id) : null, group: item.group, order: item.order, status: 'published', images: [image] });
+    data.slug = await uniqueSlug(Product, item.slug);
+    const doc = await Product.create(data);
+    const saved2 = doc.toObject();
+    await Product.updateOne({ _id: doc._id }, { $set: { builtIn: { card: item.card, fp: cardFingerprint(saved2), img: (saved2.images[0] || {}).url || '' } } });
+    added += 1;
+  }
+  await setSetting('seed.products', { at: new Date().toISOString(), count: added });
   return { status: 'imported', count: added };
 }

@@ -29,7 +29,9 @@ export const GET = adminRoute(async (req, { params }) => {
 
 export const PATCH = adminRoute(async (req, { params }) => {
   const user = await requireUser('products', 'update');
-  const data = parseProduct(await readJson(req), { partial: true });
+  const body = await readJson(req);
+  const data = parseProduct(body, { partial: true });
+  if (body.order === '' || body.order === null) delete data.order; // an emptied display order keeps the current one
   const doc = await load(params);
   if (data.category && !(await ProductCategory.exists({ _id: data.category }))) throw new HttpError(400, 'The chosen category no longer exists.');
   const wasPublished = doc.status === 'published';

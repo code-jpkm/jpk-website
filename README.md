@@ -17,7 +17,7 @@ The admin software for **jpkm.in**: a website editor (every text, picture, link 
 This administrator is created automatically the first time the server starts with an empty database. **Change the password right after signing in** (top right → *My account & password*). The dashboard shows a warning until you do.
 
 On the same first start the admin also adds:
-- the product categories of jpkm.in (Sanitary Components › Ductile Iron › Solid Top, …, Engineering Casting, Pipe Fitting, Agricultural Components)
+- the product categories of jpkm.in (Sanitary Castings › Ductile Iron › Solid Top, …, Engineering Casting, Pipe Fitting, Agricultural Components)
 - the 6 JPK Updates posts that were on WordPress, so you can edit or delete them here
 
 Nothing is ever added twice, and nothing you change is overwritten.
@@ -65,7 +65,7 @@ Open https://jpk-webupdation.onrender.com/api/health. It should show `"db":"conn
 | Name | Needed | What it is |
 |---|---|---|
 | `MONGODB_URI` | **yes** | MongoDB connection string |
-| `JWT_SECRET` | **yes** (production) | Long random text that protects sign-ins. Changing it signs everyone out |
+| `JWT_SECRET` | **yes** (production) | Long random text that protects sign-ins. Changing it signs everyone out (and the Google Analytics key saved on the *Analytics* page must be uploaded again) |
 | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | recommended | Cloudinary cloud name, API key and API secret (see step 2) |
 | `CLOUDINARY_URL` | no | The same three in one line, `cloudinary://<API key>:<API secret>@<cloud name>`, instead of the three settings |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | First administrator (default `sales@jpkm.in` / `admin@123`) |
@@ -75,6 +75,7 @@ Open https://jpk-webupdation.onrender.com/api/health. It should show `"db":"conn
 | `RESEND_API_KEY`, `MAIL_FROM`, `NOTIFY_EMAIL`, `CAREERS_NOTIFY_EMAIL` | no | Email alerts (see below) |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | no | Email alerts by SMTP instead of Resend |
 | `MONGODB_DB` | no | Database name when the connection string has none (default `jpk_admin`) |
+| `GA_PROPERTY_ID`, `GA_SERVICE_ACCOUNT_JSON` | no | Google Analytics numbers in the admin, set on the server instead of uploading the key on the *Analytics* page: the property ID and the whole service-account key file (JSON) as one value. See *Google Analytics* |
 
 ## Email alerts (optional)
 New enquiries and applications always appear in the admin. To also get an email:
@@ -101,6 +102,40 @@ How it reaches the website: the website asks `GET /api/public/site` on every pag
 
 The list of what can be changed comes from the website (`WEBSITE_URL/site-schema.json`, written by every website build); `seed-data/site-schema.json` is the copy used when the website cannot be reached.
 
+## Products on the website
+At its first start this version copies the **88 product cards of the website's product pages** into *Products*: name, photo, load class, material, text, features, options and specifications, each in the category of its page and in the page's order. This happens once; a product deleted later does not come back.
+
+Each product is linked to its card:
+- Change a product (name, photo, load class, material, short description, features, options, specifications) and save: **its card on the website changes**. The form shows where it is (*On the website: …* with a link to the page).
+- *Category* decides the page, *Place on the page* the tab or block (for example *Single Seal · Urban*), *Display order* the position (lower first; a new product with an empty display order goes after the last product of its category).
+- A new product in one of these categories is added to that page; *Draft* takes a product off the page; a product moved to another category moves to that page.
+- Products of categories without a product page (and all products) are also in the API, for the section *Products from the product list*.
+
+In the website editor, clicking a product card says that it is changed under *Products* and links to that product. Product pages whose products are unchanged stay exactly as built.
+
+## SEO
+**Website → SEO** shows every page with a score (*Good*, *Could be better*, *Needs work*), the length of its Google title and description, and its focus keyphrase. Open a page:
+- **Focus keyphrase**: the words people type in Google to find the page. The *SEO check* then says, as you type, what to improve (keyphrase in the title, description, main heading, address and first paragraph, length of the title and description, text length, links, pictures without a description, …).
+- **Google preview**: search title, search description and main heading (H1), shown as Google shows them.
+- **Social media**: title, description and picture when the page is shared on LinkedIn, Facebook or WhatsApp (empty = the Google title and description, and the site's sharing picture).
+- **Advanced**: keep the page out of Google (*noindex*), don't follow its links (*nofollow*), canonical address.
+
+**Settings**: Google Search Console and Bing verification codes (paste the code or the whole `<meta>` tag), the Google Analytics Measurement ID, the company details Google shows (name, phone, email, addresses, profiles on other websites, logo), the sharing picture for all pages, *Keep search engines away* (for a test copy of the website only) and extra lines for `robots.txt`.
+
+**Redirects**: send an old address to a new one (301 = moved for good, 302 = for now), for example after renaming a page. The old WordPress addresses are already redirected by the website.
+
+Changes are live on the website at the next page load; the pre-built pages (what Google reads first) get them at the next website build (see `SITE_REBUILD_HOOK_URL`). Rights: *Website editor* (*View* to look, *Edit* to change).
+
+## Google Analytics
+**Analytics** (in the menu) has two steps:
+1. **Count the visitors**: create a Google Analytics 4 property for jpkm.in at https://analytics.google.com (Admin › Create › Property, then a *Web* data stream for https://jpkm.in) and enter its **Measurement ID** (`G-…`). Every page of the website then counts its visitors (also the same field under *SEO → Settings*).
+2. **See the numbers here** (optional): visitors, new visitors, visits, pages viewed, average visit, visitors per day, most viewed pages, how people come, devices and countries, for the last 7, 28 or 90 days, and how many people are on the website right now.
+   1. In https://console.cloud.google.com create a project, switch on the *Google Analytics Data API*, then *IAM › Service accounts › Create* (no roles needed) › *Keys › Add key › JSON*. A `.json` file is downloaded.
+   2. In Google Analytics › *Admin › Property access management*, add the service account's email (`…@….iam.gserviceaccount.com`) as a **Viewer**.
+   3. On the *Analytics* page enter the **property ID** (Admin › Property details, a number) and choose the `.json` file, then *Connect*.
+
+The key is kept on the server, encrypted (it can only read the numbers); the browser never receives it. Instead of uploading it, the server settings `GA_PROPERTY_ID` and `GA_SERVICE_ACCOUNT_JSON` can be used. The numbers are fetched from Google at most every 10 minutes (*Refresh* fetches them at once); Google needs up to a day before new visits appear in them, except *right now*.
+
 ## Connect the website
 The website already uses this admin (`VITE_API_URL`, default `https://jpk-webupdation.onrender.com`):
 
@@ -120,7 +155,7 @@ A free Render service sleeps after 15 minutes without visitors; the first visit 
 ## Users and access
 *Users & access* (administrators only):
 - **Administrator**: everything, including users.
-- **Staff**: only the ticked rights per section: JPK Updates, Products (with categories), Job openings and the Website editor: view / create / edit / delete; Job applications and Enquiries: view / update (status, notes) / delete.
+- **Staff**: only the ticked rights per section: JPK Updates, Products (with categories), Job openings and the Website editor: view / create / edit / delete; Job applications and Enquiries: view / update (status, notes) / delete. The Website editor rights also cover *SEO* and *Analytics*.
 
 Rights apply immediately. Switching an account off or setting a new password signs that person out everywhere. There is always at least one active administrator, and nobody can remove their own administrator access.
 
@@ -153,7 +188,7 @@ All answers are JSON; reading is open to any website (CORS `*`).
 | `GET /api/public/products?category=<slug>&featured=1&q=` | Published products; a category includes its sub-categories |
 | `GET /api/public/products/<slug>` | One product with photos, specifications, size table |
 | `GET /api/public/categories` | Product categories in menu order with product counts |
-| `GET /api/public/site` | The website editor's saved changes: `pages`, `global` (header/footer), `custom` (published new pages), `menus`, `settings` (design), `version` |
+| `GET /api/public/site` | The website editor's saved changes: `pages`, `global` (header/footer), `custom` (published new pages), `menus`, `settings` (design), `seo` (SEO settings, Measurement ID, redirects), `productGroups` (the product-page cards changed under *Products*), `version` |
 | `POST /api/public/enquiries` | JSON `{ name, email, subject, message, phone?, company?, formId, page }` |
 | `POST /api/public/applications` | Form data: `name, email, phone, location, experience, currentCompany, linkedin, coverLetter, consent, jobId, jobTitle, resume` (PDF/DOC/DOCX/RTF up to 5 MB) |
 | `GET /api/health` | Server, database and storage status |

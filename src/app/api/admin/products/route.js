@@ -32,9 +32,15 @@ export const GET = adminRoute(async req => {
 // POST /api/admin/products
 export const POST = adminRoute(async req => {
   const user = await requireUser('products', 'create');
-  const data = parseProduct(await readJson(req));
+  const body = await readJson(req);
+  const data = parseProduct(body);
   await connectDB();
   if (data.category && !(await ProductCategory.exists({ _id: data.category }))) throw new HttpError(400, 'The chosen category no longer exists.');
+  // no display order given: after the last product of its category (so it is added at the end of its website page)
+  if (body.order === '' || body.order == null) {
+    const last = await Product.findOne(data.category ? { category: data.category } : {}).sort({ order: -1 }).select('order').lean();
+    data.order = last ? Math.min(100000, (last.order || 0) + 10) : 0;
+  }
   data.slug = await uniqueSlug(Product, data.slug || data.name);
   const doc = await Product.create({ ...data, createdBy: user.id, updatedBy: user.id });
   if (doc.status === 'published') scheduleSiteRebuild('product published');

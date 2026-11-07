@@ -5,13 +5,15 @@ import { scheduleSiteRebuild } from '../siteHook.js';
 import { SitePart, partData } from '../../models/SitePart.js';
 import { SiteRevision } from '../../models/SiteRevision.js';
 import { getSchema, schemaPage, sectionTypes } from './schema.js';
-import { cleanContent, cleanSections, cleanSeo, cleanMenuItems, cleanSettings, cleanPath, pathProblem, cleanBuilderSection } from './clean.js';
+import { createHash } from 'node:crypto';
+import { productGroupsForWebsite } from '../products/website.js';
+import { cleanContent, cleanSections, cleanSeo, cleanMenuItems, cleanSettings, cleanPath, pathProblem, cleanBuilderSection, cleanSiteSeo } from './clean.js';
 
 // Saving and reading the website editor's changes, and putting them together for the website.
 const KEEP_REVISIONS = 30;
 
 export function partKind(key) {
-  if (key === 'global' || key === 'menus' || key === 'settings') return key;
+  if (key === 'global' || key === 'menus' || key === 'settings' || key === 'seo') return key;
   if (/^page:[A-Za-z0-9]{1,60}$/.test(key)) return 'page';
   if (/^custom:[a-z0-9]{6,30}$/.test(key)) return 'custom';
   return null;
@@ -43,6 +45,7 @@ async function cleanPart(key, data) {
   if (kind === 'global') return { content: cleanContent(d.content) };
   if (kind === 'menus') return { main: cleanMenuItems(d.main) };
   if (kind === 'settings') return cleanSettings(d, schema);
+  if (kind === 'seo') return cleanSiteSeo(d, { pagePaths: [...schema.pages.map(p => p.path), ...(await customPaths(key))] });
   // a page made in the admin
   const title = typeof d.title === 'string' ? d.title.trim().slice(0, 120) : '';
   if (!title) throw new HttpError(400, 'Please give the page a name.');
@@ -152,11 +155,19 @@ export async function siteForWebsite(origin) {
     else if (p.kind === 'custom') { if (d.published && d.path) site.custom.push(d); }
     else if (p.kind === 'menus') { if (Array.isArray(d.main) && d.main.length) site.menus = { main: d.main }; }
     else if (p.kind === 'settings') site.settings = d;
+    else if (p.kind === 'seo') site.seo = d;
   }
   // a deleted page or a page switched back to "draft" also changes the site: count deletions too
   const lastDeleted = await SiteRevision.findOne({ savedByName: / \(deleted\)$|^deleted$/ }).sort({ savedAt: -1 }).select('savedAt').lean();
   if (lastDeleted) latest = Math.max(latest, new Date(lastDeleted.savedAt).getTime());
   site.version = latest ? new Date(latest).toISOString() : 'none';
+  // the product cards of the product pages that differ from the built ones (Products)
+  const { schema } = await getSchema({ quick: true });
+  const groups = await productGroupsForWebsite(schema.productGroups);
+  if (groups) {
+    site.productGroups = groups;
+    site.version += `~${createHash('sha1').update(JSON.stringify(groups)).digest('base64url').slice(0, 10)}`;
+  }
   return absolutize(site, origin);
 }
 
