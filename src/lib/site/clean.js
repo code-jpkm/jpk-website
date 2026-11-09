@@ -1,5 +1,5 @@
 import sanitizeHtml from 'sanitize-html';
-import { sanitizeRich } from '../sanitize.js';
+import { sanitizeRich, cleanAnchorAttribs } from '../sanitize.js';
 import { HttpError } from '../errors.js';
 
 // Checks and cleans everything the website editor saves, so only safe, well-formed content reaches the website.
@@ -25,12 +25,7 @@ const INLINE = {
   allowedAttributes: { a: ['href', 'target', 'rel'], span: ['class'] },
   allowedSchemes: ['http', 'https', 'mailto', 'tel'],
   transformTags: {
-    a: (tagName, attribs) => {
-      const out = { ...attribs };
-      if (out.target && out.target !== '_blank') delete out.target;
-      if (out.target === '_blank') out.rel = 'noopener noreferrer';
-      return { tagName, attribs: out };
-    },
+    a: (tagName, attribs) => ({ tagName, attribs: cleanAnchorAttribs(attribs) }),
   },
 };
 export function cleanInline(html) {
@@ -73,6 +68,7 @@ export function cleanLink(v, { label = false } = {}) {
   if (!href) return null;
   const out = { href };
   if (v.newTab) out.newTab = true;
+  if (v.nofollow) out.nofollow = true;
   if (label && str(v.label, 120)) out.label = str(v.label, 120);
   return out;
 }
@@ -208,6 +204,19 @@ export function cleanSeo(v) {
   if (v.nofollow) out.nofollow = true;
   const focus = oneLine(v.focus, 100), ogTitle = oneLine(v.ogTitle, 140), ogDescription = oneLine(v.ogDescription, 320);
   if (focus) out.focus = focus;
+  // up to 4 more keyphrases (the first one, focus, is the main one): only for the admin's SEO check
+  if (Array.isArray(v.keyphrases)) {
+    const seen = new Set([focus.toLowerCase()]);
+    const more = [];
+    for (const k of v.keyphrases) {
+      const t = oneLine(k, 100);
+      if (!t || seen.has(t.toLowerCase())) continue;
+      seen.add(t.toLowerCase());
+      more.push(t);
+      if (more.length === 4) break;
+    }
+    if (more.length) out.keyphrases = more;
+  }
   if (ogTitle) out.ogTitle = ogTitle;
   if (ogDescription) out.ogDescription = ogDescription;
   const canonical = oneLine(v.canonical, 300);

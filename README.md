@@ -76,6 +76,7 @@ Open https://jpk-webupdation.onrender.com/api/health. It should show `"db":"conn
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | no | Email alerts by SMTP instead of Resend |
 | `MONGODB_DB` | no | Database name when the connection string has none (default `jpk_admin`) |
 | `GA_PROPERTY_ID`, `GA_SERVICE_ACCOUNT_JSON` | no | Google Analytics numbers in the admin, set on the server instead of uploading the key on the *Analytics* page: the property ID and the whole service-account key file (JSON) as one value. See *Google Analytics* |
+| `GSC_SITE_URL`, `GSC_SERVICE_ACCOUNT_JSON` | no | Search Console for *SEO → Rankings*, set on the server instead of in the admin: the property (`jpkm.in` or `https://jpkm.in/`) and, if not the Google Analytics one, a key file (JSON) as one value |
 
 ## Email alerts (optional)
 New enquiries and applications always appear in the admin. To also get an email:
@@ -114,17 +115,35 @@ Each product is linked to its card:
 In the website editor, clicking a product card says that it is changed under *Products* and links to that product. Product pages whose products are unchanged stay exactly as built.
 
 ## SEO
-**Website → SEO** shows every page with a score (*Good*, *Could be better*, *Needs work*), the length of its Google title and description, and its focus keyphrase. Open a page:
-- **Focus keyphrase**: the words people type in Google to find the page. The *SEO check* then says, as you type, what to improve (keyphrase in the title, description, main heading, address and first paragraph, length of the title and description, text length, links, pictures without a description, …).
+Rank Math and Yoast are WordPress plugins and cannot run on this website, so their main tools are built in here.
+
+**Website → SEO → Pages** lists every page and post with its **SEO score (0–100)**, readability and links, and the average score. Open a page:
+- **Keyphrases**: the *focus keyphrase* (the words people type in Google to find the page) and up to 4 *more keyphrases* (other names for the same thing). For each one: how often the page uses it, its density, and whether the title, description and headings have it. *Ideas from this page's text* suggests phrases the page uses most; a click makes one a keyphrase. A keyphrase used by another page is flagged (pages should not compete).
+- **SEO score**, like Rank Math: tests in four groups with points — *Basic SEO* (keyphrase in the title, description, address, at the beginning, in the text, in the main heading; text length), *Additional* (subheadings, picture descriptions, keyphrase density, address length, internal links, external and followed links, keyphrase not used elsewhere), *Title readability* (keyphrase at the start, length, a number, a strong word, a positive word) and *Content readability* (description length, short paragraphs, pictures). Green 80+, orange 50–79, red below 50. It updates as you type.
+- **Readability**, like Yoast: reading ease (Flesch), sentences over 20 words, paragraphs over 120/150 words, text without subheadings, passive sentences, linking words, sentences starting the same way, with the sentences concerned. Texts are changed in *Pages & sections*.
 - **Google preview**: search title, search description and main heading (H1), shown as Google shows them.
 - **Social media**: title, description and picture when the page is shared on LinkedIn, Facebook or WhatsApp (empty = the Google title and description, and the site's sharing picture).
 - **Advanced**: keep the page out of Google (*noindex*), don't follow its links (*nofollow*), canonical address.
+- **Links** and **In Google**: the page's link counts, and its Google searches and positions (see below).
+
+**Links** shows, for every page and post and for the header and footer, how many links go to other pages of the website (*internal*) and to other websites (*external*), how many pages link to it, and links *to check*: to an old address (forwarded), to a missing page or to a switched-off page. Open a page to see each link with its words, where it is and where it goes, and to:
+- **Edit** a link: another page of the website or another address (website, email, phone, file), its words, *Open in a new tab*, *nofollow*. *Use the new address* fixes a link to an old address in one click.
+- **Remove link**: the words stay on the page as normal text (a button keeps its link; a button of a section added in the admin can be removed).
+- **Add a link**: type words that are on the page, *Find*, choose the place and *Link these words*.
+- **Link suggestions**: words on the page that name another page (its name or keyphrase) not linked yet; *Add this link* links them.
+Links made by the page's design (product card buttons, the menu, the logo) are listed too; the menu is changed in *Menu*, product cards in *Products*. Changes are saved like changes in *Pages & sections* (with history) and are live at once.
+
+**Rankings** (Google Search Console): clicks from Google, times shown, click rate and average position for 7, 28 or 90 days compared with the period before, clicks per day, *your keyphrases* with their position, every search with its position (and change), and the pages. To connect it:
+1. At https://search.google.com/search-console add the website with the company's Google account: a **Domain** property (jpkm.in; Google gives a TXT record to add where the domain is registered) works for the old and the new website. (A *URL prefix* property https://jpkm.in/ can use the HTML tag code in *SEO → Settings* once the new website is live.)
+2. In Search Console › *Settings › Users and permissions › Add user*, add the service account's email (the one used for Google Analytics) with **Restricted** permission.
+3. In Google Cloud, switch on the **Google Search Console API** for the key's project.
+4. In *Rankings*, enter `jpkm.in` and *Connect* (with the Google Analytics key, or another key file). Search Console's numbers are about 2 days behind; the admin fetches them at most every hour.
 
 **Settings**: Google Search Console and Bing verification codes (paste the code or the whole `<meta>` tag), the Google Analytics Measurement ID, the company details Google shows (name, phone, email, addresses, profiles on other websites, logo), the sharing picture for all pages, *Keep search engines away* (for a test copy of the website only) and extra lines for `robots.txt`.
 
 **Redirects**: send an old address to a new one (301 = moved for good, 302 = for now), for example after renaming a page. The old WordPress addresses are already redirected by the website.
 
-Changes are live on the website at the next page load; the pre-built pages (what Google reads first) get them at the next website build (see `SITE_REBUILD_HOOK_URL`). Rights: *Website editor* (*View* to look, *Edit* to change).
+Changes are live on the website at the next page load; the pre-built pages (what Google reads first) get them at the next website build (see `SITE_REBUILD_HOOK_URL`). Rights: *Website editor* (*View* to look, *Edit* to change); links in posts need the *JPK Updates* edit right.
 
 ## Google Analytics
 **Analytics** (in the menu) has two steps:

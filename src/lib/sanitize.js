@@ -1,6 +1,18 @@
 import sanitizeHtml from 'sanitize-html';
 
 // Rich text from the editor is cleaned before it is saved, so only safe formatting reaches the website.
+
+// a link's target and rel: a new tab only as target="_blank" (then rel noopener noreferrer); rel keeps nofollow,
+// sponsored and ugc (what search engines read), nothing else
+export function cleanAnchorAttribs(attribs) {
+  const out = { ...attribs };
+  if (out.target && out.target !== '_blank') delete out.target;
+  const rel = new Set(String(out.rel || '').toLowerCase().split(/\s+/).filter(t => ['nofollow', 'sponsored', 'ugc'].includes(t)));
+  if (out.target === '_blank') { rel.add('noopener'); rel.add('noreferrer'); }
+  if (rel.size) out.rel = [...rel].join(' '); else delete out.rel;
+  return out;
+}
+
 const OPTIONS = {
   allowedTags: [
     'p', 'br', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'u', 's', 'sup', 'sub', 'mark', 'code', 'pre',
@@ -26,12 +38,7 @@ const OPTIONS = {
     del: 's',
     h1: 'h2',
     div: 'p',
-    a: (tagName, attribs) => {
-      const out = { ...attribs };
-      if (out.target && out.target !== '_blank') delete out.target;
-      if (out.target === '_blank') out.rel = 'noopener noreferrer';
-      return { tagName, attribs: out };
-    },
+    a: (tagName, attribs) => ({ tagName, attribs: cleanAnchorAttribs(attribs) }),
   },
   exclusiveFilter: frame => frame.tag === 'img' && !frame.attribs.src,
 };

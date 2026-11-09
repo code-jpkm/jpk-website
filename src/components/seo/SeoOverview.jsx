@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { api } from '@/lib/client/api';
 import { Card, PageHeader, EmptyState } from '@/components/ui';
-import SeoNav, { ScoreDot } from './SeoNav';
+import SeoNav, { ScoreDot, ScoreBadge, linksHref } from './SeoNav';
 
 // Website › SEO: every page and post with its Google title, description, focus keyphrase and SEO check
 export default function SeoOverview({ gaSet }) {
@@ -20,7 +20,8 @@ export default function SeoOverview({ gaSet }) {
     && (!score || r.score === score)
     && (!q || `${r.name} ${r.path} ${r.focus} ${r.title}`.toLowerCase().includes(q.toLowerCase()))), [rows, q, kind, score]);
   const counts = useMemo(() => (rows || []).reduce((m, r) => ({ ...m, [r.score]: (m[r.score] || 0) + 1 }), {}), [rows]);
-  const len = (s, a, b) => { const n = String(s || '').length; return <span className={`seo-len seo-len--${!n ? 'bad' : n >= a && n <= b ? 'good' : 'ok'}`}>{n}</span>; };
+  const avg = useMemo(() => { const l = (rows || []).filter(r => !r.hidden); return l.length ? Math.round(l.reduce((t, r) => t + (r.points || 0), 0) / l.length) : 0; }, [rows]);
+  const noKp = useMemo(() => (rows || []).filter(r => !r.hidden && !r.focus).length, [rows]);
   return (
     <>
       <PageHeader title="SEO" description="How each page shows in Google, and what to improve. Changes are live on the website as soon as they are saved." />
@@ -31,6 +32,8 @@ export default function SeoOverview({ gaSet }) {
           <button type="button" className={`seo-summary__item${score === 'good' ? ' is-on' : ''}`} onClick={() => setScore(score === 'good' ? '' : 'good')}><ScoreDot score="good" label={false} /><strong>{counts.good || 0}</strong> good</button>
           <button type="button" className={`seo-summary__item${score === 'ok' ? ' is-on' : ''}`} onClick={() => setScore(score === 'ok' ? '' : 'ok')}><ScoreDot score="ok" label={false} /><strong>{counts.ok || 0}</strong> could be better</button>
           <button type="button" className={`seo-summary__item${score === 'bad' ? ' is-on' : ''}`} onClick={() => setScore(score === 'bad' ? '' : 'bad')}><ScoreDot score="bad" label={false} /><strong>{counts.bad || 0}</strong> need work</button>
+          <span className="seo-summary__item" data-testid="seo-average">Average score <strong>{avg}</strong>/100</span>
+          {noKp ? <span className="seo-summary__item">{noKp} without a focus keyphrase</span> : null}
         </div>
       ) : null}
       <Card pad={false}>
@@ -48,9 +51,9 @@ export default function SeoOverview({ gaSet }) {
               <tr>
                 <th>Page</th>
                 <th className="hide-sm">Focus keyphrase</th>
-                <th className="hide-sm" title="Characters in the search title (30–60 is best)">Title</th>
-                <th className="hide-sm" title="Characters in the search description (120–160 is best)">Description</th>
-                <th>SEO</th>
+                <th>SEO score</th>
+                <th className="hide-sm">Readability</th>
+                <th className="hide-sm" title="Links to other pages of the website / to other websites">Links</th>
                 <th><span className="sr-only">Actions</span></th>
               </tr>
             </thead>
@@ -61,10 +64,10 @@ export default function SeoOverview({ gaSet }) {
                     <Link href={r.href} className="table__title">{r.name}</Link>
                     <span className="table__sub">{r.path}{r.kind === 'post' ? ' · post' : ''}{r.hidden ? ' · hidden page' : ''}{r.noindex ? ' · hidden from Google' : ''}</span>
                   </td>
-                  <td className="small hide-sm">{r.focus || <span className="muted">—</span>}</td>
-                  <td className="hide-sm">{len(r.title, 30, 60)}</td>
-                  <td className="hide-sm">{len(r.description, 110, 165)}</td>
-                  <td><ScoreDot score={r.score} /></td>
+                  <td className="small hide-sm">{r.focus || <span className="muted">—</span>}{r.keyphrases && r.keyphrases.length ? <span className="muted"> +{r.keyphrases.length}</span> : null}</td>
+                  <td><span className="seo-cell-score"><ScoreBadge points={r.points} score={r.score} size="sm" /><ScoreDot score={r.score} /></span></td>
+                  <td className="hide-sm"><ScoreDot score={r.readability} />{r.flesch !== null && r.flesch !== undefined ? <span className="muted small"> {r.flesch}</span> : null}</td>
+                  <td className="hide-sm small"><Link href={linksHref(r.key)}>{r.internal} / {r.external}</Link></td>
                   <td><div className="table__actions"><Link href={r.href} className="btn btn--ghost btn--sm">{r.kind === 'post' ? 'Open post' : 'Improve'}</Link></div></td>
                 </tr>
               ))}

@@ -17,13 +17,13 @@ const apiBase = () => String(process.env.GA_DATA_API || 'https://analyticsdata.g
 const SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
 
 const secretKey = () => createHash('sha256').update(`jpk-ga4:${process.env.JWT_SECRET || process.env.AUTH_SECRET || 'jpk-admin'}`).digest();
-function seal(text) {
+export function seal(text) {
   const iv = randomBytes(12);
   const c = createCipheriv('aes-256-gcm', secretKey(), iv);
   const enc = Buffer.concat([c.update(String(text), 'utf8'), c.final()]);
   return [iv, c.getAuthTag(), enc].map(b => b.toString('base64')).join('.');
 }
-function unseal(s) {
+export function unseal(s) {
   const [iv, tag, enc] = String(s || '').split('.').map(x => Buffer.from(x, 'base64'));
   const d = createDecipheriv('aes-256-gcm', secretKey(), iv);
   d.setAuthTag(tag);
@@ -69,13 +69,17 @@ export async function connectionStatus() {
 }
 
 const tokens = new Map();
-async function accessToken(conn) {
-  const cached = tokens.get(conn.clientEmail);
+const accessToken = conn => googleAccessToken(conn, SCOPE);
+// an access token for a Google API (scope) from a service account key (also used for Search Console)
+export async function googleAccessToken(conn, scope) {
+  // per key (a replaced or wrong key never reuses the token of another one) and per API
+  const ck = `${conn.clientEmail}|${scope}|${createHash('sha256').update(String(conn.privateKey)).digest('hex').slice(0, 16)}`;
+  const cached = tokens.get(ck);
   if (cached && cached.exp > Date.now() + 60_000) return cached.token;
   let key;
   try { key = await importPKCS8(conn.privateKey, 'RS256'); } catch { throw new HttpError(400, 'The private key in the key file could not be used.'); }
   const now = Math.floor(Date.now() / 1000);
-  const assertion = await new SignJWT({ scope: SCOPE })
+  const assertion = await new SignJWT({ scope })
     .setProtectedHeader({ alg: 'RS256', typ: 'JWT', ...(conn.keyId ? { kid: conn.keyId } : {}) })
     .setIssuer(conn.clientEmail).setSubject(conn.clientEmail).setAudience(GOOGLE_TOKEN)
     .setIssuedAt(now).setExpirationTime(now + 3600)
@@ -88,7 +92,7 @@ async function accessToken(conn) {
     throw new HttpError(502, 'Google could not be reached. Try again in a minute.');
   }
   if (!res.ok || !j.access_token) throw new HttpError(400, `Google did not accept the key (${j.error_description || j.error || res.status}). Check that the key is current and the service account exists.`);
-  tokens.set(conn.clientEmail, { token: j.access_token, exp: Date.now() + (Number(j.expires_in) || 3600) * 1000 });
+  tokens.set(ck, { token: j.access_token, exp: Date.now() + (Number(j.expires_in) || 3600) * 1000 });
   return j.access_token;
 }
 
