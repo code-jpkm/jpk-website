@@ -23,7 +23,7 @@ export default async function EditBlogPage({ params }) {
     <BlogForm
       key={String(post._id)}
       initial={plain(post)}
-      siteUrl={websiteUrl()}
+      siteUrl={await websiteUrl()}
       categories={categories.filter(Boolean)}
       perms={{ update: can(user, 'blogs', 'update'), delete: can(user, 'blogs', 'delete') }}
     />

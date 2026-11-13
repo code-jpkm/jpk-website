@@ -1,3 +1,4 @@
+import { knownWebsiteUrl } from '../siteAddress.js';
 import sanitizeHtml from 'sanitize-html';
 import { sanitizeRich, cleanAnchorAttribs } from '../sanitize.js';
 import { HttpError } from '../errors.js';
@@ -259,19 +260,58 @@ function cleanOrg(v) {
   const logo = cleanImage(v.logo);
   if (logo) out.logo = logo;
   const links = (Array.isArray(v.sameAs) ? v.sameAs : String(v.sameAs || '').split('\n')).map(x => oneLine(x, 300)).filter(x => /^https:\/\/[^\s"'<>]+$/i.test(x));
-  if (links.length) out.sameAs = [...new Set(links)].slice(0, 12);
+  if (links.length) out.sameAs = [...new Set(links)].slice(0, 20);
+  const wa = cleanWhatsApp(v.whatsapp);
+  if (wa) out.whatsapp = wa;
+  // the company's leaders (Person in the website's structured data): { name, jobTitle, url }
+  if (Array.isArray(v.people)) {
+    const people = v.people.filter(isObj).map(p => {
+      const person = { name: oneLine(p.name, 120), jobTitle: oneLine(p.jobTitle, 120) };
+      const url = oneLine(p.url, 300);
+      if (/^https:\/\/[^\s"'<>]+$/i.test(url)) person.url = url;
+      return person;
+    }).filter(p => p.name).slice(0, 10);
+    if (people.length) out.people = people;
+  }
+  return out;
+}
+
+// a WhatsApp number with its country code: "+91 98765 43210" -> "+919876543210"; '' if it is not one
+export function cleanWhatsApp(v) {
+  const s = String(v == null ? '' : v).trim();
+  if (!s) return '';
+  const digits = s.replace(/[\s().\-]/g, '').replace(/^00/, '+');
+  // with its country code: "+…", "00…", or written without the "+" but long enough to include it (91 98765 43210)
+  if (!/^\+?\d{8,15}$/.test(digits) || (!digits.startsWith('+') && digits.length < 11)) throw new HttpError(400, 'The WhatsApp number should have its country code, for example +91 98765 43210.');
+  return digits.startsWith('+') ? digits : `+${digits}`;
+}
+
+// what AI assistants are told (llms.txt) and whether they may read the website (robots.txt)
+function cleanAi(v) {
+  if (!isObj(v)) return {};
+  const out = {};
+  if (v.block) out.block = true;
+  const summary = str(v.summary, 1200).replace(/\r/g, '');
+  if (summary) out.summary = summary;
+  const facts = String(v.facts || '').split('\n').map(l => oneLine(l.replace(/^[-*•]\s*/, ''), 300)).filter(Boolean).slice(0, 30);
+  if (facts.length) out.facts = facts;
   return out;
 }
 // robots.txt lines the owner may add (only the usual rules)
 function cleanRobotsLines(v) {
   return String(v || '').split('\n').map(l => l.trim()).filter(l => /^(user-agent|allow|disallow|crawl-delay)\s*:\s*[^\s<>"]{0,200}$/i.test(l)).slice(0, 60).join('\n');
 }
+// jpkm.in, and the address set in Website › Website address (e.g. a test address)
+const ownHost = h => {
+  if (/(^|\.)jpkm\.in$/i.test(h)) return true;
+  try { return new URL(knownWebsiteUrl()).hostname.toLowerCase() === String(h).toLowerCase(); } catch { return false; }
+};
 const redirectPath = v => {
   const s = oneLine(v, 300);
   if (!s) return '';
   try {
     const u = new URL(s, 'https://jpkm.in');
-    if (/^https?:$/.test(u.protocol) && /(^|\.)jpkm\.in$/i.test(u.hostname)) {
+    if (/^https?:$/.test(u.protocol) && ownHost(u.hostname)) {
       let p = decodeURIComponent(u.pathname).toLowerCase().replace(/\/{2,}/g, '/');
       if (!/\.[a-z0-9]{2,5}$/.test(p) && !p.endsWith('/')) p += '/';
       return /^\/[a-z0-9\-_/.]*$/.test(p) ? p : '';
@@ -293,7 +333,7 @@ export function cleanRedirects(list, { pagePaths = [] } = {}) {
     if (/^\/(api|assets|images|fonts|wp|cms-preview)\//.test(from)) throw new HttpError(400, `${from} is used by the website itself and cannot be redirected.`);
     let to = oneLine(r.to, 500);
     if (/^https?:\/\//i.test(to)) {
-      try { const u = new URL(to); to = /(^|\.)jpkm\.in$/i.test(u.hostname) ? redirectPath(to) + (u.search || '') : u.href; } catch { to = ''; }
+      try { const u = new URL(to); to = ownHost(u.hostname) ? redirectPath(to) + (u.search || '') : u.href; } catch { to = ''; }
     } else to = to ? redirectPath(to) : '';
     if (!to) throw new HttpError(400, `Please give an address to send ${from} to (a page such as /contact-us/ or a full web address).`);
     if (to === from) throw new HttpError(400, `${from} cannot be sent to itself.`);
@@ -332,6 +372,8 @@ export function cleanSiteSeo(v, { pagePaths = [] } = {}) {
   if (Object.keys(robots).length) out.robots = robots;
   const redirects = cleanRedirects(d.redirects, { pagePaths });
   if (redirects.length) out.redirects = redirects;
+  const ai = cleanAi(d.ai);
+  if (Object.keys(ai).length) out.ai = ai;
   return out;
 }
 

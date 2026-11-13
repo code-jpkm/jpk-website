@@ -20,7 +20,7 @@ function usable(s) {
 }
 
 async function load() {
-  const url = `${websiteUrl()}/site-schema.json`;
+  const url = `${await websiteUrl()}/site-schema.json`;
   try {
     const res = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(8000), cache: 'no-store' });
     if (res.ok) {
@@ -40,6 +40,12 @@ function refresh() {
       .finally(() => { state.pending = null; });
   }
   return state.pending;
+}
+
+// after the website address changed: read the list from the new address next time
+export function resetSchema() {
+  state.value = null;
+  state.at = 0;
 }
 
 // { schema, source: "website" | "bundled" }

@@ -21,7 +21,7 @@ export default async function RedirectsPage() {
       initial={{ data: plain(part ? part.data : null), updatedAt: part && part.updatedAt ? new Date(part.updatedAt).toISOString() : null }}
       builtIn={plain(schema.redirects || [])}
       pages={pageOptions(schema)}
-      websiteUrl={websiteUrl()}
+      websiteUrl={await websiteUrl()}
       canEdit={can(user, 'website', 'update')}
     />
   );

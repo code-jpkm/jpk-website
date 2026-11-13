@@ -12,5 +12,5 @@ export default async function NewJobPage() {
   if (!allowed) return <NoAccess what="new job openings" />;
   await connectDB();
   const [departments, locations] = await Promise.all([Job.distinct('department'), Job.distinct('location')]);
-  return <JobForm siteUrl={websiteUrl()} departments={departments.filter(Boolean)} locations={locations.filter(Boolean)} perms={{ update: true, delete: false }} />;
+  return <JobForm siteUrl={await websiteUrl()} departments={departments.filter(Boolean)} locations={locations.filter(Boolean)} perms={{ update: true, delete: false }} />;
 }

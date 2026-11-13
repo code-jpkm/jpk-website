@@ -15,5 +15,5 @@ export default async function AnalyticsPage() {
   if (!allowed) return <NoAccess what="Analytics" />;
   const [status, part] = await Promise.all([connectionStatus(), getPart('seo')]);
   const measurementId = (part && part.data && part.data.analytics && part.data.analytics.ga4) || '';
-  return <AnalyticsView initial={{ status, measurementId }} websiteUrl={websiteUrl()} canEdit={can(user, 'website', 'update')} />;
+  return <AnalyticsView initial={{ status, measurementId }} websiteUrl={await websiteUrl()} canEdit={can(user, 'website', 'update')} />;
 }

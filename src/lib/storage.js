@@ -14,6 +14,8 @@ export { cloudinaryEnabled, cloudinaryProblem } from './cloudinarySettings.js';
 
 export const MEDIA_BUCKET = 'media';
 export const RESUME_BUCKET = 'resumes';
+export const DOWNLOAD_BUCKET = 'downloads';
+export const MAX_DOWNLOAD = 20 * 1024 * 1024; // a catalogue PDF
 
 const IMAGE_TYPES = { jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', avif: 'image/avif' };
 const EXT = { jpeg: 'jpg', png: 'png', webp: 'webp', gif: 'gif', avif: 'avif' };
@@ -187,6 +189,16 @@ export async function storeResume(buffer, filename) {
   const clean = String(filename).replace(/[^\w.\- ()]+/g, '_').slice(-120) || `cv.${ext}`;
   const fileId = await gridPut(RESUME_BUCKET, buffer, { filename: clean, contentType: kind.mime, metadata: { kind: 'resume' } });
   return { fileId, filename: clean, size: buffer.length, mimeType: kind.mime };
+}
+
+// A PDF for the website's downloads (catalogues, certificates), kept in the database.
+export async function storeDownload(buffer, filename) {
+  if (!buffer || !buffer.length) throw new HttpError(400, 'The file is empty.');
+  if (buffer.length > MAX_DOWNLOAD) throw new HttpError(413, 'The PDF is larger than 20 MB. Please make it smaller (for example "Reduce file size" in Acrobat or Preview) and try again.');
+  if (buffer.subarray(0, 5).toString('latin1') !== '%PDF-') throw new HttpError(415, 'Please upload a PDF file.');
+  const clean = String(filename || 'file.pdf').replace(/[^\w.\- ()]+/g, '_').replace(/\.pdf$/i, '').slice(-110) + '.pdf';
+  const fileId = await gridPut(DOWNLOAD_BUCKET, buffer, { filename: clean, contentType: 'application/pdf', metadata: { kind: 'download' } });
+  return { fileId, fileName: clean, size: buffer.length };
 }
 
 // ---------- removing pictures that are no longer used ----------

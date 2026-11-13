@@ -15,7 +15,7 @@ export const GET = adminRoute(async req => {
   const { q, sp } = listParams(req);
   await connectDB();
   const rows = await Enquiry.find(enquiryFilter(sp, q)).sort({ createdAt: -1 }).limit(10000).lean();
-  const site = websiteUrl();
+  const site = await websiteUrl();
   const csv = toCsv(
     [
       { label: 'Received', value: r => indiaTime(r.createdAt) },
@@ -23,6 +23,9 @@ export const GET = adminRoute(async req => {
       { label: 'Email', key: 'email' },
       { label: 'Phone', key: 'phone' },
       { label: 'Company', key: 'company' },
+      { label: 'Country', key: 'country' },
+      { label: 'Product', key: 'product' },
+      { label: 'Quantity', key: 'quantity' },
       { label: 'Subject', key: 'subject' },
       { label: 'Message', key: 'message' },
       { label: 'Form', key: 'formName' },

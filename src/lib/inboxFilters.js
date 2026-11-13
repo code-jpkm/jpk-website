@@ -15,7 +15,7 @@ export function applicationFilter(sp, q) {
 }
 
 export function enquiryFilter(sp, q) {
-  const filter = { ...searchFilter(q, ['name', 'email', 'phone', 'company', 'subject', 'message']) };
+  const filter = { ...searchFilter(q, ['name', 'email', 'phone', 'company', 'country', 'product', 'subject', 'message']) };
   const status = sp.get('status');
   if (ENQUIRY_STATUSES.includes(status)) filter.status = status;
   const form = sp.get('form');

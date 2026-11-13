@@ -10,6 +10,10 @@ const EnquirySchema = new mongoose.Schema(
     email: { type: String, required: true, trim: true, lowercase: true, maxlength: 200 },
     phone: { type: String, trim: true, maxlength: 40, default: '' },
     company: { type: String, trim: true, maxlength: 160, default: '' },
+    // export enquiries (website form, Nov 2026)
+    country: { type: String, trim: true, maxlength: 80, default: '' },
+    product: { type: String, trim: true, maxlength: 120, default: '' },
+    quantity: { type: String, trim: true, maxlength: 120, default: '' },
     subject: { type: String, trim: true, maxlength: 250, default: '' },
     message: { type: String, trim: true, maxlength: 10000, default: '' },
     formId: { type: String, trim: true, maxlength: 40, default: '' },

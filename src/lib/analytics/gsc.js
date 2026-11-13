@@ -159,7 +159,7 @@ export async function pageRankings(path, days = 28, { fresh = false } = {}) {
   const conn = await gscConnection();
   if (!conn || conn.broken) return null;
   const d = [7, 28, 90].includes(Number(days)) ? Number(days) : 28;
-  const url = `${websiteUrl()}${path}`;
+  const url = `${await websiteUrl()}${path}`;
   return cached(`${conn.siteUrl}:${d}:${url}`, fresh, async () => {
     const filter = { dimensionFilterGroups: [{ filters: [{ dimension: 'page', operator: 'equals', expression: url }] }] };
     const cur = range(d);

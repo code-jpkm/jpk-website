@@ -10,5 +10,5 @@ export const GET = adminRoute(async req => {
   await requireUser('website', 'view');
   const fresh = new URL(req.url).searchParams.get('fresh') === '1';
   const { schema, source } = await getSchema({ fresh });
-  return json({ schema, source, websiteUrl: websiteUrl() });
+  return json({ schema, source, websiteUrl: await websiteUrl() });
 });

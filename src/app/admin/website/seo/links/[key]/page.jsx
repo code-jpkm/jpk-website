@@ -22,5 +22,5 @@ export default async function LinksPageScreen({ params }) {
   const page = await pageLinks(key);
   if (!page) notFound();
   const canEdit = can(user, key.startsWith('post:') ? 'blogs' : 'website', 'update');
-  return <LinksPage key={key} page={plain(page)} canEdit={canEdit} websiteUrl={websiteUrl()} />;
+  return <LinksPage key={key} page={plain(page)} canEdit={canEdit} websiteUrl={await websiteUrl()} />;
 }

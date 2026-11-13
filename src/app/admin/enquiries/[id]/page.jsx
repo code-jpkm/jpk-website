@@ -19,5 +19,5 @@ export default async function EnquiryPage({ params }) {
   await connectDB();
   const enquiry = await Enquiry.findById(id).lean();
   if (!enquiry) notFound();
-  return <EnquiryDetail key={String(enquiry._id)} initial={plain(enquiry)} siteUrl={websiteUrl()} perms={{ update: can(user, 'enquiries', 'update'), delete: can(user, 'enquiries', 'delete') }} />;
+  return <EnquiryDetail key={String(enquiry._id)} initial={plain(enquiry)} siteUrl={await websiteUrl()} perms={{ update: can(user, 'enquiries', 'update'), delete: can(user, 'enquiries', 'delete') }} />;
 }

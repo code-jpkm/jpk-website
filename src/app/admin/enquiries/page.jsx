@@ -13,5 +13,5 @@ export default async function EnquiriesPage({ searchParams }) {
   const sp = (await searchParams) || {};
   const initial = { status: ENQUIRY_STATUSES.includes(sp.status) ? sp.status : '' };
   const perms = { update: can(user, 'enquiries', 'update'), delete: can(user, 'enquiries', 'delete') };
-  return <EnquiryList key={initial.status || 'all'} initial={initial} perms={perms} siteUrl={websiteUrl()} />;
+  return <EnquiryList key={initial.status || 'all'} initial={initial} perms={perms} siteUrl={await websiteUrl()} />;
 }

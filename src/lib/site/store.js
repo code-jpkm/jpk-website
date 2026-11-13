@@ -1,3 +1,5 @@
+import { websiteUrl } from '../siteAddress.js';
+import { downloadsForWebsite } from '../downloads.js';
 import { randomBytes } from 'node:crypto';
 import { connectDB } from '../db.js';
 import { HttpError } from '../errors.js';
@@ -168,6 +170,11 @@ export async function siteForWebsite(origin) {
     site.productGroups = groups;
     site.version += `~${createHash('sha1').update(JSON.stringify(groups)).digest('base64url').slice(0, 10)}`;
   }
+  // the website address set in the admin: the website's build compares it with its own config.js
+  site.address = await websiteUrl();
+  // PDFs for /downloads/ (Website › Downloads)
+  site.downloads = await downloadsForWebsite(origin).catch(() => []);
+  if (site.downloads.length) site.version += `~${createHash('sha1').update(JSON.stringify(site.downloads.map(d => [d.id, d.updatedAt]))).digest('base64url').slice(0, 8)}`;
   return absolutize(site, origin);
 }
 

@@ -15,5 +15,5 @@ export default async function JobsPage() {
     delete: can(user, 'jobs', 'delete'),
     applications: can(user, 'applications', 'view'),
   };
-  return <JobList perms={perms} siteUrl={websiteUrl()} />;
+  return <JobList perms={perms} siteUrl={await websiteUrl()} />;
 }

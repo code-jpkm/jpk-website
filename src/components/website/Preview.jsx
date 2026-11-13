@@ -27,6 +27,7 @@ export default function Preview({ websiteUrl, path, draft, focus, onSelect, onNa
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ready, setReady] = useState(false);
   const [slow, setSlow] = useState(false);
+  const [other, setOther] = useState(''); // the website answers, but takes its content from another admin
   const [device, setDevice] = useState('desktop');
   const [n, setN] = useState(0); // reload counter
   const draftRef = useRef(draft);
@@ -43,6 +44,8 @@ export default function Preview({ websiteUrl, path, draft, focus, onSelect, onNa
     const onMsg = e => {
       if (!allowed.includes(e.origin)) return;
       const m = e.data || {};
+      // sent by the website to any page that shows it in the editor: the admin its config.js points to
+      if (m.type === 'jpk-cms:hello') setOther(typeof m.cms === 'string' && m.cms && m.cms !== window.location.origin ? m.cms : '');
       if (m.type === 'jpk-cms:ready') {
         setReady(true);
         setSlow(false);
@@ -78,6 +81,7 @@ export default function Preview({ websiteUrl, path, draft, focus, onSelect, onNa
   useEffect(() => {
     setReady(false);
     setSlow(false);
+    setOther('');
     const t = setTimeout(() => setSlow(true), 15000);
     return () => clearTimeout(t);
   }, [path, n]);
@@ -108,10 +112,17 @@ export default function Preview({ websiteUrl, path, draft, focus, onSelect, onNa
         </div>
         {!ready ? (
           <div className="preview__overlay" aria-live="polite">
-            {slow ? (
+            {other ? (
+              <div className="preview__help">
+                <strong>The website is linked to another admin.</strong>
+                <p>The website at {websiteUrl} takes its content from {other}, so it cannot show the changes made here. In the website folder, open <code>config.js</code>, set <code>cmsUrl: &apos;{typeof window === 'undefined' ? '' : window.location.origin}&apos;</code>, then restart or build the website again.</p>
+                <button type="button" className="btn btn--ghost btn--sm" onClick={() => setN(x => x + 1)}>Try again</button>
+              </div>
+            ) : slow ? (
               <div className="preview__help">
                 <strong>The preview could not connect to the website.</strong>
                 <p>The website at {websiteUrl} may be waking up or may still be the version without the editor (it gets the editor with its next update). You can still make and save changes; they appear on the website once it has the new version.</p>
+                <p>If the website is opened at another address, change it in <a href="/admin/website">Website › Website address</a>.</p>
                 <button type="button" className="btn btn--ghost btn--sm" onClick={() => setN(x => x + 1)}>Try again</button>
               </div>
             ) : <span className="spinner"><span className="spinner__dot" aria-hidden="true" />Loading the page…</span>}

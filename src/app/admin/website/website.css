@@ -164,12 +164,21 @@
 .menu-edit__add .select { width: auto; flex: 1; min-width: 180px; }
 
 /* website overview */
-.ws-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+.ws-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 20px; }
 .ws-card { display: grid; gap: 4px; align-content: start; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); color: var(--navy); text-decoration: none !important; }
 .ws-card:hover { border-color: var(--navy); }
 .ws-card strong { font-size: 17px; }
 .ws-card__meta { color: var(--faint); margin-top: 4px; }
 .ws-hub__search { width: 220px; }
+.ws-address { margin-bottom: 20px; }
+.ws-address__row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; }
+.ws-address__row .field { flex: 1 1 340px; margin: 0; }
+.ws-address__actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 27px; }
+.ws-address__link { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.ws-address__link p { margin: 0 0 6px; }
+.ws-address__link ul { margin: 0 0 6px; padding-left: 18px; display: grid; gap: 6px; }
+.ws-address__link li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ws-address__link code { background: var(--bg, #F3F5F6); padding: 2px 6px; border-radius: 4px; word-break: break-all; }
 .ws-hub__foot { margin-top: 16px; }
 .ws-template { margin-top: 4px; }
 
@@ -188,3 +197,7 @@
 .ws-products__list li { display: flex; align-items: center; gap: 10px; padding: 4px 6px; border: 1px solid var(--line, #e3e7ec); border-radius: 8px; background: #fff; }
 .ws-products__list img, .ws-products__noimg { width: 44px; height: 34px; object-fit: contain; flex: none; border-radius: 4px; background: #f3f5f6; }
 .ws-products__name { flex: 1; min-width: 0; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Website › Downloads */
+.dl-edit { display: grid; gap: 8px; min-width: 260px; }
+.dl-edit__actions { display: flex; gap: 8px; }

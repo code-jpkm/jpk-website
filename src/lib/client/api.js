@@ -57,6 +57,28 @@ export function uploadImage(file, { folder = 'misc', onProgress } = {}) {
   });
 }
 
+// Send a form with a file (multipart) with progress (0–100). Resolves to the JSON answer.
+export function sendForm(url, fd, { method = 'POST', onProgress } = {}) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.responseType = 'json';
+    xhr.upload.onprogress = e => {
+      if (e.lengthComputable && onProgress) onProgress(Math.round((e.loaded / e.total) * 100));
+    };
+    xhr.onload = () => {
+      const data = xhr.response || {};
+      if (xhr.status === 401) {
+        window.location.assign('/login?expired=1');
+        reject(new ApiError('Your session has ended. Please sign in again.', 401));
+      } else if (xhr.status >= 200 && xhr.status < 300) resolve(data);
+      else reject(new ApiError(data.error || `The file could not be uploaded (${xhr.status}).`, xhr.status, data));
+    };
+    xhr.onerror = () => reject(new ApiError('The upload failed. Please check your internet connection and try again.', 0));
+    xhr.send(fd);
+  });
+}
+
 export function qs(params) {
   const sp = new URLSearchParams();
   for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== null && v !== '') sp.set(k, String(v));

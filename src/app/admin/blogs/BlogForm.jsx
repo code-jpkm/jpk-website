@@ -25,6 +25,7 @@ function toForm(d = {}) {
     status: d.status || 'draft',
     publishedAt: toDateTimeInput(d.publishedAt),
     authorName: d.authorName || 'JPK Metallics',
+    authorRole: d.authorRole || '',
     seoTitle: d.seoTitle || '',
     seoDescription: d.seoDescription || '',
   };
@@ -151,13 +152,16 @@ export default function BlogForm({ initial, siteUrl, categories = [], perms }) {
               <Card title="Details">
                 <Field label="Category" htmlFor="category">
                   <input id="category" className="input" list="blog-categories" value={form.category} onChange={e => set('category', e.target.value)} maxLength={80} />
-                  <datalist id="blog-categories">{[...new Set(['JPK Updates', 'News', 'Events', 'Material Engineering', ...categories])].map(c => <option key={c} value={c} />)}</datalist>
+                  <datalist id="blog-categories">{[...new Set(['JPK Updates', 'News', 'Events', 'Guides', 'Standards & testing', 'Export', ...categories])].map(c => <option key={c} value={c} />)}</datalist>
                 </Field>
                 <Field label="Tags" htmlFor="tags" hint="Separate with commas, e.g. ductile iron, exhibitions">
                   <input id="tags" className="input" value={form.tags} onChange={e => set('tags', e.target.value)} />
                 </Field>
-                <Field label="Author" htmlFor="authorName">
+                <Field label="Author" htmlFor="authorName" hint="A person’s name (e.g. Partha) helps Google and AI tools trust the article.">
                   <input id="authorName" className="input" value={form.authorName} onChange={e => set('authorName', e.target.value)} maxLength={120} />
+                </Field>
+                <Field label="Author’s role" htmlFor="authorRole" hint="Shown with the name, e.g. Head of Sales.">
+                  <input id="authorRole" className="input" value={form.authorRole} onChange={e => set('authorRole', e.target.value)} maxLength={120} placeholder="e.g. Head of Sales" />
                 </Field>
                 <SlugField value={form.slug} onChange={v => { setSlugTouched(true); set('slug', v); }} prefix={`${siteUrl.replace(/^https?:\/\//, '')}/jpk-updates/`} published={live} disabled={!canEdit} />
               </Card>

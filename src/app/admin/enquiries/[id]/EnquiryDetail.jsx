@@ -78,8 +78,11 @@ export default function EnquiryDetail({ initial, siteUrl, perms }) {
             <dl className="detail-list">
               <dt>Name</dt><dd>{item.name}</dd>
               <dt>Email</dt><dd><a href={`mailto:${item.email}`}>{item.email}</a></dd>
-              <dt>Phone</dt><dd>{item.phone ? <a href={`tel:${item.phone.replace(/[^\d+]/g, '')}`}>{item.phone}</a> : '—'}</dd>
+              <dt>Phone</dt><dd>{item.phone ? <><a href={`tel:${item.phone.replace(/[^\d+]/g, '')}`}>{item.phone}</a>{item.phone.replace(/\D/g, '').length >= 10 ? <> · <a href={`https://wa.me/${item.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></> : null}</> : '—'}</dd>
               {item.company ? <><dt>Company</dt><dd>{item.company}</dd></> : null}
+              {item.country ? <><dt>Country</dt><dd>{item.country}</dd></> : null}
+              {item.product ? <><dt>Product</dt><dd>{item.product}</dd></> : null}
+              {item.quantity ? <><dt>Quantity</dt><dd>{item.quantity}</dd></> : null}
               <dt>Sent from</dt><dd>{item.page ? <a href={`${siteUrl}${item.page}`} target="_blank" rel="noopener noreferrer">{siteUrl.replace(/^https?:\/\//, '')}{item.page}</a> : '—'}</dd>
             </dl>
           </Card>

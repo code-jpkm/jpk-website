@@ -69,9 +69,9 @@ Open https://jpk-webupdation.onrender.com/api/health. It should show `"db":"conn
 | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | recommended | Cloudinary cloud name, API key and API secret (see step 2) |
 | `CLOUDINARY_URL` | no | The same three in one line, `cloudinary://<API key>:<API secret>@<cloud name>`, instead of the three settings |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | First administrator (default `sales@jpkm.in` / `admin@123`) |
-| `WEBSITE_URL` | no | The public website, default `https://jpkm.in`. The website editor shows this site in its preview and reads its list of pages from it |
+| `WEBSITE_URL` | no | The public website, default `https://jpkm.in`. Only a fallback now: the address is set in the admin, **Website → Website address** (see *Website address*) |
 | `SITE_REBUILD_HOOK_URL` | no | Deploy hook of the website host; see *Connect the website* |
-| `ALLOWED_ORIGINS` | no | Websites allowed to send forms, e.g. `https://jpkm.in,https://www.jpkm.in`. Default: any |
+| `ALLOWED_ORIGINS` | no | Websites allowed to send forms, e.g. `https://jpkm.in,https://www.jpkm.in`. Default: any. The *Website address* is always allowed |
 | `RESEND_API_KEY`, `MAIL_FROM`, `NOTIFY_EMAIL`, `CAREERS_NOTIFY_EMAIL` | no | Email alerts (see below) |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | no | Email alerts by SMTP instead of Resend |
 | `MONGODB_DB` | no | Database name when the connection string has none (default `jpk_admin`) |
@@ -83,6 +83,18 @@ New enquiries and applications always appear in the admin. To also get an email:
 
 - **Resend** (works on Render's free plan): create a free account at https://resend.com, verify the domain `jpkm.in`, create an API key and set `RESEND_API_KEY`, `MAIL_FROM` (for example `JPK Website <alerts@jpkm.in>`) and `NOTIFY_EMAIL` (who receives enquiries). `CAREERS_NOTIFY_EMAIL` receives job applications (defaults to `NOTIFY_EMAIL`); the CV is attached.
 - **SMTP**: set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` and `NOTIFY_EMAIL`. Render's **free** plan blocks SMTP ports, so this only works on a paid Render instance or another host.
+
+## Website address
+**Website → Website address** is where the website is opened: `https://jpkm.in`, or `http://localhost:5173` while you
+test the website on your computer. Change it here, without touching Render; it is used at once by the editor's
+preview, the SEO and link tools, Search Console, the CSV export and the forms' allowed origins. Empty: `WEBSITE_URL`,
+else `https://jpkm.in`.
+
+The website's own `config.js` (in the website folder) must have the same two addresses; the card shows both, ready to
+copy: `siteUrl` (the website address) and `cmsUrl` (this admin's address). When the two do not match, the preview
+says *The website is linked to another admin*, and the website's build prints a note. A test address on your
+computer works for the preview on that computer; the admin on the internet cannot read it, so it uses its own copy
+of the list of pages (`seed-data/site-schema.json`).
 
 ## Website editor
 **Website → Pages & sections** lists every page of jpkm.in. Open one and the page appears on the right, live:
@@ -101,7 +113,17 @@ Who may do what: *Users & access* → **Website editor**: *View* (look only), *E
 
 How it reaches the website: the website asks `GET /api/public/site` on every page load and shows the saved changes, so they are live at once. Its pre-built pages (what Google reads first) get them at the next website build: set `SITE_REBUILD_HOOK_URL` (see *Connect the website*) and the admin starts a build about a minute after each save. The editor's preview needs the website version that has the editor (any build from November 2026 on); with an older website the editor can still save, and the preview says it cannot connect.
 
-The list of what can be changed comes from the website (`WEBSITE_URL/site-schema.json`, written by every website build); `seed-data/site-schema.json` is the copy used when the website cannot be reached.
+The list of what can be changed comes from the website (`<website address>/site-schema.json`, written by every website build); `seed-data/site-schema.json` is the copy used when the website cannot be reached.
+
+**Questions and answers** (homepage, FAQ page, product category pages) are changed like any text: click a question or
+an answer. Each list has spare places at the end, shown in the editor as *(Extra question: write one here to show
+it)*; a question written there appears on the website. Search engines get the questions as shown.
+
+**Downloads** (**Website → Downloads**): PDF catalogues, certificates, brochures and data sheets (up to 20 MB each) for
+the website's Downloads page (`/downloads/`), which lists them by type with *Open* and *Download*. *Hide* takes a
+file off the website, *Replace* uploads a new version at the same address, *Delete* removes it. The files are kept in
+the database. The footer links to the page once there is a file; without files the page says catalogues are
+available on request (and is kept out of Google).
 
 ## Products on the website
 At its first start this version copies the **88 product cards of the website's product pages** into *Products*: name, photo, load class, material, text, features, options and specifications, each in the category of its page and in the page's order. This happens once; a product deleted later does not come back.
@@ -130,7 +152,7 @@ Rank Math and Yoast are WordPress plugins and cannot run on this website, so the
 - **Edit** a link: another page of the website or another address (website, email, phone, file), its words, *Open in a new tab*, *nofollow*. *Use the new address* fixes a link to an old address in one click.
 - **Remove link**: the words stay on the page as normal text (a button keeps its link; a button of a section added in the admin can be removed).
 - **Add a link**: type words that are on the page, *Find*, choose the place and *Link these words*.
-- **Link suggestions**: words on the page that name another page (its name or keyphrase) not linked yet; *Add this link* links them.
+- **Link suggestions**: words on the page that name another page (its name or keyphrase) not linked yet; *Add this link* links them. The same words are offered for one page only (the ductile iron and the cast iron "Solid Top" share a name).
 Links made by the page's design (product card buttons, the menu, the logo) are listed too; the menu is changed in *Menu*, product cards in *Products*. Changes are saved like changes in *Pages & sections* (with history) and are live at once.
 
 **Rankings** (Google Search Console): clicks from Google, times shown, click rate and average position for 7, 28 or 90 days compared with the period before, clicks per day, *your keyphrases* with their position, every search with its position (and change), and the pages. To connect it:
@@ -139,7 +161,7 @@ Links made by the page's design (product card buttons, the menu, the logo) are l
 3. In Google Cloud, switch on the **Google Search Console API** for the key's project.
 4. In *Rankings*, enter `jpkm.in` and *Connect* (with the Google Analytics key, or another key file). Search Console's numbers are about 2 days behind; the admin fetches them at most every hour.
 
-**Settings**: Google Search Console and Bing verification codes (paste the code or the whole `<meta>` tag), the Google Analytics Measurement ID, the company details Google shows (name, phone, email, addresses, profiles on other websites, logo), the sharing picture for all pages, *Keep search engines away* (for a test copy of the website only) and extra lines for `robots.txt`.
+**Settings**: Google Search Console and Bing verification codes (paste the code or the whole `<meta>` tag), the Google Analytics Measurement ID, the company details Google shows (name, phone, email, **WhatsApp number** (a WhatsApp button then shows on every page), office and factory addresses, **profiles on other websites** (Google Business Profile, IndiaMART, TradeIndia, Kompass, LinkedIn, YouTube…), logo), the **leaders** (name, role, LinkedIn: given to Google and AI tools as people of the company), the sharing picture for all pages, **AI assistants** (the company summary and key facts in the website's `llms.txt`, and whether GPTBot, ClaudeBot, PerplexityBot and Google-Extended may read the website), *Keep search engines away* (for a test copy of the website only) and extra lines for `robots.txt`. `llms.txt` and `robots.txt` change at the next website build.
 
 **Redirects**: send an old address to a new one (301 = moved for good, 302 = for now), for example after renaming a page. The old WordPress addresses are already redirected by the website.
 
@@ -158,9 +180,10 @@ The key is kept on the server, encrypted (it can only read the numbers); the bro
 ## Connect the website
 The website already uses this admin (`VITE_API_URL`, default `https://jpk-webupdation.onrender.com`):
 
-- **Enquiry / Contact forms** → *Enquiries*
+- **Enquiry / Contact forms** → *Enquiries* (with company, country, product, quantity and a WhatsApp link to the phone number for export enquiries; all in the email alert and the CSV export)
 - **Careers page** → shows published job openings; applications and CVs → *Applications*
-- **JPK Updates** → posts published here appear on the website at once. When the website is built (`npm run build`), it downloads all posts so each post gets its own page for Google.
+- **JPK Updates** → posts published here appear on the website at once. When the website is built (`npm run build`), it downloads all posts so each post gets its own page for Google. A post's *Author* and *Author’s role* (for example "Partha", "Head of Sales") show under the post and are given to Google as the writer.
+- The six posts copied from WordPress were placeholder text: a new admin does not add them, and on an existing admin they were moved to the drafts once (rewrite or delete them there).
 
 For Google to see a new post immediately as a normal page, let the admin rebuild the website after changes:
 1. In the website host create a **deploy hook** (Vercel: Project → Settings → Git → Deploy Hooks; Netlify: Site configuration → Build hooks; Render static site: Settings → Deploy Hook).
@@ -169,7 +192,7 @@ For Google to see a new post immediately as a normal page, let the admin rebuild
 Products and categories are available through the API (`/api/public/products`, `/api/public/categories`). To show the products of a category on a page, add the section *Products from the product list* in the website editor: products added or changed under *Products* then appear there by themselves.
 
 ### Render free plan: sleeping
-A free Render service sleeps after 15 minutes without visitors; the first visit afterwards takes up to about a minute. The website keeps working meanwhile (it shows its built-in posts and waits for job openings). To avoid the wait, either use Render's **Starter** instance, or have a free monitor (for example cron-job.org or UptimeRobot) open `https://jpk-webupdation.onrender.com/api/health` every 10 minutes.
+A free Render service sleeps after 15 minutes without visitors; the first visit afterwards takes up to about a minute. The website keeps working meanwhile (it shows the posts it was built with and waits for job openings). To avoid the wait, either use Render's **Starter** instance, or have a free monitor (for example cron-job.org or UptimeRobot) open `https://jpk-webupdation.onrender.com/api/health` every 10 minutes.
 
 ## Users and access
 *Users & access* (administrators only):
@@ -207,8 +230,10 @@ All answers are JSON; reading is open to any website (CORS `*`).
 | `GET /api/public/products?category=<slug>&featured=1&q=` | Published products; a category includes its sub-categories |
 | `GET /api/public/products/<slug>` | One product with photos, specifications, size table |
 | `GET /api/public/categories` | Product categories in menu order with product counts |
-| `GET /api/public/site` | The website editor's saved changes: `pages`, `global` (header/footer), `custom` (published new pages), `menus`, `settings` (design), `seo` (SEO settings, Measurement ID, redirects), `productGroups` (the product-page cards changed under *Products*), `version` |
-| `POST /api/public/enquiries` | JSON `{ name, email, subject, message, phone?, company?, formId, page }` |
+| `GET /api/public/site` | The website editor's saved changes: `pages`, `global` (header/footer), `custom` (published new pages), `menus`, `settings` (design), `seo` (SEO settings, Measurement ID, redirects, WhatsApp, leaders, AI assistants), `productGroups` (the product-page cards changed under *Products*), `downloads` (published PDFs), `address` (the *Website address*), `version` |
+| `GET /api/public/downloads` | Published downloads (`items`: title, category, description, `url`, size) |
+| `GET /api/public/downloads/<id>` | The PDF itself (`?download=1` saves it instead of opening it) |
+| `POST /api/public/enquiries` | JSON `{ name, email, message, subject?, phone?, company?, country?, product?, quantity?, formId, page }`; without a subject, the product (and quantity) become the subject |
 | `POST /api/public/applications` | Form data: `name, email, phone, location, experience, currentCompany, linkedin, coverLetter, consent, jobId, jobTitle, resume` (PDF/DOC/DOCX/RTF up to 5 MB) |
 | `GET /api/health` | Server, database and storage status |
 

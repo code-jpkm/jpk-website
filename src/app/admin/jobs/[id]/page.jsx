@@ -30,7 +30,7 @@ export default async function EditJobPage({ params }) {
       key={String(job._id)}
       initial={plain(job)}
       applications={applications}
-      siteUrl={websiteUrl()}
+      siteUrl={await websiteUrl()}
       departments={departments.filter(Boolean)}
       locations={locations.filter(Boolean)}
       perms={{ update: can(user, 'jobs', 'update'), delete: can(user, 'jobs', 'delete'), applications: can(user, 'applications', 'view') }}

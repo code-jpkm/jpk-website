@@ -2,7 +2,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { connectDB } from './db.js';
 import { hashPassword } from './password.js';
-import { sanitizeRich } from './sanitize.js';
 import { storeImage } from './storage.js';
 import { User } from '../models/User.js';
 import { Blog } from '../models/Blog.js';
@@ -130,49 +129,82 @@ export async function renameSanitaryCategory() {
   return { status };
 }
 
-// The six posts that were on the WordPress site, so they can be edited or removed here.
+// The six posts that were on the WordPress site were placeholder text (lorem ipsum and "influencer marketing"
+// copy, website audit of Nov 2026), so they are no longer added to a new admin. The setting still records that
+// the list of posts here is the complete one: the website shows only posts written here.
 export async function importJpkUpdates() {
   await connectDB();
   if (await getSetting('seed.jpkUpdates')) return { status: 'done-before' };
-  if ((await Blog.countDocuments({ source: { $ne: 'wordpress' } })) > 0) {
-    await setSetting('seed.jpkUpdates', { at: new Date().toISOString(), skipped: 'posts already added in the admin' });
-    return { status: 'skipped' };
-  }
-  let posts;
+  await setSetting('seed.jpkUpdates', { at: new Date().toISOString(), skipped: 'the WordPress posts were placeholder text' });
+  return { status: 'skipped' };
+}
+
+// the placeholder sentence all six WordPress posts start with
+const PLACEHOLDER = /when your team needs to collaborate with the right creator/i;
+
+// Once: the six placeholder posts added on 4 Nov 2026 go to the drafts, so they leave the website and its
+// sitemap. They stay in JPK Updates to be rewritten or deleted. A post whose text was rewritten here is left alone.
+export async function retirePlaceholderPosts() {
+  await connectDB();
+  if (await getSetting('migrate.placeholderPosts')) return { status: 'done-before' };
+  let seed = [];
   try {
-    posts = JSON.parse(await fs.readFile(path.join(process.cwd(), 'seed-data', 'jpk-updates', 'posts.json'), 'utf8'));
-  } catch {
-    return { status: 'no-data' };
-  }
-  let added = 0;
-  for (const p of posts) {
-    if (await Blog.exists({ slug: p.slug })) continue;
-    let coverImage = null;
-    if (p.image && p.image.file) {
-      const buffer = await fs.readFile(path.join(process.cwd(), 'seed-data', 'jpk-updates', path.basename(p.image.file)));
-      const stored = await storeImage(buffer, { folder: 'jpk-updates', filename: p.image.file });
-      coverImage = { ...stored, alt: p.image.alt || p.title };
+    seed = JSON.parse(await fs.readFile(path.join(process.cwd(), 'seed-data', 'jpk-updates', 'posts.json'), 'utf8'));
+  } catch { /* no list: only the placeholder sentence decides */ }
+  const slugs = new Set(seed.map(p => p.slug));
+  const posts = await Blog.find({ source: 'wordpress', status: 'published' }).select('slug content').lean();
+  const ids = posts.filter(b => (slugs.size === 0 || slugs.has(b.slug)) && PLACEHOLDER.test(textOf(b.content || ''))).map(b => b._id);
+  if (ids.length) await Blog.updateMany({ _id: { $in: ids } }, { $set: { status: 'draft' } });
+  await setSetting('migrate.placeholderPosts', { at: new Date().toISOString(), drafted: ids.length });
+  return { status: ids.length ? 'drafted' : 'nothing-to-do', count: ids.length };
+}
+
+// Once (website audit, Nov 2026): the texts corrected on the website (wrong comma in the hero, "alegacy", the broken
+// About paragraph, "Million Tons", the repeated farming text, the footer copyright and office address) are also
+// corrected in texts saved in the website editor before, where they still hold the old wording. Other changes made
+// in the editor are left alone.
+const AUDIT_TEXT_FIXES = [
+  ["page:Home", "4f22c43.r0", "JPK Metallics is a family-run foundry with over five decades of expertise in the iron and steel casting industry. founded on reliability, precision and innovation.Our products serve critical infrastructure. With a legacy spanning 50 years. in the global iron and steel casting industry.", "JPK Metallics is a family-run foundry with five decades of expertise in the iron and steel casting industry. Founded on reliability, precision and innovation, our products serve critical infrastructure around the world."],
+  ["page:Home", "0193b03.r0", "is a family-run foundry with nearly five decades of expertise in the iron casting industry.", "is a family-run foundry with five decades of expertise in the iron casting industry."],
+  ["page:Home", "0193b03.r0", "With alegacy spanning 50 years, JPK Metallics", "With a legacy spanning 50 years, JPK Metallics"],
+  ["page:AboutUs", "f9d36fa.r0", "precision metal casting. Over five decades, his leadership", "precision metal casting. Across five decades, his leadership"],
+  ["page:Home", "hero.t0", "Delivering, Innovation, and Reliability Since 1976", "Delivering Innovation and Reliability Since 1976"],
+  ["page:Home", "e397eda.t3", "Our castings play a role that supports efficient soil tilling, modern farming practices soil tilling and modern farming practices.", "Our castings support efficient soil tilling and modern farming practices."],
+  ["page:SegmentsWeServe", "453cba7.t2", "Our castings play a role that supports efficient soil tilling, modern farming practices soil tilling and modern farming practices.", "Our castings support efficient soil tilling and modern farming practices."],
+  ["page:Home", "7354f9a.t0", "Million Tons Exported Annually", "Kgs Exported Annually"],
+  ["global", "345d903.r0", "Copyright – © 2025 JPK Metallic. All Right Reserved", "Copyright © 2026 JPK Metallics Pvt. Ltd. All Rights Reserved."],
+  ["global", "ba3b38d.t0", "P-15, Bentinck Street Bentinck House, 3rd Floor, Kolkata-700 001, West Bengal, India", "Bentinck House, 3rd Floor, P-15, Bentinck Street, Kolkata – 700001, West Bengal, India"],
+  ["global", "44a1c9d.t0", "P-15, Bentinck Street Bentinck House, 3rd Floor, Kolkata-700 001, West Bengal, India", "Bentinck House, 3rd Floor, P-15, Bentinck Street, Kolkata – 700001, West Bengal, India"],
+  ["global", "5dc817e.t0", "Address", "Office Address"],
+];
+
+export async function fixAuditTexts() {
+  await connectDB();
+  if (await getSetting('migrate.auditTexts')) return { status: 'done-before' };
+  const keys = [...new Set(AUDIT_TEXT_FIXES.map(f => f[0]))];
+  const parts = await SitePart.find({ key: { $in: keys } });
+  let changed = 0;
+  for (const part of parts) {
+    const data = partData(part) || {};
+    const content = data.content && typeof data.content === 'object' ? data.content : null;
+    if (!content) continue;
+    let touched = false;
+    for (const [key, field, from, to] of AUDIT_TEXT_FIXES) {
+      if (key !== part.key || typeof content[field] !== 'string') continue;
+      // short texts must match whole ("Address"), longer ones may be part of a saved text block
+      const value = content[field];
+      if (from.length < 30 ? value.trim() !== from : !value.includes(from)) continue;
+      content[field] = from.length < 30 ? to : value.split(from).join(to);
+      touched = true;
+      changed += 1;
     }
-    try {
-      await Blog.create({
-        title: p.title,
-        slug: p.slug,
-        excerpt: p.excerpt || '',
-        content: sanitizeRich(p.html),
-        coverImage,
-        category: p.category || 'JPK Updates',
-        status: 'published',
-        publishedAt: new Date(p.date),
-        authorName: p.author || 'JPK Metallics',
-        source: 'wordpress',
-      });
-      added += 1;
-    } catch (err) {
-      if (!(err && err.code === 11000)) throw err;
+    if (touched) {
+      part.json = JSON.stringify(data);
+      await part.save();
     }
   }
-  await setSetting('seed.jpkUpdates', { at: new Date().toISOString(), count: added });
-  return { status: 'imported', count: added };
+  await setSetting('migrate.auditTexts', { at: new Date().toISOString(), changed });
+  return { status: changed ? 'fixed' : 'nothing-to-do', count: changed };
 }
 
 // Once: the products shown on the website's product pages (seed-data/products, made from the pages by

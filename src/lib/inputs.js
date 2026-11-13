@@ -30,6 +30,7 @@ export function parseBlog(body, { partial = false } = {}) {
   if (has('status')) out.status = oneOf(body.status, ['draft', 'published'], 'draft');
   if (has('publishedAt')) out.publishedAt = dateOrNull(body.publishedAt, 'Publish date');
   if (has('authorName')) out.authorName = line(body.authorName, { max: 120, label: 'Author' }) || 'JPK Metallics';
+  if (has('authorRole')) out.authorRole = line(body.authorRole, { max: 120, label: 'Author’s role' });
   if (has('seoTitle')) out.seoTitle = line(body.seoTitle, { max: 120, label: 'Search title' });
   if (has('seoDescription')) out.seoDescription = line(body.seoDescription, { max: 300, label: 'Search description' });
   return out;

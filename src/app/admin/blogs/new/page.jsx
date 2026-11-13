@@ -12,5 +12,5 @@ export default async function NewBlogPage() {
   if (!allowed) return <NoAccess what="new JPK Updates posts" />;
   await connectDB();
   const categories = (await Blog.distinct('category')).filter(Boolean);
-  return <BlogForm siteUrl={websiteUrl()} categories={categories} perms={{ update: true, delete: false }} />;
+  return <BlogForm siteUrl={await websiteUrl()} categories={categories} perms={{ update: true, delete: false }} />;
 }

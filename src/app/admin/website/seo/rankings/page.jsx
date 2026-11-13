@@ -21,5 +21,5 @@ export default async function RankingsScreen() {
     ...schema.pages.map(p => ({ path: p.path, name: p.name, href: `/admin/website/seo/${p.page}` })),
     ...custom.filter(p => p.path).map(p => ({ path: p.path, name: p.title, href: `/admin/website/seo/custom-${p.id}` })),
   ];
-  return <RankingsView status={plain(status)} canEdit={can(user, 'website', 'update')} websiteUrl={websiteUrl()} keyphrases={plain(keyphrases)} pages={pages} />;
+  return <RankingsView status={plain(status)} canEdit={can(user, 'website', 'update')} websiteUrl={await websiteUrl()} keyphrases={plain(keyphrases)} pages={pages} />;
 }

@@ -10,5 +10,5 @@ export const metadata = { title: 'Website' };
 export default async function WebsitePage() {
   const { user, allowed } = await requirePageUser('website');
   if (!allowed) return <NoAccess what="the website editor" />;
-  return <WebsiteHub websiteUrl={websiteUrl()} perms={{ create: can(user, 'website', 'create'), update: can(user, 'website', 'update'), delete: can(user, 'website', 'delete') }} />;
+  return <WebsiteHub websiteUrl={await websiteUrl()} perms={{ create: can(user, 'website', 'create'), update: can(user, 'website', 'update'), delete: can(user, 'website', 'delete') }} />;
 }

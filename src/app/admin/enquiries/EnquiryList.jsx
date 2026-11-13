@@ -47,6 +47,7 @@ export default function EnquiryList({ initial, perms, siteUrl }) {
                   <td>
                     <Link href={`/admin/enquiries/${e._id}`} className="table__title">{e.name}</Link>
                     <span className="table__sub">{e.email}</span>
+                    {e.company || e.country ? <span className="table__sub">{[e.company, e.country].filter(Boolean).join(' · ')}</span> : null}
                   </td>
                   <td className="hide-sm" style={{ maxWidth: 380 }}>
                     {e.subject ? <strong className="table__sub" style={{ color: 'var(--navy)' }}>{e.subject}</strong> : null}

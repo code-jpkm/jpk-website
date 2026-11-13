@@ -7,5 +7,5 @@ export async function productFormData() {
   const pages = new Map((schema.pages || []).map(p => [p.path, p.name]));
   const norm = p => (p ? `/${String(p).replace(/^\/+|\/+$/g, '')}/` : '');
   const groups = (schema.productGroups || []).map(g => ({ id: g.id, path: g.path, label: g.label, page: g.page }));
-  return { pages, norm, groups, websiteUrl: websiteUrl() };
+  return { pages, norm, groups, websiteUrl: await websiteUrl() };
 }

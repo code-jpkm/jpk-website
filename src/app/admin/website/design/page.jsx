@@ -22,7 +22,7 @@ export default async function DesignPage() {
       initial={{ data: plain(part ? part.data : null), updatedAt: part && part.updatedAt ? new Date(part.updatedAt).toISOString() : null }}
       theme={schema.theme}
       pages={pageOptions(schema)}
-      websiteUrl={websiteUrl()}
+      websiteUrl={await websiteUrl()}
       canEdit={can(user, 'website', 'update')}
     />
   );

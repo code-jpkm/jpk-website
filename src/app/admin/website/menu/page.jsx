@@ -23,7 +23,7 @@ export default async function MenuPage() {
       initial={{ data: plain(part ? part.data : null), updatedAt: part && part.updatedAt ? new Date(part.updatedAt).toISOString() : null }}
       builtIn={plain((schema.menus && schema.menus.main) || [])}
       pages={pageOptions(schema, custom)}
-      websiteUrl={websiteUrl()}
+      websiteUrl={await websiteUrl()}
       canEdit={can(user, 'website', 'update')}
     />
   );

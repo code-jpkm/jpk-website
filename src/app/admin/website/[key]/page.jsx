@@ -46,7 +46,7 @@ export default async function WebsiteEditPage({ params }) {
       schemaPage={page}
       schemaGlobal={schema.global}
       types={sectionTypes(schema)}
-      websiteUrl={websiteUrl()}
+      websiteUrl={await websiteUrl()}
       pages={pageOptions(schema, custom)}
       initial={{ data: plain(part ? part.data : {}), updatedAt: part && part.updatedAt ? new Date(part.updatedAt).toISOString() : null }}
       perms={{ update: can(user, 'website', 'update'), delete: can(user, 'website', 'delete'), create: can(user, 'website', 'create'), products: can(user, 'products', 'view') }}

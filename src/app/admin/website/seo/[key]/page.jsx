@@ -22,5 +22,5 @@ export default async function SeoPageScreen({ params }) {
   if (!partKey) notFound();
   const [page, gsc] = await Promise.all([seoPage(partKey), gscStatus().catch(() => ({ connected: false }))]);
   if (!page) notFound();
-  return <SeoPageEditor key={partKey} page={plain(page)} websiteUrl={websiteUrl()} canEdit={can(user, 'website', 'update')} gscConnected={Boolean(gsc.connected)} />;
+  return <SeoPageEditor key={partKey} page={plain(page)} websiteUrl={await websiteUrl()} canEdit={can(user, 'website', 'update')} gscConnected={Boolean(gsc.connected)} />;
 }

@@ -11,9 +11,8 @@ export function publicOrigin(req) {
   return `${proto}://${host}`;
 }
 
-export function websiteUrl() {
-  return String(process.env.WEBSITE_URL || 'https://jpkm.in').trim().replace(/\/+$/, '');
-}
+// the public website's address (async: it is a setting in the admin, see siteAddress.js)
+export { websiteUrl } from './siteAddress.js';
 
 const CLD_RE = /^(https?:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/;
 
@@ -67,6 +66,7 @@ export function publicBlog(b, origin, { withContent = true } = {}) {
     category: b.category || 'JPK Updates',
     tags: b.tags || [],
     author: b.authorName || 'JPK Metallics',
+    authorRole: b.authorRole || '',
     publishedAt: iso(b.publishedAt || b.createdAt),
     createdAt: iso(b.createdAt),
     updatedAt: iso(b.updatedAt),

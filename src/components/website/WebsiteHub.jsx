@@ -7,6 +7,7 @@ import { api } from '@/lib/client/api';
 import { formatDate, timeAgo } from '@/lib/format';
 import { useToast } from '@/components/Toast';
 import { PageHeader, Card, Badge, Notice, Field, Spinner, Icon } from '@/components/ui';
+import AddressCard from './AddressCard';
 
 // Website: every page with what was changed, the pages made here, and the header/footer, menu and design.
 export default function WebsiteHub({ websiteUrl, perms }) {
@@ -27,10 +28,18 @@ export default function WebsiteHub({ websiteUrl, perms }) {
       />
       {error ? <Notice tone="danger" title="The website pages could not be loaded.">{error}</Notice> : null}
       {state && state.source === 'bundled' ? (
-        <Notice tone="warn" title={`The list of pages comes with the admin: ${websiteUrl} could not be asked for its current list.`}>
-          This is normal until the website is updated to the version with the editor. You can make changes now; the preview and the changes appear once the website has that version.
-        </Notice>
+        /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\]|10\.|192\.168\.|[^/]+\.local(:|$))/i.test(websiteUrl) ? (
+          <Notice tone="info" title="The list of pages comes with the admin.">
+            The website address is on a computer of yours ({websiteUrl}), which the admin on the internet cannot reach. That is fine for testing: the admin uses its own copy of the list of pages, and the preview works on that computer.
+          </Notice>
+        ) : (
+          <Notice tone="warn" title={`The list of pages comes with the admin: ${websiteUrl} could not be asked for its current list.`}>
+            This is normal until the website is updated to the version with the editor. You can make changes now; the preview and the changes appear once the website has that version.
+          </Notice>
+        )
       ) : null}
+
+      <AddressCard websiteUrl={websiteUrl} canEdit={perms.update} />
 
       <div className="ws-cards">
         <Link href="/admin/website/header-footer" className="ws-card">
@@ -47,6 +56,11 @@ export default function WebsiteHub({ websiteUrl, perms }) {
           <strong>Design</strong>
           <span className="muted small">Colours, fonts and extra CSS for the whole website</span>
           <span className="ws-card__meta small">{state ? last(state.settings) : ''}</span>
+        </Link>
+        <Link href="/admin/website/downloads" className="ws-card">
+          <strong>Downloads</strong>
+          <span className="muted small">PDF catalogues, certificates and data sheets for buyers</span>
+          <span className="ws-card__meta small">Downloads page of the website</span>
         </Link>
       </div>
 

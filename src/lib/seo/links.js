@@ -7,7 +7,7 @@ import { savePart } from '../site/store.js';
 import { cleanHref } from '../site/clean.js';
 import { sanitizeRich } from '../sanitize.js';
 import { scheduleSiteRebuild } from '../siteHook.js';
-import { websiteUrl } from '../present.js';
+import { knownWebsiteUrl, websiteUrl } from '../siteAddress.js';
 import { anchors, setAnchor, unwrapAnchor, findWords, linkWords, plainText, escapeHtml } from './html.js';
 
 // The links of the website, page by page (SEO › Links): where each link is, where it goes (a page of the website,
@@ -24,7 +24,7 @@ import { anchors, setAnchor, unwrapAnchor, findWords, linkWords, plainText, esca
 
 const SITE_HOSTS = () => {
   const hosts = new Set(['jpkm.in', 'www.jpkm.in']);
-  try { hosts.add(new URL(websiteUrl()).hostname.toLowerCase()); } catch { /* the default is enough */ }
+  try { hosts.add(new URL(knownWebsiteUrl()).hostname.toLowerCase()); } catch { /* the default is enough */ }
   return hosts;
 };
 
@@ -40,6 +40,7 @@ export function normPath(p) {
 
 export async function siteIndex() {
   await connectDB();
+  await websiteUrl(); // the address set in the admin, for SITE_HOSTS
   const { schema } = await getSchema();
   const parts = await SitePart.find({ kind: { $in: ['page', 'custom', 'global', 'seo'] } }).lean();
   const data = new Map(parts.map(p => [p.key, partData(p) || {}]));
@@ -260,12 +261,18 @@ function linkSuggestions(info, idx, rows) {
   }
   const out = [];
   const places = info.texts.filter(t => !t.hidden && !t.heading);
+  // words already suggested for one page are not offered for another (two pages can share a name, e.g. the
+  // ductile iron and the cast iron "Solid Top"): [{ at: location key, start, end }]
+  const taken = [];
+  const free = (at, hit) => !taken.some(x => x.at === at && hit.start < x.end && x.start < hit.end);
   for (const c of cands) {
     let done = false;
     for (const phrase of c.phrases) {
       for (const t of places) {
-        const hit = findWords(t.html, phrase, { limit: 1 })[0];
+        const at = JSON.stringify(t.loc);
+        const hit = findWords(t.html, phrase, { limit: 5 }).find(h => free(at, h));
         if (!hit) continue;
+        taken.push({ at, start: hit.start, end: hit.end });
         out.push({ phrase, to: c.path, name: c.name, place: { loc: t.loc, start: hit.start, end: hit.end, match: hit.match }, before: hit.before, after: hit.after, sectionName: t.sectionName });
         done = true;
         break;

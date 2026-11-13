@@ -147,3 +147,9 @@
 .rk-mini th, .rk-mini td { font-size: 12px; }
 .rk-search { max-width: 220px; }
 .lk-pic { font-weight: 600; color: #3d4a55; }
+
+/* SEO › Settings › Leaders */
+.seo-person { align-items: end; padding-bottom: 4px; border-bottom: 1px dashed var(--line, #E3E7EB); margin-bottom: 12px; }
+.seo-person:last-of-type { border-bottom: 0; }
+.seo-person__url { display: flex; gap: 8px; align-items: center; }
+.seo-person__url .input { flex: 1 1 auto; min-width: 0; }

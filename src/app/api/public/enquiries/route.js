@@ -27,7 +27,7 @@ async function readBody(req) {
   return readJson(req, { maxBytes: 100_000 });
 }
 
-// POST /api/public/enquiries  { name, email, subject, message, phone?, company?, formId, page }
+// POST /api/public/enquiries  { name, email, message, subject?, phone?, company?, country?, product?, quantity?, formId, page }
 export const POST = publicRoute(async req => {
   if (!originAllowed(req)) throw new HttpError(403, 'Forms from this website are not accepted.');
   const ip = clientIp(req);
@@ -42,6 +42,9 @@ export const POST = publicRoute(async req => {
     email: email(body.email),
     phone: line(body.phone, { max: 40, label: 'Phone' }),
     company: line(body.company, { max: 160, label: 'Company' }),
+    country: line(body.country, { max: 80, label: 'Country' }),
+    product: line(body.product, { max: 120, label: 'Product' }),
+    quantity: line(body.quantity, { max: 120, label: 'Quantity' }),
     subject: line(body.subject, { max: 250, label: 'Subject' }),
     message: text(body.message, { max: 10000, required: true, label: 'Message' }),
     formId,
@@ -50,6 +53,8 @@ export const POST = publicRoute(async req => {
     ip,
     userAgent: String(req.headers.get('user-agent') || '').slice(0, 300),
   };
+  // the product enquiry form has no subject: the product (and quantity) say what it is about
+  if (!data.subject && data.product) data.subject = `${data.product}${data.quantity ? ` – ${data.quantity}` : ''}`.slice(0, 250);
   await connectDB();
   const doc = await Enquiry.create(data);
   notifyEnquiry(doc, publicOrigin(req));

@@ -20,7 +20,7 @@ export default async function SeoSettingsPage() {
     <SeoSettings
       initial={{ data: plain(part ? part.data : null), updatedAt: part && part.updatedAt ? new Date(part.updatedAt).toISOString() : null }}
       company={plain(schema.company || {})}
-      websiteUrl={websiteUrl()}
+      websiteUrl={await websiteUrl()}
       canEdit={can(user, 'website', 'update')}
     />
   );

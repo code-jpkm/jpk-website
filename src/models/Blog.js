@@ -14,6 +14,8 @@ const BlogSchema = new mongoose.Schema(
     status: { type: String, enum: ['draft', 'published'], default: 'draft' },
     publishedAt: Date,
     authorName: { type: String, trim: true, maxlength: 120, default: 'JPK Metallics' },
+    // the writer's role, e.g. "Head of Sales" (shown under the post and given to search engines with the name)
+    authorRole: { type: String, trim: true, maxlength: 120, default: '' },
     seoTitle: { type: String, trim: true, maxlength: 120, default: '' },
     seoDescription: { type: String, trim: true, maxlength: 300, default: '' },
     source: { type: String, default: 'admin' },

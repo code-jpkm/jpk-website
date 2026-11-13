@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }) {
   const badges = await badgesFor(user).catch(() => ({}));
   return (
     <ToastProvider>
-      <AdminShell user={user} badges={badges} siteUrl={websiteUrl()}>{children}</AdminShell>
+      <AdminShell user={user} badges={badges} siteUrl={await websiteUrl()}>{children}</AdminShell>
     </ToastProvider>
   );
 }

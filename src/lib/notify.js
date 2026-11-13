@@ -9,7 +9,8 @@ function adminBase(origin) {
 export function notifyEnquiry(doc, origin) {
   const link = `${adminBase(origin)}/admin/enquiries/${doc._id}`;
   const rows = [
-    ['Name', doc.name], ['Email', doc.email], ['Phone', doc.phone], ['Company', doc.company],
+    ['Name', doc.name], ['Email', doc.email], ['Phone', doc.phone], ['Company', doc.company], ['Country', doc.country],
+    ['Product', doc.product], ['Quantity', doc.quantity],
     ['Subject', doc.subject], ['Form', doc.formName], ['Page', doc.page], ['Received', new Date(doc.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })],
   ];
   return sendNotification({
